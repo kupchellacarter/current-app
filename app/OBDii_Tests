@@ -1,0 +1,41 @@
+import can
+import time
+
+# Set up CAN interface (e.g., can0)
+bus = can.interface.Bus(channel="can0", bustype="socketcan")
+
+# OBD-II Mode 01 (Request current powertrain data)
+# PID 0x0C is the Engine RPM
+# CAN frame for Mode 01 PID 0x0C (Engine RPM request)
+# CAN message format: 0x7DF is the broadcast address for OBD-II requests
+# 0x01 = Mode 01, 0x0C = PID 0x0C (Engine RPM)
+obd_request = can.Message(
+    arbitration_id=0x7DF,
+    data=[0x01, 0x0C, 0x00, 0x00, 0x00, 0x00],
+    is_extended_id=False,
+)
+
+# Send the CAN message
+bus.send(obd_request)
+print("Sent OBD-II RPM request")
+
+# Wait for a response (looking for a reply from 0x7E8, the ECU response address)
+while True:
+    message = bus.recv()  # Wait for CAN messages
+    if message.arbitration_id == 0x7E8:  # OBD-II ECU reply
+        print(f"Received CAN message: {message.data}")
+        # Check if the message is a valid response (Mode 01 PID 0x0C)
+        if (
+            len(message.data) >= 3
+            and message.data[0] == 0x41
+            and message.data[1] == 0x0C
+        ):
+            # Extract RPM from the message (bits 3-6 and 7-8)
+            rpm = (message.data[2] * 256 + message.data[3]) // 4
+            print(f"Engine RPM: {rpm} RPM")
+        else:
+            print("Invalid response for RPM.")
+        break
+
+# Close the bus connection after done
+bus.shutdown()
