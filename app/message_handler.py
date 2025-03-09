@@ -24,42 +24,49 @@ class MessageHandler:
         self.data = CanData()
         self.start_time = time.time()
 
-    def _can_request_and_parse(self) -> int:
-        """Reads the CAN bus."""
-        request_message = can.Message(
+    @staticmethod
+    def _voltage_request(self):
+        return can.Message(
+            arbitration_id=0x7DF,
+            data=[0x02, 0x01, 0x42],
+            is_extended_id=False,
+        )
+
+    @staticmethod
+    def _runtime_request(self):
+        return can.Message(
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
+
+    def _can_request_and_parse(self) -> int:
+        """Reads the CAN bus."""
         # Send the request message
         try:
-            self.bus.send(request_message)
+            self.bus.send(self._runtime_request())
             logger.info("OBD-II request sent successfully.")
         except can.CanError as e:
             logger.error("Error sending OBD-II request.")
             self.errors.append(f"Error: {e}")
 
-        # Now listen for the response from the MCU (0x7E8)
         logger.info("Waiting for response from MCU...")
-
-        # Set the timeout for waiting for a response (e.g., 1 second)
         timeout = 1
         start_time = time.time()
 
         while time.time() - start_time < timeout:
-            message = self.bus.recv(
-                timeout=timeout
-            )  # Wait for a message with a timeout
+            message = self.bus.recv(timeout=timeout)
 
             if message:
                 # Check if the message ID is the expected MCU response (0x7E8)
                 if message.arbitration_id == 0x7E8:
                     logger.info(f"Received response: {message.data}")
 
-                    # Decode the response (expecting a runtime value at PID 0x1F)
-                    if len(message.data) > 3:
-                        # runtime = (message.data[2] << 8) | message.data[3]
+                    # Ensure the response is valid and corresponds to PID 0x1F
+                    if len(message.data) > 4 and message.data[2] == 0x1F:
                         A = message.data[3]  # High byte
                         B = message.data[4]  # Low byte
-                        runtime = (A * 256) + B
+
+                        # Convert to seconds
+                        runtime_seconds = (A << 8) | B
                         logger.info(f"raw data: {message.data}")
                         logger.info(f"runtime in seconds: {runtime}")
                         print(runtime)
