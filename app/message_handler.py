@@ -26,7 +26,6 @@ class MessageHandler:
 
     def _can_request_and_parse(self) -> int:
         """Reads the CAN bus."""
-        # OBD-II request message (0x7DF 0x02 0x01 0x1F)
         request_message = can.Message(
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
@@ -57,7 +56,10 @@ class MessageHandler:
 
                     # Decode the response (expecting a runtime value at PID 0x1F)
                     if len(message.data) > 3:
-                        runtime = (message.data[2] << 8) | message.data[3]
+                        # runtime = (message.data[2] << 8) | message.data[3]
+                        A = message.data[3]  # High byte
+                        B = message.data[4]  # Low byte
+                        runtime = (A * 256) + B
                         logger.info(f"raw data: {message.data}")
                         logger.info(f"runtime in seconds: {runtime}")
                         print(runtime)
