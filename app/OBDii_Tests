@@ -5,36 +5,37 @@ import time
 bus = can.interface.Bus(channel="can0", bustype="socketcan")
 
 # OBD-II Mode 01 (Request current powertrain data)
-# PID 0x0C is the Engine RPM
-# CAN frame for Mode 01 PID 0x0C (Engine RPM request)
+# PID 0xDD85 is custom for State of Charge (SOC) request
+# CAN frame for Mode 01 PID 0xDD85 (Battery SOC request)
 # CAN message format: 0x7DF is the broadcast address for OBD-II requests
-# 0x01 = Mode 01, 0x0C = PID 0x0C (Engine RPM)
+# 0x01 = Mode 01, 0xDD85 = Custom PID (Battery SOC)
 obd_request = can.Message(
     arbitration_id=0x7DF,
-    data=[0x01, 0x0C, 0x00, 0x00, 0x00, 0x00],
+    data=[0x01, 0xDD, 0x85, 0x00, 0x00, 0x00],
     is_extended_id=False,
 )
 
 # Send the CAN message
 bus.send(obd_request)
-print("Sent OBD-II RPM request")
+print("Sent Battery SOC request (PID 0xDD85)")
 
 # Wait for a response (looking for a reply from 0x7E8, the ECU response address)
 while True:
     message = bus.recv()  # Wait for CAN messages
     if message.arbitration_id == 0x7E8:  # OBD-II ECU reply
         print(f"Received CAN message: {message.data}")
-        # Check if the message is a valid response (Mode 01 PID 0x0C)
+        # Check if the message is a valid response for Battery SOC (PID 0xDD85)
         if (
             len(message.data) >= 3
             and message.data[0] == 0x41
-            and message.data[1] == 0x0C
+            and message.data[1] == 0xDD
+            and message.data[2] == 0x85
         ):
-            # Extract RPM from the message (bits 3-6 and 7-8)
-            rpm = (message.data[2] * 256 + message.data[3]) // 4
-            print(f"Engine RPM: {rpm} RPM")
+            # Extract the SOC value from the message (this will be the 3rd byte)
+            soc_value = message.data[3]  # Assuming the SOC is stored in byte 3
+            print(f"Battery SOC: {soc_value}%")
         else:
-            print("Invalid response for RPM.")
+            print("Invalid response for Battery SOC.")
         break
 
 # Close the bus connection after done
