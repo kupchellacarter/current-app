@@ -10,6 +10,8 @@ formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
 
 class MessageHandler:
+    """Handler"""
+
     def __init__(self):
         # Set up the CAN interface (replace 'can0' with the correct interface if needed)
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
@@ -56,3 +58,7 @@ class MessageHandler:
 
     def set_runtime_data(self, runtime: int):
         self.data.runtime = runtime
+
+    def get_runtimer_data(self) -> int:
+        """docstring"""
+        return self.data.runtime
