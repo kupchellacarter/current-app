@@ -1,5 +1,6 @@
 import tkinter as tk
 import logging
+import threading
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -15,44 +16,40 @@ class GUI:
         self.root = tk.Tk()
         self.root.title("Electric Boat Dashboard")
         # Set the window to full screen
-        self.root.attributes("-fullscreen", True)
+        self.root.attributes("-fullscreen", False)
         # Hide the window cursor
         self.root.config(cursor="none")
         # Remove window decorations (title bar, borders, etc.)
-        self.root.overrideredirect(True)
+        # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
+
         # Create a title label
         label = tk.Label(
-            self.root, text="Electric Boat Control", font=("Helvetica", 24)
+            self.root, text="Electric Boat Control", font=("Helvetica", 50)
         )
         label.pack(pady=20)
 
-        # Placeholder for any live data or messages
-        text_widget = tk.Text(self.root, wrap=tk.WORD, font=("Courier", 16))
-        text_widget.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
-
-        # Example of adding buttons to the interface (you can add more as needed)
-        button = tk.Button(
-            self.root, text="Start Motor", font=("Helvetica", 16), width=20
+        # Placeholder for displaying variables (runtime and Var2) with larger font size
+        self.runtime_label = tk.Label(
+            self.root, text="Runtime: ", font=("Helvetica", 32)  # Increased font size
         )
-        button.pack(pady=20)
+        self.runtime_label.pack(pady=10)
 
-        # Placeholder for a speed slider
-        speed_slider = tk.Scale(
-            self.root,
-            from_=0,
-            to=100,
-            orient=tk.HORIZONTAL,
-            label="Speed",
-            font=("Helvetica", 16),
-        )
-        speed_slider.pack(pady=20)
-
-        # Placeholder for battery status (can be updated later)
-        battery_label = tk.Label(
-            self.root, text="Battery: 100%", font=("Helvetica", 16)
-        )
-        battery_label.pack(pady=10)
-
+    def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
+
+    def update_runtime(self, runtime_value):
+        """
+        Method to update the displayed variables dynamically
+        """
+        # Update the labels with new values
+        logger.info(f"Updating runtime value: {runtime_value}")
+        self.runtime_label.config(text=f"Runtime: {runtime_value}")
+
+    def refresh_ui(self):
+        """
+        Method to refresh the UI
+        """
+        self.root.update_idletasks()
+        self.root.update()
