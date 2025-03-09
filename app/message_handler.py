@@ -58,6 +58,7 @@ class MessageHandler:
                     # Decode the response (expecting a runtime value at PID 0x1F)
                     if len(message.data) > 3:
                         runtime = (message.data[2] << 8) | message.data[3]
+                        print(runtime)
                         return runtime
                     else:
                         logger.error("Invalid response length.")
