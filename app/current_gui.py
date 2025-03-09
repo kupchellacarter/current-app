@@ -52,7 +52,7 @@ class GUI:
         Method to display errors in the user interface
         """
         if len(errors) > 0:
-            self.error_label.config(text=f"ERRORS: {'\n'.join(errors)}")
+            self.error_label.config(text=f"ERRORS: {', '.join(errors)}")
 
     def refresh_ui(self):
         """
