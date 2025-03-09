@@ -2,7 +2,7 @@ import can
 import time
 
 # Set up CAN interface (e.g., can0)
-bus = can.interface.Bus(channel="can0", bustype="socketcan")
+bus = can.interface.Bus(channel="can0", interface="socketcan")
 
 # OBD-II Mode 01 (Request current powertrain data)
 # PID 0xDD85 is custom for State of Charge (SOC) request
