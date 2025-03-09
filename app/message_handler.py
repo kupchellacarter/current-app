@@ -24,16 +24,16 @@ class MessageHandler:
         self.data = CanData()
         self.start_time = time.time()
 
-    @staticmethod
-    def _voltage_request():
+    @property
+    def _voltage_request(self):
         return can.Message(
             arbitration_id=0x7DF,
             data=[0x02, 0x01, 0x42],
             is_extended_id=False,
         )
 
-    @staticmethod
-    def _runtime_request():
+    @property
+    def _runtime_request(self):
         return can.Message(
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
@@ -42,7 +42,7 @@ class MessageHandler:
         """Reads the CAN bus."""
         # Send the request message
         try:
-            self.bus.send(_runtime_request())
+            self.bus.send(self._runtime_request)
             logger.info("OBD-II request sent successfully.")
         except can.CanError as e:
             logger.error("Error sending OBD-II request.")
