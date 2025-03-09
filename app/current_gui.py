@@ -14,26 +14,26 @@ class GUI:
 
     def __init__(self):
         self.root = tk.Tk()
+        self.font = "Georgia"
         self.root.title("Electric Boat Dashboard")
-        # Set the window to full screen
         self.root.attributes("-fullscreen", False)
-        # Hide the window cursor
         self.root.config(cursor="none")
-        # Remove window decorations (title bar, borders, etc.)
         # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
 
         # Create a title label
-        label = tk.Label(
-            self.root, text="Electric Boat Control", font=("Helvetica", 50)
-        )
+        label = tk.Label(self.root, text="Current", font=(self.font, 50))
         label.pack(pady=20)
 
-        # Placeholder for displaying variables (runtime and Var2) with larger font size
-        self.runtime_label = tk.Label(
-            self.root, text="Runtime: ", font=("Helvetica", 32)  # Increased font size
-        )
+        self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
         self.runtime_label.pack(pady=10)
+
+        self.error_label = tk.Label(
+            self.root,
+            font=(self.font, 15),
+            fg="red",
+        )
+        self.error_label.pack(pady=10)
 
     def run(self):
         # Start the Tkinter event loop
@@ -46,6 +46,12 @@ class GUI:
         # Update the labels with new values
         logger.info(f"Updating runtime value: {runtime_value}")
         self.runtime_label.config(text=f"Runtime: {runtime_value}")
+
+    def show_errors(self, errors: list[str]):
+        """
+        Method to display errors in the user interface
+        """
+        self.error_label.config(text=f"ERRORS: {', '.join(errors)}")
 
     def refresh_ui(self):
         """
