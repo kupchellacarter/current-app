@@ -66,7 +66,7 @@ class MessageHandler:
                         B = message.data[4]  # Low byte
 
                         # Convert to seconds
-                        runtime_seconds = (A << 8) | B
+                        runtime = (A << 8) | B
                         logger.info(f"raw data: {message.data}")
                         logger.info(f"runtime in seconds: {runtime}")
                         print(runtime)
