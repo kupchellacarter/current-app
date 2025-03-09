@@ -61,6 +61,7 @@ class MessageHandler:
                         logger.info(f"raw data: {message.data}")
                         logger.info(f"runtime in seconds: {runtime}")
                         print(runtime)
+                        print(message.data)
                         return runtime
                     else:
                         logger.error("Invalid response length.")
