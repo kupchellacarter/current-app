@@ -42,7 +42,7 @@ class MessageHandler:
         logger.info("Waiting for response from MCU...")
 
         # Set the timeout for waiting for a response (e.g., 1 second)
-        timeout = 30
+        timeout = 1
         start_time = time.time()
 
         while time.time() - start_time < timeout:
@@ -58,7 +58,6 @@ class MessageHandler:
                     # Decode the response (expecting a runtime value at PID 0x1F)
                     if len(message.data) > 3:
                         runtime = (message.data[2] << 8) | message.data[3]
-                        print(runtime)
                         return runtime
                     else:
                         logger.error("Invalid response length.")
