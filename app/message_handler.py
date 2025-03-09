@@ -34,15 +34,15 @@ class MessageHandler:
         try:
             self.bus.send(request_message)
             logger.info("OBD-II request sent successfully.")
-        except can.CanError:
+        except can.CanError as e:
             logger.error("Error sending OBD-II request.")
-            self.errors.append("Error sending OBD-II request.")
+            self.errors.append(f"Error: {e}")
 
         # Now listen for the response from the MCU (0x7E8)
         logger.info("Waiting for response from MCU...")
 
         # Set the timeout for waiting for a response (e.g., 1 second)
-        timeout = 1.0
+        timeout = 30
         start_time = time.time()
 
         while time.time() - start_time < timeout:
