@@ -22,9 +22,27 @@ class GUI:
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
-        # Frame for central metrics
-        self.central_frame = tk.Frame(self.root, bg="black")
-        self.central_frame.pack(side=tk.LEFT, padx=30, pady=10)
+        # Frame Nest
+        self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=360)
+        self.outer_frame.pack(padx=40, pady=40)
+
+        # Top Frame (SOC)
+        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
+        self.top_frame.pack(side="top", till="x")
+
+        # Battery SOC Display
+        self.soc_canvas = tk.Canvas(self.root, width=700, height=50, bg="black")
+        self.soc_canvas.pack(pady=10)
+        self.soc_text = tk.Label(
+            self.root, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
+        )
+        self.soc_text.pack(pady=5)
+
+        # Central Frame
+        self.central_frame = tk.Frame(
+            self.outer_frame, bg="black", width=500, height=160
+        )
+        self.central_frame.place(x=10, y=110)
 
         # Central Metrics
         self.voltage_label = tk.Label(
@@ -54,9 +72,9 @@ class GUI:
         )
         self.power_label.grid(row=2, column=0, pady=5)
 
-        # Frame for the right-side elements
-        self.right_frame = tk.Frame(self.root, bg="black")
-        self.right_frame.pack(side=tk.RIGHT, padx=30, pady=10)
+        # Right Frame
+        self.right_frame = tk.Frame(self.root, bg="black", width=260, height=160)
+        self.right_frame.place(x=520, y=110)
 
         # Power and Temperature Bars (vertical)
         self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
@@ -65,17 +83,13 @@ class GUI:
         self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
         self.temp_canvas.grid(row=0, column=1, pady=5)
 
-        # Battery SOC Display (large and centered)
-        self.soc_canvas = tk.Canvas(self.root, width=700, height=50, bg="black")
-        self.soc_canvas.pack(pady=10)
-        self.soc_text = tk.Label(
-            self.root, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
-        )
-        self.soc_text.pack(pady=5)
+        # Bottom Frame
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=160)
+        self.bottom_frame.pack(side="bottom", fill="x")
 
         # Cell Voltage Range
         self.cell_voltage_label = tk.Label(
-            self.root,
+            self.bottom_frame,
             text="Cell Voltage: 0.000V",
             font=(self.font, 24),
             bg="black",
