@@ -54,7 +54,7 @@ class GUI:
         self.runtime_label = tk.Label(
             self.central_frame,
             text="MCU Runtime: ",
-            font=(self.font, 5),
+            font=(self.font, 10),
             bg="black",
             fg="white",
         )
