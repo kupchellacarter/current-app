@@ -54,15 +54,18 @@ class MessageHandler:
 
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
-            if message:
-                print(message.arbitration_id)
-                if metric == "runtime":
-                    runtime = (message.data[2] << 8) | message.data[3]
-                    print(runtime)
-                    print(message.data)
+            if message and message.arbitration_id == 0x7E8:
+                if metric == "runtime" and len(message.data) == 5:
+                    # A and B are the low and high bytes of runtime in seconds
+                    runtime_low_byte = message.data[3]
+                    runtime_high_byte = message.data[4]
+
+                    # Combine the low and high bytes to form the 16-bit runtime value
+                    runtime = (runtime_high_byte << 8) | runtime_low_byte
                     self.data.runtime = runtime
+                    print(f"runtime in seconds: {runtime}")
                     return
-                elif metric == "voltage" and message.arbitration_id == 0x7E8:
+                elif metric == "voltage":
                     print("checking voltage")
                     print(message.data)
                     voltage_raw = (message.data[0] << 8) | message.data[1]
