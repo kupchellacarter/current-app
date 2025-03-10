@@ -31,8 +31,8 @@ class GUI:
         self.top_frame.pack(side="top", fill="x")
 
         # Battery SOC Display (Top)
-        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
-        self.soc_canvas.pack(pady=5)
+        self.SOC_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
+        self.SOC_canvas.pack(pady=5)
         self.soc_text = tk.Label(
             self.top_frame,
             text="pack_voltage",
@@ -118,27 +118,25 @@ class GUI:
         )
         self.system_error_label.grid(row=1, column=0, pady=5)
 
-   
-
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
 
-    def update_soc(self, soc):
+    def update_soc(self, SOC):
         """Update the State of Charge (SOC) bar"""
-        self.soc_canvas.delete("all")
-        bar_width = int(300 * (soc / 100))
-        color = "green" if soc > 50 else "yellow" if soc > 20 else "red"
-        self.soc_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
-        self.soc_canvas.create_text(
+        self.SOC_canvas.delete("all")
+        bar_width = int(300 * (SOC / 100))
+        color = "green" if SOC > 50 else "yellow" if soc > 20 else "red"
+        self.SOC_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
+        self.SOC_canvas.create_text(
             150, 25, text=f"{soc:.1f}%", fill="white", font=(self.font, 20)
         )
 
-    def update_metrics(self, voltage, current, power):
-        """Update the voltage, current, and power labels"""
-        self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")
-        self.current_label.config(text=f"Current: {current:.1f}A")
-        self.power_label.config(text=f"Power: {power:.1f}kW")
+    # def update_metrics(self, voltage, current, power):
+    #     """Update the voltage, current, and power labels"""
+    #     self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")
+    #     self.current_label.config(text=f"Current: {current:.1f}A")
+    #     self.power_label.config(text=f"Power: {power:.1f}kW")
 
     def update_runtime(self, runtime_value):
         """
@@ -148,22 +146,22 @@ class GUI:
         logger.warning(f"Updating runtime value: {runtime_value}")
         self.runtime_label.config(text=f"Runtime: {runtime_value}")
 
-    def update_bars(self, kw, temp):
-        """Update the power (kW) and temperature bars"""
-        self.kw_canvas.delete("all")
-        self.temp_canvas.delete("all")
+    # def update_bars(self, kw, temp):
+    #     """Update the power (kW) and temperature bars"""
+    #     self.kw_canvas.delete("all")
+    #     self.temp_canvas.delete("all")
 
-        kw_fill = int(100 * (kw / 5))  # Assuming max 5kW
-        temp_fill = int(200 * (temp / 100))  # Assuming max 100°C
+    #     kw_fill = int(100 * (kw / 5))  # Assuming max 5kW
+    #     temp_fill = int(200 * (temp / 100))  # Assuming max 100°C
 
-        self.kw_canvas.create_rectangle(0, 100 - kw_fill, 30, 100, fill="red")
-        self.temp_canvas.create_rectangle(0, 100 - temp_fill, 30, 100, fill="orange")
+    #     self.kw_canvas.create_rectangle(0, 100 - kw_fill, 30, 100, fill="red")
+    #     self.temp_canvas.create_rectangle(0, 100 - temp_fill, 30, 100, fill="orange")
 
-    def update_cell_voltage(self, cell_voltage):
-        """Update the cell voltage label"""
-        self.cell_voltage_label.config(text=f"Cell Voltage: {cell_voltage:.3f}V")
+    # def update_cell_voltage(self, cell_voltage):
+    #     """Update the cell voltage label"""
+    #     self.cell_voltage_label.config(text=f"Cell Voltage: {cell_voltage:.3f}V")
 
-     def update_error_label(self, system_errors: set[str]):
+    def update_error_label(self, system_errors: set[str]):
         if len(system_errors) > 0:
             error_lines = system_errors.split("\n")
             formatted_message = "/n".join(error_lines)
