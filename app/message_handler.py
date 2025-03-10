@@ -65,11 +65,11 @@ class MessageHandler:
                     return
                 elif metric == "voltage":
                     print("checking voltage")
+                    print(message.data)
                     high_byte = message.data[3]
                     low_byte = message.data[4]
                     print(f"high_byte: {high_byte}")
                     print(f"low_byte: {low_byte}")
-                    # Decode the voltage: (High Byte * 256 + Low Byte) / 10
                     voltage = (high_byte * 256 + low_byte) / 10.0
                     print(f"Voltage: {voltage} V")
                     self.data.voltage = voltage
