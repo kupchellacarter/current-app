@@ -57,6 +57,8 @@ class GUI:
         self.soc_text.pack(pady=5)
 
         # Central Metrics
+        self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
+        self.runtime_label.grid(row=0, column=0, pady=10)
         self.voltage_label = tk.Label(
             self.central_frame,
             text="Voltage: 0V",
@@ -64,7 +66,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.voltage_label.grid(row=0, column=0, pady=5)
+        self.voltage_label.grid(row=1, column=0, pady=5)
 
         self.current_label = tk.Label(
             self.central_frame,
@@ -73,7 +75,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.current_label.grid(row=1, column=0, pady=5)
+        self.current_label.grid(row=2, column=0, pady=5)
 
         self.power_label = tk.Label(
             self.central_frame,
@@ -82,7 +84,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.power_label.grid(row=2, column=0, pady=5)
+        self.power_label.grid(row=3, column=0, pady=5)
 
         # Power and Temperature Bars (vertical)
         self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=100, bg="blue")
@@ -141,6 +143,14 @@ class GUI:
         self.current_label.config(text=f"Current: {current:.1f}A")
         self.power_label.config(text=f"Power: {power:.1f}kW")
 
+    def update_runtime(self, runtime_value):
+        """
+        Method to update the displayed variables dynamically
+        """
+        # Update the labels with new values
+        logger.warning(f"Updating runtime value: {runtime_value}")
+        self.runtime_label.config(text=f"Runtime: {runtime_value}")
+
     def update_bars(self, kw, temp):
         """Update the power (kW) and temperature bars"""
         self.kw_canvas.delete("all")
@@ -156,12 +166,12 @@ class GUI:
         """Update the cell voltage label"""
         self.cell_voltage_label.config(text=f"Cell Voltage: {cell_voltage:.3f}V")
 
-    def show_errors(self, errors):
-        """Display errors if any"""
-        if errors:
-            self.error_label.config(text=f"ERRORS: {', '.join(errors)}")
-        else:
-            self.error_label.config(text="")
+    # def show_errors(self, errors):
+    #     """Display errors if any"""
+    #     if errors:
+    #         self.errors.config(text=f"ERRORS: {', '.join(errors)}")
+    #     else:
+    #         self.error_label.config(text="")
 
     def refresh_ui(self):
         """Refresh the UI periodically"""

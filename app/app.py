@@ -14,7 +14,7 @@ def query_data(gui: GUI, handler: MessageHandler):
         voltage = handler.get_voltage()
         system_errors = handler.system_errors
         errors = handler.get_errors()
-        gui.show_errors(errors)
+        # gui.show_errors(errors)
         gui.update_error_label(system_errors)
         gui.update_runtime(runtime)
         gui.refresh_ui()
