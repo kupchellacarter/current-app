@@ -30,37 +30,31 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
 
-        # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=100)
-        self.bottom_frame.pack(side="bottom", fill="x")
-
-        # Central Frame
-        self.central_frame = tk.Frame(
-            self.outer_frame, bg="black", width=560, height=160
-        )
-        self.central_frame.pack(side="left", fill="y")
-
-        # Right Frame
-        self.right_frame = tk.Frame(self.root, bg="black", width=200, height=160)
-        self.right_frame.pack(side="right", fill="y")
-
-        # Battery SOC Display
+        # Battery SOC Display (Top)
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
-        self.soc_canvas.pack(pady=10)
+        self.soc_canvas.pack(pady=5)
         self.soc_text = tk.Label(
             self.top_frame,
             text="pack_voltage",
-            font=(self.font, 20),
+            font=(self.font, 10),
             bg="black",
             fg="white",
         )
         self.soc_text.pack(pady=5)
 
+        # Bottom Frame
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=100)
+        self.bottom_frame.pack(side="bottom", fill="x")
+
+        # Central Frame
+        self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
+        self.central_frame.pack(side="left", fill="y")
+
         # Central Metrics
         self.runtime_label = tk.Label(
             self.central_frame,
             text="Runtime: ",
-            font=(self.font, 32),
+            font=(self.font, 15),
             bg="black",
             fg="white",
         )
@@ -69,7 +63,7 @@ class GUI:
         self.voltage_label = tk.Label(
             self.central_frame,
             text="Voltage: 0V",
-            font=(self.font, 32),
+            font=(self.font, 15),
             bg="black",
             fg="white",
         )
@@ -78,7 +72,7 @@ class GUI:
         self.current_label = tk.Label(
             self.central_frame,
             text="Current: 0A",
-            font=(self.font, 32),
+            font=(self.font, 15),
             bg="black",
             fg="white",
         )
@@ -87,20 +81,24 @@ class GUI:
         self.power_label = tk.Label(
             self.central_frame,
             text="Power: 0kW",
-            font=(self.font, 32),
+            font=(self.font, 15),
             bg="black",
             fg="white",
         )
         self.power_label.grid(row=3, column=0, pady=5)
 
-        # Power and Temperature Bars (vertical)
-        self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=100, bg="blue")
+        # Right Frame
+        self.right_frame = tk.Frame(self.root, bg="black", width=100, height=160)
+        self.right_frame.pack(side="right", fill="y")
+
+        # Power and Temperature Bars (Right)
+        self.kw_canvas = tk.Canvas(self.right_frame, width=10, height=100, bg="blue")
         self.kw_canvas.grid(row=0, column=0, pady=5)
 
-        self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=100, bg="blue")
+        self.temp_canvas = tk.Canvas(self.right_frame, width=10, height=100, bg="blue")
         self.temp_canvas.grid(row=0, column=1, pady=5)
 
-        # Cell Voltage Range
+        # Cell Voltage Display
         self.cell_voltage_label = tk.Label(
             self.bottom_frame,
             text="Cell Voltage: 0.000V",
@@ -120,15 +118,7 @@ class GUI:
         )
         self.system_error_label.grid(row=1, column=0, pady=5)
 
-    def update_error_label(self, system_errors: set[str]):
-        if len(system_errors) > 0:
-            error_lines = system_errors.split("\n")
-            formatted_message = "/n".join(error_lines)
-            self.system_error_label.config(
-                text=formatted_message, bg="red", fg="yellow"
-            )
-        else:
-            self.system_error_label.config(text="All OK", bg="black", fg="blue")
+   
 
     def run(self):
         # Start the Tkinter event loop
@@ -163,15 +153,25 @@ class GUI:
         self.kw_canvas.delete("all")
         self.temp_canvas.delete("all")
 
-        kw_width = int(200 * (kw / 5))  # Assuming max 5kW
-        temp_width = int(200 * (temp / 100))  # Assuming max 100°C
+        kw_fill = int(100 * (kw / 5))  # Assuming max 5kW
+        temp_fill = int(200 * (temp / 100))  # Assuming max 100°C
 
-        self.kw_canvas.create_rectangle(0, 0, kw_width, 30, fill="red")
-        self.temp_canvas.create_rectangle(0, 0, temp_width, 30, fill="orange")
+        self.kw_canvas.create_rectangle(0, 100 - kw_fill, 30, 100, fill="red")
+        self.temp_canvas.create_rectangle(0, 100 - temp_fill, 30, 100, fill="orange")
 
     def update_cell_voltage(self, cell_voltage):
         """Update the cell voltage label"""
         self.cell_voltage_label.config(text=f"Cell Voltage: {cell_voltage:.3f}V")
+
+     def update_error_label(self, system_errors: set[str]):
+        if len(system_errors) > 0:
+            error_lines = system_errors.split("\n")
+            formatted_message = "/n".join(error_lines)
+            self.system_error_label.config(
+                text=formatted_message, bg="red", fg="yellow"
+            )
+        else:
+            self.system_error_label.config(text="All OK", bg="black", fg="blue")
 
     # def show_errors(self, errors):
     #     """Display errors if any"""
