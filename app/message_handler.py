@@ -63,21 +63,21 @@ class MessageHandler:
                     print(message.data)
                     self.data.runtime = runtime
                     return
-            elif metric == "voltage":
-                print("checking voltage")
-                high_byte = message.data[3]
-                low_byte = message.data[4]
-                print(f"high_byte: {high_byte}")
-                print(f"low_byte: {low_byte}")
-                # Decode the voltage: (High Byte * 256 + Low Byte) / 10
-                voltage = (high_byte * 256 + low_byte) / 10.0
-                print(f"Voltage: {voltage} V")
-                self.data.voltage = voltage
-                return
-            else:
-                logger.error("Invalid response length.")
-                self.errors.append("Invalid response length.")
-                break
+                elif metric == "voltage":
+                    print("checking voltage")
+                    high_byte = message.data[3]
+                    low_byte = message.data[4]
+                    print(f"high_byte: {high_byte}")
+                    print(f"low_byte: {low_byte}")
+                    # Decode the voltage: (High Byte * 256 + Low Byte) / 10
+                    voltage = (high_byte * 256 + low_byte) / 10.0
+                    print(f"Voltage: {voltage} V")
+                    self.data.voltage = voltage
+                    return
+                else:
+                    logger.error("Invalid response length.")
+                    self.errors.append("Invalid response length.")
+                    break
         else:
             logger.error("No response received from MCU within the timeout.")
             self.errors.append("No response received from MCU within the timeout.")
