@@ -3,7 +3,7 @@ from message_handler import MessageHandler
 import threading
 
 
-def query_data(gui: GUI, handler: MessageHandler):
+def query_data(handler: MessageHandler):
     """
     queries data
     """
@@ -11,23 +11,23 @@ def query_data(gui: GUI, handler: MessageHandler):
     handler.request_and_parse("voltage")
     voltage = handler.get_voltage()
     errors = handler.get_errors()
-    gui.show_errors(errors)
-    gui.update_runtime(runtime)
-    gui.refresh_ui()
+    # gui.show_errors(errors)
+    # gui.update_runtime(runtime)
+    # gui.refresh_ui()
 
 
 def main():
     """
     description here
     """
-    gui = GUI()
+    # gui = GUI()
     # Create MessageHandler instance
     handler = MessageHandler()
 
     # Start the query_data function in a separate background thread
-    query_thread = threading.Thread(target=query_data, args=(gui, handler), daemon=True)
+    query_thread = threading.Thread(target=query_data, args=(handler), daemon=True)
     query_thread.start()
-    gui.run()
+    # gui.run()
 
 
 if __name__ == "__main__":
