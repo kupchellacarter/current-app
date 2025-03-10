@@ -138,10 +138,10 @@ class GUI:
         """Update the State of Charge (SOC) bar"""
         self.SOC_canvas.delete("all")
         bar_width = int(300 * (SOC / 100))
-        color = "green" if SOC > 50 else "yellow" if soc > 20 else "red"
+        color = "green" if SOC > 50 else "yellow" if SOC > 20 else "red"
         self.SOC_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
         self.SOC_canvas.create_text(
-            150, 25, text=f"{soc:.1f}%", fill="white", font=(self.font, 20)
+            150, 25, text=f"{SOC:.1f}%", fill="white", font=(self.font, 20)
         )
 
     # def update_metrics(self, voltage, current, power):
