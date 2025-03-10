@@ -27,10 +27,10 @@ class GUI:
 
         self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
         self.runtime_label.pack(pady=10)
-        self.runtime_label = tk.Label(
+        self.volage_label = tk.Label(
             self.root, text="Pack Voltage: ", font=(self.font, 32)
         )
-        self.runtime_label.pack(pady=10)
+        self.voltage_label.pack(pady=10)
 
         self.error_label = tk.Label(
             self.root,
