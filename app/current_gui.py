@@ -81,10 +81,10 @@ class GUI:
         self.power_label.grid(row=2, column=0, pady=5)
 
         # Power and Temperature Bars (vertical)
-        self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
+        self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=100, bg="blue")
         self.kw_canvas.grid(row=0, column=0, pady=5)
 
-        self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
+        self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=100, bg="blue")
         self.temp_canvas.grid(row=0, column=1, pady=5)
 
         # Cell Voltage Range
@@ -98,9 +98,16 @@ class GUI:
         self.cell_voltage_label.pack(pady=5)
 
         # Error Display
-        self.error_label = tk.Label(self.bottom_frame, font=(self.font, 15), fg="red")
+        
+        self.error_label = tk.Label(self.bottom_frame, font=(self.font, 15), fg="yellow", bg="red", text="")
         self.error_label.pack(pady=10)
-
+        def update_error_display(self, error_message="")
+            if error_message:
+                error_lines = error_message.split("\n")
+                formatted_message = "/n".join(error_lines)
+                self.error_label.config(text=formatted_message, bg="red", fg="yellow")
+            else:
+                self.error_label.config(text-"All OK", bg="black", fg="blue")
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
