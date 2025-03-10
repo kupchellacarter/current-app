@@ -102,9 +102,9 @@ class GUI:
         self.cell_voltage_label.pack(pady=5)
 
         # Error Display
-        def update_error_message(self, error_message=""):
-            if error_message:
-                error_lines = error_message.split("\n")
+        def update_error_label(self, error_label=""):
+            if error_label:
+                error_lines = error_label.split("\n")
                 formatted_message = "/n".join(error_lines)
                 self.error_label.config(text=formatted_message, bg="red", fg="yellow")
             else:
