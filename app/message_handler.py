@@ -93,3 +93,8 @@ class MessageHandler:
     def get_errors(self) -> list:
         """Returns a list of errors encountered during operation."""
         return self.errors
+
+
+if __name__ == "__main__":
+    handler = MessageHandler()
+    handler.request_and_parse("voltage")
