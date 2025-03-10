@@ -61,14 +61,11 @@ class MessageHandler:
                     print(message.data)
                     self.data.runtime = runtime
                     return
-                elif metric == "voltage":
+                elif metric == "voltage" and message.arbitration_id == 0x7E8:
                     print("checking voltage")
                     print(message.data)
-                    high_byte = message.data[3]
-                    low_byte = message.data[4]
-                    print(f"high_byte: {high_byte}")
-                    print(f"low_byte: {low_byte}")
-                    voltage = (high_byte * 256 + low_byte) / 10.0
+                    voltage_raw = (message.data[0] << 8) | message.data[1]
+                    voltage = voltage_raw / 10.0  # Use the equation for voltage
                     print(f"Voltage: {voltage} V")
                     self.data.voltage = voltage
                     return
