@@ -100,16 +100,26 @@ class GUI:
             fg="white",
         )
         self.cell_voltage_label.pack(pady=5)
-        self.error_label.pack(pady=10)
 
-    # Error Display
+        # Error Display
+        self.system_error_label = tk.Label(
+            self.central_frame,
+            text="System Errors:",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
+        )
+        self.current_label.grid(row=1, column=0, pady=5)
+
     def update_error_label(self, system_errors: set[str]):
         if system_errors:
             error_lines = system_errors.split("\n")
             formatted_message = "/n".join(error_lines)
-            self.system_errors.config(text=formatted_message, bg="red", fg="yellow")
+            self.system_error_label.config(
+                text=formatted_message, bg="red", fg="yellow"
+            )
         else:
-            self.system_errors.config(text="All OK", bg="black", fg="blue")
+            self.system_error_label.config(text="All OK", bg="black", fg="blue")
 
     def run(self):
         # Start the Tkinter event loop
