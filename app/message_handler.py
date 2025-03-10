@@ -13,15 +13,16 @@ class MessageHandler:
 
     def __init__(self):
         self.bus = None
-        self.errors = []
+        self.errors = {}
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
         self.data = CanData()
 
     @property
     def _voltage_request(self):
         return can.Message(
-            arbitration_id=0x7DF,  data=[0x03, 0x22, 0xDD, 0x83],  # B0 = 0x03, B1 = 0x22, B2 = 0xDD, B3 = 0x83
-        is_extended_id=False
+            arbitration_id=0x7DF,
+            data=[0x03, 0x22, 0xDD, 0x83],  # B0 = 0x03, B1 = 0x22, B2 = 0xDD, B3 = 0x83
+            is_extended_id=False,
         )
 
     @property
@@ -63,13 +64,15 @@ class MessageHandler:
                 elif metric == "voltage":
                     print("checking voltage")
                     print(message.data)
-                     length = message.data[0]  # B0 (length)
+                    length = message.data[0]  # B0 (length)
                     service_reply = message.data[1]  # B1 (custom service reply)
-                    pid = (message.data[2] << 8) | message.data[3]  # Combine B2 and B3 for PID (0xDD83)
+                    pid = (message.data[2] << 8) | message.data[
+                        3
+                    ]  # Combine B2 and B3 for PID (0xDD83)
                     if pid == 0xDD83:
                         # Extract the pack voltage from B4 (low byte) and B5 (high byte)
                         voltage_raw = (message.data[4] << 8) | message.data[5]
-                        
+
                         # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
                         voltage = voltage_raw / 10.0  # Convert the raw value to voltage
                         print(f"Voltage: {voltage} V")
