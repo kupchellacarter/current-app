@@ -56,17 +56,8 @@ class MessageHandler:
             message = self.bus.recv(timeout=timeout)
 
             if message:
-                # Check if the message ID is the expected MCU response (0x7E8)
-                if (
-                    message.arbitration_id == 0x7E8
-                    and message.data[1] == 0x41
-                    and message.data[2] == 0x1F
-                ):
-                    # Extract the run time value (bytes 5 and 6 in the data)
-                    run_time_hex = (message.data[3] << 8) + message.data[
-                        4
-                    ]  # Combine bytes 3 and 4
-                    runtime = run_time_hex / 60  # Convert to seconds
+                if len(message.data) > 3:
+                    runtime = (message.data[2] << 8) | message.data[3]
                     print(runtime)
                     print(message.data)
                     return runtime
