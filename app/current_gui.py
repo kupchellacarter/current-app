@@ -58,7 +58,11 @@ class GUI:
 
         # Central Metrics
         self.runtime_label = tk.Label(
-            self.central_frame, text="Runtime: ", font=(self.font, 32)
+            self.central_frame,
+            text="Runtime: ",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
         )
         self.runtime_label.grid(row=0, column=0, pady=10)
 
