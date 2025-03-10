@@ -31,10 +31,10 @@ class GUI:
         self.top_frame.pack(side="top", fill="x")
 
         # Battery SOC Display
-        self.soc_canvas = tk.Canvas(self.outer_frame, width=700, height=50, bg="black")
+        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(pady=10)
         self.soc_text = tk.Label(
-            self.root, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
+            self.top_frame, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
         )
         self.soc_text.pack(pady=5)
 
@@ -98,7 +98,7 @@ class GUI:
         self.cell_voltage_label.pack(pady=5)
 
         # Error Display
-        self.error_label = tk.Label(self.root, font=(self.font, 15), fg="red")
+        self.error_label = tk.Label(self.bottom_frame, font=(self.font, 15), fg="red")
         self.error_label.pack(pady=10)
 
     def run(self):
