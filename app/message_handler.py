@@ -97,7 +97,7 @@ class MessageHandler:
                     ]  # Combine B2 and B3 for PID (0xDD83)
                     if pid == 0xDD85:
                         # Extract the pack SOC from B4 (low byte) and B5 (high byte)
-                        SOC = (message.data[4] << 8) | message.data[5]
+                        SOC = (message.data[5] << 8) | message.data[4]
                         print(f"SOC: {SOC} %")
                         self.data.SOC = SOC
                         return
