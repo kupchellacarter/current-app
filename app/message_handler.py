@@ -79,10 +79,12 @@ class MessageHandler:
                     ]  # Combine B2 and B3 for PID (0xDD83)
                     if pid == 0xDD83:
                         # Extract the pack voltage from B4 (low byte) and B5 (high byte)
-                        voltage_raw = (message.data[4] << 8) | message.data[5]
+                        voltage_raw = (message.data[5] << 8) | message.data[4]
 
                         # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
-                        voltage = voltage_raw / 10.0  # Convert the raw value to voltage
+                        voltage = (
+                            voltage_raw / 100.0
+                        )  # Convert the raw value to voltage
                         print(f"Voltage: {voltage} V")
                         self.data.voltage = voltage
                         return

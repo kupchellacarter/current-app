@@ -43,7 +43,7 @@ class GUI:
         self.soc_text.pack(pady=5)
 
         # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=100)
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
         self.bottom_frame.pack(side="bottom", fill="x")
 
         # Central Frame
@@ -53,16 +53,16 @@ class GUI:
         # Central Metrics
         self.runtime_label = tk.Label(
             self.central_frame,
-            text="Runtime: ",
-            font=(self.font, 15),
+            text="MCU Runtime: ",
+            font=(self.font, 5),
             bg="black",
             fg="white",
         )
-        self.runtime_label.grid(row=0, column=0, pady=10)
+        self.runtime_label.grid(row=0, column=0, pady=4)
 
         self.voltage_label = tk.Label(
             self.central_frame,
-            text="Voltage: 0V",
+            text="Pack Voltage: ",
             font=(self.font, 15),
             bg="black",
             fg="white",
@@ -71,7 +71,7 @@ class GUI:
 
         self.current_label = tk.Label(
             self.central_frame,
-            text="Current: 0A",
+            text="Current: ",
             font=(self.font, 15),
             bg="black",
             fg="white",
@@ -80,7 +80,7 @@ class GUI:
 
         self.power_label = tk.Label(
             self.central_frame,
-            text="Power: 0kW",
+            text="Power: ",
             font=(self.font, 15),
             bg="black",
             fg="white",
