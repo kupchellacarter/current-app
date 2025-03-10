@@ -63,7 +63,7 @@ class GUI:
         self.kw_canvas.grid(row=0, column=0, pady=5)
 
         self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
-        self.temp_canvas.grid(row=1, column=0, pady=5)
+        self.temp_canvas.grid(row=0, column=1, pady=5)
 
         # Battery SOC Display (large and centered)
         self.soc_canvas = tk.Canvas(self.root, width=700, height=50, bg="black")
@@ -72,13 +72,6 @@ class GUI:
             self.root, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
         )
         self.soc_text.pack(pady=5)
-
-        # Power and Temperature Bars
-        self.kw_canvas = tk.Canvas(self.root, width=200, height=30, bg="black")
-        self.kw_canvas.pack(pady=5)
-
-        self.temp_canvas = tk.Canvas(self.root, width=200, height=30, bg="black")
-        self.temp_canvas.pack(pady=5)
 
         # Cell Voltage Range
         self.cell_voltage_label = tk.Label(
