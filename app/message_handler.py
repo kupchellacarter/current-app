@@ -41,7 +41,7 @@ class MessageHandler:
         else:
             raise ValueError(f"Invalid metric: {metric}")
 
-    def _can_request_and_parse(self, metric: str) -> int:
+    def request_and_parse(self, metric: str) -> int:
         """Reads the CAN bus."""
         # Send the request message
         request = self.request_factory(metric)

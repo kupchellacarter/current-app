@@ -7,13 +7,13 @@ def query_data(gui: GUI, handler: MessageHandler):
     """
     queries data
     """
-    while True:
-        handler.request_runtime_data()
-        runtime = handler.get_runtime_data()
-        errors = handler.get_errors()
-        gui.show_errors(errors)
-        gui.update_runtime(runtime)
-        gui.refresh_ui()
+    # while True:
+    handler.request_and_parse("voltage")
+    voltage = handler.get_voltage()
+    errors = handler.get_errors()
+    gui.show_errors(errors)
+    gui.update_runtime(runtime)
+    gui.refresh_ui()
 
 
 def main():
