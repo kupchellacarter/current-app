@@ -27,7 +27,7 @@ class GUI:
 
         self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
         self.runtime_label.pack(pady=10)
-        self.volage_label = tk.Label(
+        self.voltage_label = tk.Label(
             self.root, text="Pack Voltage: ", font=(self.font, 32)
         )
         self.voltage_label.pack(pady=10)
