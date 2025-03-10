@@ -112,16 +112,16 @@ class GUI:
 
         # Error Display
         self.system_error_label = tk.Label(
-            self.central_frame,
+            self.bottom_frame,
             text="System Errors:",
             font=(self.font, 32),
             bg="black",
             fg="white",
         )
-        self.current_label.grid(row=1, column=0, pady=5)
+        self.current_label.pack(pady=5)
 
     def update_error_label(self, system_errors: set[str]):
-        if system_errors:
+        if len(system_errors) > 0:
             error_lines = system_errors.split("\n")
             formatted_message = "/n".join(error_lines)
             self.system_error_label.config(
