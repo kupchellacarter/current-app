@@ -54,7 +54,7 @@ class MessageHandler:
 
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
-            if message and len(message.data) > 2:
+            if message:
                 if metric == "runtime":
                     runtime = (message.data[2] << 8) | message.data[3]
                     print(runtime)
