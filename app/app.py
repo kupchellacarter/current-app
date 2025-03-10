@@ -9,7 +9,7 @@ def query_data(gui: GUI, handler: MessageHandler):
     """
     while True:
         handler.request_and_parse("runtime")
-        voltage = handler.get_runtime()
+        runtime = handler.get_runtime()
         handler.request_and_parse("voltage")
         voltage = handler.get_voltage()
         errors = handler.get_errors()
