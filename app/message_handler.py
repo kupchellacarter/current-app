@@ -21,9 +21,7 @@ class MessageHandler:
     @property
     def _voltage_request(self):
         return can.Message(
-            arbitration_id=0x7DF,
-            data=[0x02, 0x01, 0x42],
-            is_extended_id=False,
+            arbitration_id=0x7DF, data=[0xDD, 0x83], is_extended_id=False
         )
 
     @property
