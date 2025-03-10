@@ -82,9 +82,7 @@ class MessageHandler:
                         voltage_raw = (message.data[5] << 8) | message.data[4]
 
                         # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
-                        voltage = (
-                            voltage_raw / 100.0
-                        )  # Convert the raw value to voltage
+                        voltage = voltage_raw / 10.0  # Convert the raw value to voltage
                         print(f"Voltage: {voltage} V")
                         self.data.voltage = voltage
                         return
