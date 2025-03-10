@@ -45,12 +45,13 @@ class MessageHandler:
         """Reads the CAN bus."""
         # Send the request message
         request = self.request_factory(metric)
+        print(request)
         try:
             self.bus.send(request)
         except can.CanError as e:
             self.errors.append(f"Error: {e}")
 
-        timeout = 10
+        timeout = 1
         start_time = time.time()
 
         while time.time() - start_time < timeout:
