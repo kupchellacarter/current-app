@@ -31,17 +31,17 @@ class GUI:
         self.top_frame.pack(side="top", fill="x")
 
         # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=160)
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=100)
         self.bottom_frame.pack(side="bottom", fill="x")
 
         # Central Frame
         self.central_frame = tk.Frame(
-            self.outer_frame, bg="black", width=500, height=160
+            self.outer_frame, bg="black", width=560, height=160
         )
         self.central_frame.pack(side="left", fill="y")
 
         # Right Frame
-        self.right_frame = tk.Frame(self.root, bg="black", width=260, height=160)
+        self.right_frame = tk.Frame(self.root, bg="black", width=200, height=160)
         self.right_frame.pack(side="right", fill="y")
 
         # Battery SOC Display
