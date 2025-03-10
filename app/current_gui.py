@@ -27,6 +27,10 @@ class GUI:
 
         self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
         self.runtime_label.pack(pady=10)
+        self.voltage_label = tk.Label(
+            self.root, text="Pack Voltage: ", font=(self.font, 32)
+        )
+        self.voltage_label.pack(pady=10)
 
         self.error_label = tk.Label(
             self.root,
@@ -44,8 +48,17 @@ class GUI:
         Method to update the displayed variables dynamically
         """
         # Update the labels with new values
-        logger.info(f"Updating runtime value: {runtime_value}")
+        logger.warning(f"Updating runtime value: {runtime_value}")
         self.runtime_label.config(text=f"Runtime: {runtime_value}")
+
+    def update_voltage(self, runtime_value):
+        """
+        Method to update the displayed variables dynamically
+        """
+        # Update the labels with new values
+        # logger.warning(f"Updating runtime value: {runtime_value}")
+        # self.runtime_label.config(text=f"Runtime: {runtime_value}")
+        pass
 
     def show_errors(self, errors: list[str]):
         """

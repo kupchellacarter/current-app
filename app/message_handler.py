@@ -6,7 +6,6 @@ from dataclass import CanData
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
 
 class MessageHandler:
@@ -44,7 +43,6 @@ class MessageHandler:
         """Reads the CAN bus."""
         # Send the request message
         request = self.request_factory(metric)
-        print(request)
         try:
             self.bus.send(request)
         except can.CanError as e:
@@ -57,14 +55,10 @@ class MessageHandler:
             message = self.bus.recv(timeout=timeout)
             if message and message.arbitration_id == 0x7E8:
                 if metric == "runtime" and len(message.data) == 5:
-                    # A and B are the low and high bytes of runtime in seconds
                     runtime_low_byte = message.data[3]
                     runtime_high_byte = message.data[4]
-
-                    # Combine the low and high bytes to form the 16-bit runtime value
                     runtime = (runtime_high_byte << 8) | runtime_low_byte
                     self.data.runtime = runtime
-                    print(f"runtime in seconds: {runtime}")
                     return
                 elif metric == "voltage":
                     print("checking voltage")
@@ -91,7 +85,7 @@ class MessageHandler:
             logger.error("No response received from MCU within the timeout.")
             self.errors.append("No response received from MCU within the timeout.")
 
-    def get_runtime_data(self) -> str:
+    def get_runtime(self) -> str:
         """Returns the runtime data formatted as a string in the format HH:MM:SS.
         return: str
         """
@@ -112,4 +106,3 @@ if __name__ == "__main__":
     handler = MessageHandler()
     handler.request_and_parse("voltage")
     handler.request_and_parse("runtime")
-    print(handler.get_runtime_data())
