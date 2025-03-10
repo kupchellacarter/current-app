@@ -32,40 +32,44 @@ class MessageHandler:
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
 
-    def _can_request_and_parse(self) -> int:
+    def request_factory(self, metric: str):
+        """Returns the appropriate request message for the given metric."""
+        if metric == "runtime":
+            return self._runtime_request
+        elif metric == "voltage":
+            return self._voltage_request
+        else:
+            raise ValueError(f"Invalid metric: {metric}")
+
+    def _can_request_and_parse(self, metric: str) -> int:
         """Reads the CAN bus."""
         # Send the request message
+        request = self.request_factory(metric)
         try:
-            self.bus.send(self._voltage_request)
-            logger.info("OBD-II request sent successfully.")
+            self.bus.send(request)
         except can.CanError as e:
-            logger.error("Error sending OBD-II request.")
             self.errors.append(f"Error: {e}")
 
-        logger.info("Waiting for response from MCU...")
         timeout = 1
         start_time = time.time()
 
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
-
-            # if message:
-            #     if len(message.data) > 3:
-            #         runtime = (message.data[2] << 8) | message.data[3]
-            #         print(runtime)
-            #         print(message.data)
-            #         return runtime
-            if (
-                len(message.data) > 3 and message.data[2] == 0x42
-            ):  # Check for voltage PID
-                # Extract the high byte (message.data[3]) and low byte (message.data[4])
+            if message and len(message.data) > 3:
+                if metric == "runtime":
+                    runtime = (message.data[2] << 8) | message.data[3]
+                    print(runtime)
+                    print(message.data)
+                    self.data.runtime = runtime
+            elif metric == "voltage":
                 high_byte = message.data[3]
                 low_byte = message.data[4]
-
+                print(f"high_byte: {high_byte}")
+                print(f"low_byte: {low_byte}")
                 # Decode the voltage: (High Byte * 256 + Low Byte) / 10
                 voltage = (high_byte * 256 + low_byte) / 10.0
                 print(f"Voltage: {voltage} V")
-                return voltage
+                self.data.voltage = voltage
             else:
                 logger.error("Invalid response length.")
                 self.errors.append("Invalid response length.")
@@ -74,17 +78,16 @@ class MessageHandler:
             logger.error("No response received from MCU within the timeout.")
             self.errors.append("No response received from MCU within the timeout.")
 
-    def request_runtime_data(self):
-        """Requests runtime data if CAN data is streaming."""
-        runtime = self._can_request_and_parse()
-        # self.data.runtime = runtime
-        self.data.voltage = runtime
-
     def get_runtime_data(self) -> str:
         """Returns the runtime data formatted as a string in the format HH:MM:SS.
         return: str
         """
-        # return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+        return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+
+    def get_voltage(self) -> str:
+        """Returns the runtime data formatted as a string in the format HH:MM:SS.
+        return: str
+        """
         return self.data.voltage
 
     def get_errors(self) -> list:
