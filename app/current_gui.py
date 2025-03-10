@@ -28,7 +28,7 @@ class GUI:
 
         # Top Frame (SOC)
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
-        self.top_frame.pack(side="top", till="x")
+        self.top_frame.pack(side="top", fill="x")
 
         # Battery SOC Display
         self.soc_canvas = tk.Canvas(self.root, width=700, height=50, bg="black")
