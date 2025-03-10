@@ -30,6 +30,20 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
 
+        # Bottom Frame
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=160)
+        self.bottom_frame.pack(side="bottom", fill="x")
+
+        # Central Frame
+        self.central_frame = tk.Frame(
+            self.outer_frame, bg="black", width=500, height=160
+        )
+        self.central_frame.pack(side="left", fill="y")
+
+        # Right Frame
+        self.right_frame = tk.Frame(self.root, bg="black", width=260, height=160)
+        self.right_frame.pack(side="right", fill="y")
+
         # Battery SOC Display
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(pady=10)
@@ -37,12 +51,6 @@ class GUI:
             self.top_frame, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
         )
         self.soc_text.pack(pady=5)
-
-        # Central Frame
-        self.central_frame = tk.Frame(
-            self.outer_frame, bg="black", width=500, height=160
-        )
-        self.central_frame.place(x=10, y=110)
 
         # Central Metrics
         self.voltage_label = tk.Label(
@@ -72,20 +80,12 @@ class GUI:
         )
         self.power_label.grid(row=2, column=0, pady=5)
 
-        # Right Frame
-        self.right_frame = tk.Frame(self.root, bg="black", width=260, height=160)
-        self.right_frame.place(x=520, y=110)
-
         # Power and Temperature Bars (vertical)
         self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
         self.kw_canvas.grid(row=0, column=0, pady=5)
 
         self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
         self.temp_canvas.grid(row=0, column=1, pady=5)
-
-        # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="blue", width=760, height=160)
-        self.bottom_frame.pack(side="bottom", fill="x")
 
         # Cell Voltage Range
         self.cell_voltage_label = tk.Label(
