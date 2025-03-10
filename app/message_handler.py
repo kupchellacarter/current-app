@@ -57,24 +57,22 @@ class MessageHandler:
 
             if message:
                 # Check if the message ID is the expected MCU response (0x7E8)
-                if message.arbitration_id == 0x7E8:
-                    logger.info(f"Received response: {message.data}")
-
-                    # Ensure the response is valid and corresponds to PID 0x1F
-                    if len(message.data) > 4 and message.data[2] == 0x1F:
-                        A = message.data[3]  # High byte
-                        B = message.data[4]  # Low byte
-
-                        # Convert to seconds
-                        runtime = (A << 8) | B
-                        logger.info(f"raw data: {message.data}")
-                        logger.info(f"runtime in seconds: {runtime}")
-                        print(runtime)
-                        print(message.data)
-                        return runtime
-                    else:
-                        logger.error("Invalid response length.")
-                        self.errors.append("Invalid response length.")
+                if (
+                    message.arbitration_id == 0x7E8
+                    and message.data[1] == 0x41
+                    and message.data[2] == 0x1F
+                ):
+                    # Extract the run time value (bytes 5 and 6 in the data)
+                    run_time_hex = (message.data[3] << 8) + message.data[
+                        4
+                    ]  # Combine bytes 3 and 4
+                    runtime = run_time_hex / 60  # Convert to seconds
+                    print(runtime)
+                    print(message.data)
+                    return runtime
+                else:
+                    logger.error("Invalid response length.")
+                    self.errors.append("Invalid response length.")
                     break
         else:
             logger.error("No response received from MCU within the timeout.")
