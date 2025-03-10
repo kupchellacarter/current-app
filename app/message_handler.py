@@ -14,15 +14,9 @@ class MessageHandler:
 
     def __init__(self):
         self.bus = None
-        self.can_connected = True
         self.errors = []
-        try:
-            self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
-        except:
-            self.can_connected = False
-            self.errors.append("CAN bus not connected. Defualting to elapsed time.")
+        self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
         self.data = CanData()
-        self.start_time = time.time()
 
     @property
     def _voltage_request(self):
@@ -70,11 +64,8 @@ class MessageHandler:
             self.errors.append("No response received from MCU within the timeout.")
 
     def request_runtime_data(self):
-        """Requests runtime data if CAN data is streaming. If not, uses elapsed time."""
-        if self.can_connected:
-            runtime = self._can_request_and_parse()
-        else:
-            runtime = int(time.time() - self.start_time)
+        """Requests runtime data if CAN data is streaming."""
+        runtime = self._can_request_and_parse()
         self.set_runtime_data(runtime)
 
     def set_runtime_data(self, runtime: int):
