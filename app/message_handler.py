@@ -63,7 +63,8 @@ class MessageHandler:
                     return
                 elif metric == "voltage":
                     print("checking voltage")
-                    print(message.data)
+                    pack_voltage = message.data / 10
+                    print(pack_voltage.data)
                     length = message.data[0]  # B0 (length)
                     service_reply = message.data[1]  # B1 (custom service reply)
                     pid = (message.data[2] << 8) | message.data[

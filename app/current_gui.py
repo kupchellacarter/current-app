@@ -48,7 +48,11 @@ class GUI:
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(pady=10)
         self.soc_text = tk.Label(
-            self.top_frame, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
+            self.top_frame,
+            text="pack_voltage",
+            font=(self.font, 20),
+            bg="black",
+            fg="white",
         )
         self.soc_text.pack(pady=5)
 
