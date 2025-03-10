@@ -28,16 +28,18 @@ class GUI:
 
         # Central Metrics
         self.voltage_label = tk.Label(
-            self.root, text="Voltage: 0V", font=(self.font, 32)
+            self.root, text="Voltage: 0V", font=(self.font, 32), bg="black", fg="white"
         )
         self.voltage_label.pack(pady=5)
 
         self.current_label = tk.Label(
-            self.root, text="Current: 0A", font=(self.font, 32)
+            self.root, text="Current: 0A", font=(self.font, 32), bg="black", fg="white"
         )
         self.current_label.pack(pady=5)
 
-        self.power_label = tk.Label(self.root, text="Power: 0kW", font=(self.font, 32))
+        self.power_label = tk.Label(
+            self.root, text="Power: 0kW", font=(self.font, 32), bg="black", fg="white"
+        )
         self.power_label.pack(pady=5)
 
         # Power and Temperature Bars
@@ -49,7 +51,11 @@ class GUI:
 
         # Cell Voltage Range
         self.cell_voltage_label = tk.Label(
-            self.root, text="Cell Voltage: 0.000V", font=(self.font, 24)
+            self.root,
+            text="Cell Voltage: 0.000V",
+            font=(self.font, 24),
+            bg="black",
+            fg="white",
         )
         self.cell_voltage_label.pack(pady=5)
 
