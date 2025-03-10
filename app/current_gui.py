@@ -20,6 +20,7 @@ class GUI:
         self.root.config(cursor="none")
         # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
+        self.root.config(bg="black")
 
         # Battery SOC Display
         self.soc_canvas = tk.Canvas(self.root, width=300, height=50, bg="black")
