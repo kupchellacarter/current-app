@@ -13,6 +13,7 @@ class MessageHandler:
 
     def __init__(self):
         self.bus = None
+        self.system_errors = {}
         self.errors = {}
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
         self.data = CanData()

@@ -10,26 +10,14 @@ def query_data(gui: GUI, handler: MessageHandler):
     while True:
         handler.request_and_parse("runtime")
         runtime = handler.get_runtime()
-
         handler.request_and_parse("voltage")
         voltage = handler.get_voltage()
-
-        handler.request_and_parse("current")
-        current = handler.get_current()
-
-        handler.request_and_parse("power")
-        power = handler.get_power()
-
-        handler.request_and_parse("cell_voltage")
-        cell_voltage = handler.get_cell_voltage()
-
-        handler.request_and_parse("errors")
+        system_errors = handler.system_errors
         errors = handler.get_errors()
-
-        # Schedule updates on the main thread using root.after
-        gui.root.after(0, gui.update_metrics, voltage, current, power)
-        gui.root.after(0, gui.update_cell_voltage, cell_voltage)
-        gui.root.after(0, gui.show_errors, errors)
+        gui.show_errors(errors)
+        gui.update_error_label(system_errors)
+        gui.update_runtime(runtime)
+        gui.refresh_ui()
 
 
 def main():
