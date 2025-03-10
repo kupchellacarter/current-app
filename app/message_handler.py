@@ -98,4 +98,4 @@ class MessageHandler:
 
 if __name__ == "__main__":
     handler = MessageHandler()
-    handler.request_and_parse("voltage")
+    handler.request_and_parse("runtime")
