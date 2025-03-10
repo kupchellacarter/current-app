@@ -19,7 +19,7 @@ def query_data(gui: GUI, handler: MessageHandler):
         # gui.show_errors(errors)
         gui.update_error_label(system_errors)
         gui.update_runtime(runtime)
-        gui.update_SOC(SOC)
+        gui.update_soc(SOC)
         gui.update_voltage(voltage)
         gui.refresh_ui()
 

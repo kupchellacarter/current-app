@@ -31,13 +31,11 @@ class MessageHandler:
         return can.Message(
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
-    
+
     @property
-    def _SOC_request(self)
+    def _SOC_request(self):
         return can.Message(
-            arbitration_id=0x7DF, 
-            data= [0x03, 0x22, 0xDD, 0x85], 
-            is_extended_id=False
+            arbitration_id=0x7DF, data=[0x03, 0x22, 0xDD, 0x85], is_extended_id=False
         )
 
     def request_factory(self, metric: str):
@@ -97,7 +95,7 @@ class MessageHandler:
                     pid = (message.data[2] << 8) | message.data[
                         3
                     ]  # Combine B2 and B3 for PID (0xDD83)
-                    if pid == 0xdd85:
+                    if pid == 0xDD85:
                         # Extract the pack SOC from B4 (low byte) and B5 (high byte)
                         SOC = (message.data[4] << 8) | message.data[5]
                         print(f"SOC: {SOC} %")
@@ -125,7 +123,7 @@ class MessageHandler:
         return: str
         """
         return self.data.voltage
-    
+
     def get_SOC(self) -> str:
         """Returns the SOC formatted as a string in the format xxx.
         return: str

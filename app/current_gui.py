@@ -122,6 +122,18 @@ class GUI:
         # Start the Tkinter event loop
         self.root.mainloop()
 
+    def update_runtime(self, runtime_value):
+        """
+        Method to update the displayed variables dynamically
+        """
+        # Update the labels with new values
+        logger.warning(f"Updating runtime value: {runtime_value}")
+        self.runtime_label.config(text=f"Runtime: {runtime_value}")
+
+    def update_voltage(self, voltage_value):
+        logger.warning(f"Updating voltage value: {voltage_value}")
+        self.voltage_label.config(text=f"Voltage: {voltage_value} V")
+
     def update_soc(self, SOC):
         """Update the State of Charge (SOC) bar"""
         self.SOC_canvas.delete("all")
@@ -137,14 +149,6 @@ class GUI:
     #     self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")
     #     self.current_label.config(text=f"Current: {current:.1f}A")
     #     self.power_label.config(text=f"Power: {power:.1f}kW")
-
-    def update_runtime(self, runtime_value):
-        """
-        Method to update the displayed variables dynamically
-        """
-        # Update the labels with new values
-        logger.warning(f"Updating runtime value: {runtime_value}")
-        self.runtime_label.config(text=f"Runtime: {runtime_value}")
 
     # def update_bars(self, kw, temp):
     #     """Update the power (kW) and temperature bars"""
