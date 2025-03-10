@@ -98,16 +98,20 @@ class GUI:
         self.cell_voltage_label.pack(pady=5)
 
         # Error Display
-        
-        self.error_label = tk.Label(self.bottom_frame, font=(self.font, 15), fg="yellow", bg="red", text="")
+
+        self.error_label = tk.Label(
+            self.bottom_frame, font=(self.font, 15), fg="yellow", bg="red", text=""
+        )
         self.error_label.pack(pady=10)
-        def update_error_display(self, error_message="")
+
+        def update_error_display(self, error_message=""):
             if error_message:
                 error_lines = error_message.split("\n")
                 formatted_message = "/n".join(error_lines)
                 self.error_label.config(text=formatted_message, bg="red", fg="yellow")
             else:
-                self.error_label.config(text-"All OK", bg="black", fg="blue")
+                self.error_label.config(text - "All OK", bg="black", fg="blue")
+
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
