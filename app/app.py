@@ -5,16 +5,22 @@ import threading
 
 def query_data(gui: GUI, handler: MessageHandler):
     """
-    queries data
+    queries data and updates GUI
     """
     while True:
         handler.request_and_parse("runtime")
         runtime = handler.get_runtime()
         handler.request_and_parse("voltage")
         voltage = handler.get_voltage()
-        errors = handler.get_errors()
-        gui.show_errors(errors)
+        system_errors = handler.system_errors
+        handler.request_and_parse("SOC")
+        SOC = handler.get_SOC()
+        # errors = handler.get_errors()
+        # gui.show_errors(errors)
+        gui.update_error_label(system_errors)
         gui.update_runtime(runtime)
+        gui.update_soc(SOC)
+        gui.update_voltage(voltage)
         gui.refresh_ui()
 
 
