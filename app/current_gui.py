@@ -22,25 +22,56 @@ class GUI:
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
-        # Battery SOC Display
-        self.soc_canvas = tk.Canvas(self.root, width=300, height=50, bg="black")
-        self.soc_canvas.pack(pady=10)
+        # Frame for central metrics
+        self.central_frame = tk.Frame(self.root, bg="black")
+        self.central_frame.pack(side=tk.LEFT, padx=30, pady=10)
 
         # Central Metrics
         self.voltage_label = tk.Label(
-            self.root, text="Voltage: 0V", font=(self.font, 32), bg="black", fg="white"
+            self.central_frame,
+            text="Voltage: 0V",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
         )
-        self.voltage_label.pack(pady=5)
+        self.voltage_label.grid(row=0, column=0, pady=5)
 
         self.current_label = tk.Label(
-            self.root, text="Current: 0A", font=(self.font, 32), bg="black", fg="white"
+            self.central_frame,
+            text="Current: 0A",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
         )
-        self.current_label.pack(pady=5)
+        self.current_label.grid(row=1, column=0, pady=5)
 
         self.power_label = tk.Label(
-            self.root, text="Power: 0kW", font=(self.font, 32), bg="black", fg="white"
+            self.central_frame,
+            text="Power: 0kW",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
         )
-        self.power_label.pack(pady=5)
+        self.power_label.grid(row=2, column=0, pady=5)
+
+        # Frame for the right-side elements
+        self.right_frame = tk.Frame(self.root, bg="black")
+        self.right_frame.pack(side=tk.RIGHT, padx=30, pady=10)
+
+        # Power and Temperature Bars (vertical)
+        self.kw_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
+        self.kw_canvas.grid(row=0, column=0, pady=5)
+
+        self.temp_canvas = tk.Canvas(self.right_frame, width=30, height=200, bg="black")
+        self.temp_canvas.grid(row=1, column=0, pady=5)
+
+        # Battery SOC Display (large and centered)
+        self.soc_canvas = tk.Canvas(self.root, width=700, height=50, bg="black")
+        self.soc_canvas.pack(pady=10)
+        self.soc_text = tk.Label(
+            self.root, text="SOC: 0%", font=(self.font, 20), bg="black", fg="white"
+        )
+        self.soc_text.pack(pady=5)
 
         # Power and Temperature Bars
         self.kw_canvas = tk.Canvas(self.root, width=200, height=30, bg="black")
