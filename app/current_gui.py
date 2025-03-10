@@ -108,7 +108,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.cell_voltage_label.pack(pady=5)
+        self.cell_voltage_label.grid(row=0, column=0, pady=5)
 
         # Error Display
         self.system_error_label = tk.Label(
@@ -118,7 +118,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.current_label.pack(pady=5)
+        self.system_error_label.grid(row=1, column=0, pady=5)
 
     def update_error_label(self, system_errors: set[str]):
         if len(system_errors) > 0:
