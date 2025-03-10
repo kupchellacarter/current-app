@@ -57,8 +57,11 @@ class GUI:
         self.soc_text.pack(pady=5)
 
         # Central Metrics
-        self.runtime_label = tk.Label(self.root, text="Runtime: ", font=(self.font, 32))
+        self.runtime_label = tk.Label(
+            self.central_frame, text="Runtime: ", font=(self.font, 32)
+        )
         self.runtime_label.grid(row=0, column=0, pady=10)
+
         self.voltage_label = tk.Label(
             self.central_frame,
             text="Voltage: 0V",
