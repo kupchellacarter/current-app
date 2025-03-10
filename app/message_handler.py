@@ -50,7 +50,7 @@ class MessageHandler:
         except can.CanError as e:
             self.errors.append(f"Error: {e}")
 
-        timeout = 1
+        timeout = 10
         start_time = time.time()
 
         while time.time() - start_time < timeout:
