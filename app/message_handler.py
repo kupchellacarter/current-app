@@ -55,6 +55,7 @@ class MessageHandler:
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
             if message:
+                print(message.arbitration_id)
                 if metric == "runtime":
                     runtime = (message.data[2] << 8) | message.data[3]
                     print(runtime)
@@ -97,3 +98,4 @@ class MessageHandler:
 if __name__ == "__main__":
     handler = MessageHandler()
     handler.request_and_parse("voltage")
+    handler.request_and_parse("runtime")
