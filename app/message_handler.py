@@ -24,16 +24,15 @@ class MessageHandler:
         self.data = CanData()
 
     def request_and_parse(
-        self, target_pgn, request_rate=0x0A, repeat_count=0x14, b7=0x00
+        self, target_pgn, request_rate=0x00, repeat_count=0x00, b7=0x00
     ):
         """Sends a J1939 read request decodes the response, PGN agnostic."""
         # Create the CAN request message
         request = can.Message(
             arbitration_id=REQUEST_ID,
             data=[
-                (target_pgn & 0xFF),
-                (target_pgn >> 8) & 0xFF,
-                (target_pgn >> 16) & 0xFF,  # # PGN (little-endian for data payload)
+                (target_pgn & 0xFF),  # Byte 0 PGN LSB
+                (target_pgn >> 8) & 0xFF,  # Byte 1 PGN MSB
                 request_rate,  # How often to send (in MCU ticks, 50ms each)
                 repeat_count,  # Number of responses (0xFF for continuous)
                 0x00,
