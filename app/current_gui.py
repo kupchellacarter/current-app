@@ -35,8 +35,7 @@ class GUI:
         # Top Frame
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
-
-        
+        self._create_soc_frame()  
 
         # Bottom Frame
         self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
