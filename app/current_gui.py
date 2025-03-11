@@ -26,6 +26,12 @@ class GUI:
         self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=360)
         self.outer_frame.pack(padx=40, pady=40)
 
+
+    def run(self):
+        # Start the Tkinter event loop
+        self.root.mainloop()
+
+    def display_defualt_ui(self):
         # Top Frame (soc)
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
@@ -118,9 +124,6 @@ class GUI:
         )
         self.system_error_label.grid(row=1, column=0, pady=5)
 
-    def run(self):
-        # Start the Tkinter event loop
-        self.root.mainloop()
 
     def update_runtime(self, runtime_value):
         """

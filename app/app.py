@@ -20,7 +20,7 @@ class App:
         queries data and updates GUI
         """
         while True:
-            self.charging_mode = self.can_opener.listen_for_charge_messages()
+            # self.charging_mode = self.can_opener.listen_for_charge_messages()
             if self.charging_mode:
                 self.display_charging_ui()
             else:
@@ -30,6 +30,7 @@ class App:
         """
         displays default UI
         """
+        self.gui.display_defualt_ui()
         self.obd2_handler.request_and_parse("runtime")
         runtime = self.obd2_handler.get_runtime()
         self.obd2_handler.request_and_parse("voltage")

@@ -11,7 +11,6 @@ class OBD2MessageHandler:
     """Handler"""
 
     def __init__(self):
-        self.bus = None
         self.system_errors = {}
         self.errors = {}
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
@@ -70,9 +69,6 @@ class OBD2MessageHandler:
                     self.data.runtime = runtime
                     return
                 elif metric == "voltage":
-                    print("checking voltage")
-                    pack_voltage = message.data
-                    print(pack_voltage)
                     pid = (message.data[2] << 8) | message.data[
                         3
                     ]  # Combine B2 and B3 for PID (0xDD83)
@@ -82,26 +78,21 @@ class OBD2MessageHandler:
 
                         # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
                         voltage = voltage_raw / 10.0  # Convert the raw value to voltage
-                        print(f"Voltage: {voltage} V")
                         self.data.voltage = voltage
                         return
                     else:
-                        print("Unexpected PID: {hex(pid)}")
+                        pass
                 elif metric == "soc":
-                    print("checking soc")
-                    soc_message = message.data
-                    print(soc_message)
                     pid = (message.data[2] << 8) | message.data[
                         3
                     ]  # Combine B2 and B3 for PID (0xDD83)
                     if pid == 0xDD85:
                         # Extract the pack soc from B4 (low byte) and B5 (high byte)
                         soc = (message.data[5] << 8) | message.data[4]
-                        print(f"soc: {soc} %")
                         self.data.soc = soc
                         return
                     else:
-                        print("Unexpected PID: {hex(pid)}")
+                        pass
 
                 else:
                     logger.error("Invalid response length.")
@@ -135,6 +126,6 @@ class OBD2MessageHandler:
 
 
 if __name__ == "__main__":
-    handler = MessageHandler()
+    handler = OBD2MessageHandler()
     handler.request_and_parse("voltage")
     handler.request_and_parse("runtime")
