@@ -7,7 +7,7 @@ from dataclass import CanData
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-DBC_FILE = "./app/DBC/MCU_J1939_v1-1-2_BETA.dbc"
+DBC_FILE = "./DBC/MCU_J1939_v1-1-2_BETA.dbc"
 
 
 class MessageHandler:
