@@ -43,7 +43,6 @@ class App:
         # gui.show_errors(errors)
         self.gui.update_error_label(system_errors)
         self.gui.update_runtime(runtime)
-        self.gui.update_soc(soc)
         self.gui.update_voltage(voltage)
         self.gui.refresh_ui()
 

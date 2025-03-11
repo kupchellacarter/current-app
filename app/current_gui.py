@@ -160,16 +160,6 @@ class GUI:
         logger.warning(f"Updating voltage value: {voltage_value}")
         self.voltage_label.config(text=f"Voltage: {voltage_value} V")
 
-    def update_soc(self, soc):
-        """Update the State of Charge (soc) bar"""
-        self.soc_canvas.delete("all")
-        bar_width = int(300 * (soc / 100))
-        color = "green" if soc > 50 else "yellow" if soc > 20 else "red"
-        self.soc_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
-        self.soc_canvas.create_text(
-            150, 25, text=f"{soc:.1f}%", fill="white", font=(self.font, 20)
-        )
-
     # def update_metrics(self, voltage, current, power):
     #     """Update the voltage, current, and power labels"""
     #     self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")
