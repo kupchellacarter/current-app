@@ -26,13 +26,13 @@ class GUI:
         self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=360)
         self.outer_frame.pack(padx=40, pady=40)
 
-        # Top Frame (SOC)
+        # Top Frame (soc)
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
 
-        # Battery SOC Display (Top)
-        self.SOC_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
-        self.SOC_canvas.pack(pady=5)
+        # Battery soc Display (Top)
+        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
+        self.soc_canvas.pack(pady=5)
         self.soc_text = tk.Label(
             self.top_frame,
             text="pack_voltage",
@@ -134,14 +134,14 @@ class GUI:
         logger.warning(f"Updating voltage value: {voltage_value}")
         self.voltage_label.config(text=f"Voltage: {voltage_value} V")
 
-    def update_soc(self, SOC):
-        """Update the State of Charge (SOC) bar"""
-        self.SOC_canvas.delete("all")
-        bar_width = int(300 * (SOC / 100))
-        color = "green" if SOC > 50 else "yellow" if SOC > 20 else "red"
-        self.SOC_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
-        self.SOC_canvas.create_text(
-            150, 25, text=f"{SOC:.1f}%", fill="white", font=(self.font, 20)
+    def update_soc(self, soc):
+        """Update the State of Charge (soc) bar"""
+        self.soc_canvas.delete("all")
+        bar_width = int(300 * (soc / 100))
+        color = "green" if soc > 50 else "yellow" if soc > 20 else "red"
+        self.soc_canvas.create_rectangle(0, 0, bar_width, 50, fill=color)
+        self.soc_canvas.create_text(
+            150, 25, text=f"{soc:.1f}%", fill="white", font=(self.font, 20)
         )
 
     # def update_metrics(self, voltage, current, power):

@@ -33,7 +33,7 @@ class MessageHandler:
         )
 
     @property
-    def _SOC_request(self):
+    def _soc_request(self):
         return can.Message(
             arbitration_id=0x7DF, data=[0x03, 0x22, 0xDD, 0x85], is_extended_id=False
         )
@@ -44,8 +44,8 @@ class MessageHandler:
             return self._runtime_request
         elif metric == "voltage":
             return self._voltage_request
-        elif metric == "SOC":
-            return self._SOC_request
+        elif metric == "soc":
+            return self._soc_request
         else:
             raise ValueError(f"Invalid metric: {metric}")
 
@@ -88,18 +88,18 @@ class MessageHandler:
                         return
                     else:
                         print("Unexpected PID: {hex(pid)}")
-                elif metric == "SOC":
-                    print("checking SOC")
-                    SOC_message = message.data
-                    print(SOC_message)
+                elif metric == "soc":
+                    print("checking soc")
+                    soc_message = message.data
+                    print(soc_message)
                     pid = (message.data[2] << 8) | message.data[
                         3
                     ]  # Combine B2 and B3 for PID (0xDD83)
                     if pid == 0xDD85:
-                        # Extract the pack SOC from B4 (low byte) and B5 (high byte)
-                        SOC = (message.data[5] << 8) | message.data[4]
-                        print(f"SOC: {SOC} %")
-                        self.data.SOC = SOC
+                        # Extract the pack soc from B4 (low byte) and B5 (high byte)
+                        soc = (message.data[5] << 8) | message.data[4]
+                        print(f"soc: {soc} %")
+                        self.data.soc = soc
                         return
                     else:
                         print("Unexpected PID: {hex(pid)}")
@@ -124,11 +124,11 @@ class MessageHandler:
         """
         return self.data.voltage
 
-    def get_SOC(self) -> str:
-        """Returns the SOC formatted as a string in the format xxx.
+    def get_soc(self) -> str:
+        """Returns the soc formatted as a string in the format xxx.
         return: str
         """
-        return self.data.SOC
+        return self.data.soc
 
     def get_errors(self) -> list:
         """Returns a list of errors encountered during operation."""

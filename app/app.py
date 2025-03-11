@@ -13,13 +13,13 @@ def query_data(gui: GUI, handler: MessageHandler):
         handler.request_and_parse("voltage")
         voltage = handler.get_voltage()
         system_errors = handler.system_errors
-        handler.request_and_parse("SOC")
-        SOC = handler.get_SOC()
+        handler.request_and_parse("soc")
+        soc = handler.get_soc()
         # errors = handler.get_errors()
         # gui.show_errors(errors)
         gui.update_error_label(system_errors)
         gui.update_runtime(runtime)
-        gui.update_soc(SOC)
+        gui.update_soc(soc)
         gui.update_voltage(voltage)
         gui.refresh_ui()
 
