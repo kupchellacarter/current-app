@@ -150,7 +150,7 @@ if __name__ == "__main__":
     handler = MessageHandler()
 
     # Request MCU Summary (0xFF20D0)
-    # handler.request_and_parse(0xFF20)
+    handler.request_and_parse(0xFF20)
 
     # print("Charged Energy:", handler.charged_energy)
     # print("Charge State:", handler.charge_state)
