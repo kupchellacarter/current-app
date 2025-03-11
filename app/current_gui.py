@@ -128,6 +128,7 @@ class GUI:
     def set_soc(self,charge_level=0):
         # only update the charge level if it has changed
         if self.charge_level != charge_level:
+            logger.warning(f"Updating SOC to {charge_level}")
             self.charge_level = charge_level
             num_sections = 100
             section_width = (670 - 30) / num_sections  # Calculate section width
@@ -155,11 +156,9 @@ class GUI:
         Method to update the displayed variables dynamically
         """
         # Update the labels with new values
-        logger.warning(f"Updating runtime value: {runtime_value}")
         self.runtime_label.config(text=f"Runtime: {runtime_value}")
 
     def update_voltage(self, voltage_value):
-        logger.warning(f"Updating voltage value: {voltage_value}")
         self.voltage_label.config(text=f"Voltage: {voltage_value} V")
 
     # def update_metrics(self, voltage, current, power):
