@@ -52,20 +52,8 @@ class MessageHandler:
             logger.error(f"CAN transmission error: {e}")
             self.errors.append(str(e))
             return
-        # Wait and process responses
-        self._wait_for_response(target_pgn)
 
-        def _wait_for_response(self, target_pgn, timeout=2):
-            start_time = time.time()
-
-            while time.time() - start_time < timeout:
-                message = self.bus.recv(timeout=timeout)
-
-                if message and (message.arbitration_id & 0x1FFFF00) >> 8 == target_pgn:
-                    return message
-            return None
-
-        message = _wait_for_response(self, target_pgn)
+        message = self._wait_for_response(target_pgn)
         if message:
             try:
                 message_data = message.data
@@ -82,6 +70,15 @@ class MessageHandler:
         logger.error(f"No response for PGN: {hex(target_pgn)}")
         self.errors.append(f"No response for PGN: {hex(target_pgn)}")
 
+    def _wait_for_response(self, target_pgn, timeout=2):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            message = self.bus.recv(timeout=timeout)
+            if message and (message.arbitration_id & 0x1FFFF00) >> 8 == target_pgn:
+                return message
+        return None
+
+    def update_data(self, decoded):
         """Update CanData with any recognized fields."""
         for field, value in decoded.items():
             # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
