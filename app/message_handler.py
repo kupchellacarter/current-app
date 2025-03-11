@@ -155,6 +155,6 @@ if __name__ == "__main__":
     print("Errors:", handler.get_errors())
 
     # Request MCU Pack Summary (0xFF20E0)
-    handler.request_and_parse(0xFF20)
-    print("Pack Voltage:", handler.pack_voltage)
-    print("Pack Current:", handler.pack_current)
+    # handler.request_and_parse(0xFF20)
+    # print("Pack Voltage:", handler.pack_voltage)
+    # print("Pack Current:", handler.pack_current)
