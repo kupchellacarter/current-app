@@ -132,7 +132,7 @@ class GUI:
             section_width = (670 - 30) / num_sections  # Calculate section width
             for i in range(num_sections):
                 x1 = 30 + i * section_width
-                space = 3 if (i+1)%8 == 0 else 0
+                space = 3 if (i+1)%12 == 0 else 0
                 x2 = x1 + section_width - space  # Add small gap for spacing
 
                 # Green for filled sections, black for empty, with blue outline for empty ones
