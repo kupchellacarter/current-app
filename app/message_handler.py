@@ -24,7 +24,7 @@ class MessageHandler:
         self.data = CanData()
 
     def request_and_parse(
-        self, target_pgn, request_rate=0x00, repeat_count=0x00, b7=0x00
+        self, target_pgn, request_rate=0x0A, repeat_count=0x14, b7=0x00
     ):
         """Sends a J1939 read request decodes the response, PGN agnostic."""
         # Create the CAN request message
