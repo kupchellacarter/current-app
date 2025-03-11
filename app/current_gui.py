@@ -16,8 +16,10 @@ class GUI:
         self.root = tk.Tk()
         self.font = "Georgia"
         self.root.title("Electric Boat Dashboard")
+        self.metric_font_size = 24
+        self.charge_level=0
         self.root.attributes("-fullscreen", False)
-        self.root.config(cursor="none")
+        # self.root.config(cursor="none")
         # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
@@ -33,9 +35,10 @@ class GUI:
 
     def display_defualt_ui(self):
         # Top Frame
-        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
+        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=700, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()  
+        self.set_soc()
 
         # Bottom Frame
         self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
@@ -49,7 +52,7 @@ class GUI:
         self.runtime_label = tk.Label(
             self.central_frame,
             text="MCU Runtime: ",
-            font=(self.font, 12),
+            font=(self.font, self.metric_font_size),
             bg="black",
             fg="white",
         )
@@ -58,7 +61,7 @@ class GUI:
         self.voltage_label = tk.Label(
             self.central_frame,
             text="Pack Voltage: ",
-            font=(self.font, 12),
+            font=(self.font, self.metric_font_size),
             bg="black",
             fg="white",
         )
@@ -67,7 +70,7 @@ class GUI:
         self.current_label = tk.Label(
             self.central_frame,
             text="Current: ",
-            font=(self.font, 12),
+            font=(self.font, self.metric_font_size),
             bg="black",
             fg="white",
         )
@@ -76,7 +79,7 @@ class GUI:
         self.power_label = tk.Label(
             self.central_frame,
             text="Power: ",
-            font=(self.font, 12),
+            font=(self.font, self.metric_font_size),
             bg="black",
             fg="white",
         )
@@ -117,21 +120,32 @@ class GUI:
     def _create_soc_frame(self):
         # Battery soc Display (Top)
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
-        self.soc_canvas.pack(pady=5)
-        # Labels for "E" (empty) and "F" (full)
-        self.soc_canvas.create_text(30, 25, text="E", fill="white", font=("Arial", 14, "bold"))
-        self.soc_canvas.create_text(680, 25, text="F", fill="white", font=("Arial", 14, "bold"))
-
-        # Draw battery sections
-        num_sections = 8
-        section_width = (600 - 50) / num_sections  # Width of each section
+        self.soc_canvas.pack(side="top", fill="x")
+        # Labels "E" and "F" inside the battery
+        self.soc_canvas.create_text(25, 25, text="E", fill="white", font=("Arial", 14, "bold"))
+        self.soc_canvas.create_text(675, 25, text="F", fill="white", font=("Arial", 14, "bold"))
+    
+    def set_soc(self,charge_level=0):
+        self.charge_level = charge_level
+        num_sections = 100
+        section_width = (670 - 30) / num_sections  # Calculate section width
         for i in range(num_sections):
-            x1 = 50 + i * section_width
-            x2 = x1 + section_width - 5  # Add spacing between sections
-            
-            # Fill sections based on charge level
-            fill_color = "green" if i < 100 else "black"
-            self.soc_canvas.create_rectangle(x1, 10, x2, 40, outline="white", width=2, fill=fill_color)
+            x1 = 30 + i * section_width
+            space = 3 if (i+1)%10 == 0 else 0
+            x2 = x1 + section_width - space  # Add small gap for spacing
+
+            # Green for filled sections, black for empty, with blue outline for empty ones
+            if i < (self.charge_level/100) * num_sections:
+                fill_color = "green"
+                outline_color = "green"
+            else:
+                fill_color = "#36454F"
+                outline_color = "#36454F"
+
+            self.soc_canvas.create_rectangle(x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color)
+
+        # Battery percentage text below
+        self.soc_canvas.create_text(550, 48, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=("Arial", 12))
 
     
     def update_runtime(self, runtime_value):
@@ -198,3 +212,8 @@ class GUI:
         """Refresh the UI periodically"""
         self.root.update_idletasks()
         self.root.update()
+
+if __name__ == "__main__":
+    gui = GUI()
+    gui.display_defualt_ui()
+    gui.run()

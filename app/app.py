@@ -38,6 +38,7 @@ class App:
         system_errors = self.obd2_handler.system_errors
         self.obd2_handler.request_and_parse("soc")
         soc = self.obd2_handler.get_soc()
+        self.gui.set_soc(soc)
         # errors = obd2_handler.get_errors()
         # gui.show_errors(errors)
         self.gui.update_error_label(system_errors)
