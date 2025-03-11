@@ -34,6 +34,7 @@ class App:
         displays default UI
         """
         if not last_display or last_display != "defualt_ui":
+            print(last_display)
             self.gui.display_defualt_ui()
         self.obd2_handler.request_and_parse("runtime")
         runtime = self.obd2_handler.get_runtime()
