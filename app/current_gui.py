@@ -126,26 +126,28 @@ class GUI:
         self.soc_canvas.create_text(675, 25, text="F", fill="white", font=("Arial", 14, "bold"))
     
     def set_soc(self,charge_level=0):
-        self.charge_level = charge_level
-        num_sections = 100
-        section_width = (670 - 30) / num_sections  # Calculate section width
-        for i in range(num_sections):
-            x1 = 30 + i * section_width
-            space = 3 if (i+1)%10 == 0 else 0
-            x2 = x1 + section_width - space  # Add small gap for spacing
+        # only update the charge level if it has changed
+        if self.charge_level != charge_level:
+            self.charge_level = charge_level
+            num_sections = 100
+            section_width = (670 - 30) / num_sections  # Calculate section width
+            for i in range(num_sections):
+                x1 = 30 + i * section_width
+                space = 3 if (i+1)%10 == 0 else 0
+                x2 = x1 + section_width - space  # Add small gap for spacing
 
-            # Green for filled sections, black for empty, with blue outline for empty ones
-            if i < (self.charge_level/100) * num_sections:
-                fill_color = "green"
-                outline_color = "green"
-            else:
-                fill_color = "#36454F"
-                outline_color = "#36454F"
+                # Green for filled sections, black for empty, with blue outline for empty ones
+                if i < (self.charge_level/100) * num_sections:
+                    fill_color = "green"
+                    outline_color = "green"
+                else:
+                    fill_color = "#36454F"
+                    outline_color = "#36454F"
 
-            self.soc_canvas.create_rectangle(x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color)
+                self.soc_canvas.create_rectangle(x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color)
 
-        # Battery percentage text below
-        self.soc_canvas.create_text(550, 48, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=("Arial", 12))
+            # Battery percentage text below
+            self.soc_canvas.create_text(550, 48, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=("Arial", 12))
 
     
     def update_runtime(self, runtime_value):
