@@ -57,11 +57,12 @@ class MessageHandler:
             try:
                 message_data = message.data
                 msg = self.db.get_message_by_frame_id(
-                    0x14FF20D0
-                )  # I CHANGED THIS TO CALL mcu_SUM, DISCREPANCY IN PRIORITY TO dbc
+                    0x14FF24D0
+                )  # I CHANGED THIS TO CALL mcu_Soc, DISCREPANCY IN PRIORITY TO dbc
                 decoded = msg.decode(message_data)
                 logger.info(f"Decoded message: {decoded}")
                 self.update_data(decoded)
+                print("Decoded Message:", decoded)
                 return decoded
             except Exception as e:
                 logger.error(f"Failed to decode: {e}")
@@ -158,5 +159,6 @@ if __name__ == "__main__":
 
     # Request MCU_SOC Summary (0xFF24)
     handler.request_and_parse(0xFF24)
-    print("SOC:", handler.MCU_SOC)
+    # print("SOC:", handler.MCU_SOC)
+
     # print("Pack Current:", handler.pack_current)
