@@ -20,7 +20,7 @@ class App:
         queries data and updates GUI
         """
         while True:
-            self.charging_mode = can_opener.listen_for_charge_messages()
+            self.charging_mode = self.can_opener.listen_for_charge_messages()
             if self.charging_mode:
                 self.display_charging_ui()
             else:
