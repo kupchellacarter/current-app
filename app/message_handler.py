@@ -1,5 +1,4 @@
 import can
-import struct
 import time
 import logging
 from dataclass import CanData

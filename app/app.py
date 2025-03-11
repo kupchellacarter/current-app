@@ -1,13 +1,15 @@
 from current_gui import GUI
 from message_handler import MessageHandler
+from can_opener import CanOpener
 import threading
 
 
-def query_data(gui: GUI, handler: MessageHandler):
+def query_data(gui: GUI, handler: MessageHandler, can_opener: CanOpener):
     """
     queries data and updates GUI
     """
     while True:
+        charging_mode = can_opener.listen_for_charge_messages()
         handler.request_and_parse("runtime")
         runtime = handler.get_runtime()
         handler.request_and_parse("voltage")
@@ -31,9 +33,12 @@ def main():
     gui = GUI()
     # Create MessageHandler instance
     handler = MessageHandler()
+    can_opener = CanOpener()
 
     # Start the query_data function in a separate background thread
-    query_thread = threading.Thread(target=query_data, args=(gui, handler), daemon=True)
+    query_thread = threading.Thread(
+        target=query_data, args=(gui, handler, can_opener), daemon=True
+    )
     query_thread.start()
     gui.run()
 
