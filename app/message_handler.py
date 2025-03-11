@@ -158,5 +158,5 @@ if __name__ == "__main__":
 
     # Request MCU_SOC Summary (0xFF24)
     handler.request_and_parse(0xFF24)
-    print("Pack Voltage:", handler.pack_voltage)
-    print("Pack Current:", handler.pack_current)
+    print("SOC:", handler.MCU_SOC)
+    # print("Pack Current:", handler.pack_current)
