@@ -13,7 +13,7 @@ class App:
         self.gui = GUI()
         self.obd2_handler = OBD2MessageHandler()
         self.can_opener = CanOpener()
-        self.charging_mode = False
+        self.charging_mode = True
 
     def query_data(self):
         """
