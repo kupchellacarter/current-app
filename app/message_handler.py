@@ -15,8 +15,8 @@ class MessageHandler:
 
     def __init__(self):
         self.bus = None
-        self.system_errors = {}
-        self.errors = {}
+        self.system_errors = []
+        self.errors = []
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = CanData()
@@ -110,7 +110,7 @@ class MessageHandler:
 
 if __name__ == "__main__":
     handler = MessageHandler()
-    handler.request_and_parse(0x00)
+    handler.request_and_parse(00)
     # handler.request_and_parse("runtime")
     print("Voltage:", handler.voltage)
     print("SOC:", handler.soc)
