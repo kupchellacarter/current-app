@@ -121,16 +121,12 @@ class GUI:
         # Battery soc Display (Top)
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
-        # Labels "E" and "F" inside the battery
-        self.soc_canvas.create_text(25, 25, text="E", fill="white", font=(self.font, 30, "bold"))
-        self.soc_canvas.create_text(675, 25, text="F", fill="white", font=(self.font, 30, "bold"))
     
     def set_soc(self,charge_level=0):
         # only update the charge level if it has changed
         if self.charge_level != charge_level:
             logger.warning(f"Updating SOC to {charge_level}")
             self.soc_canvas.delete("all")
-            self._create_soc_frame()
             self.charge_level = charge_level
             num_sections = 100
             section_width = (670 - 30) / num_sections  # Calculate section width
@@ -150,7 +146,10 @@ class GUI:
                 self.soc_canvas.create_rectangle(x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color)
 
             # Battery percentage text below
-            self.soc_canvas.create_text(550, 48, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=("Arial", 12))
+            self.soc_canvas.create_text(550, 40, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=(self.font, 12))
+            # Labels "E" and "F" inside the battery
+            self.soc_canvas.create_text(25, 25, text="E", fill="white", font=(self.font, 30, "bold"))
+            self.soc_canvas.create_text(675, 25, text="F", fill="white", font=(self.font, 30, "bold"))
 
     
     def update_runtime(self, runtime_value):
