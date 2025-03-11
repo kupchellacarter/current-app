@@ -132,7 +132,7 @@ class GUI:
             section_width = (670 - 30) / num_sections  # Calculate section width
             for i in range(num_sections):
                 x1 = 30 + i * section_width
-                space = 3 if (i+1)%10 == 0 else 0
+                space = 3 if (i+1)%8 == 0 else 0
                 x2 = x1 + section_width - space  # Add small gap for spacing
 
                 # Green for filled sections, black for empty, with blue outline for empty ones
@@ -150,6 +150,7 @@ class GUI:
             # Labels "E" and "F" inside the battery
             self.soc_canvas.create_text(25, 25, text="E", fill="white", font=(self.font, 30, "bold"))
             self.soc_canvas.create_text(675, 25, text="F", fill="white", font=(self.font, 30, "bold"))
+            self.soc_canvas.create_text(350, 25, text=f"{charge_level}%", fill="white", font=(self.font, 30, "bold"))
 
     
     def update_runtime(self, runtime_value):
