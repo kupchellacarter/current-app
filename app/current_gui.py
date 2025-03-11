@@ -122,8 +122,8 @@ class GUI:
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
         # Labels "E" and "F" inside the battery
-        self.soc_canvas.create_text(25, 25, text="E", fill="white", font=("Arial", 14, "bold"))
-        self.soc_canvas.create_text(675, 25, text="F", fill="white", font=("Arial", 14, "bold"))
+        self.soc_canvas.create_text(25, 25, text="E", fill="white", font=(self.font, 30, "bold"))
+        self.soc_canvas.create_text(675, 25, text="F", fill="white", font=(self.font, 30, "bold"))
     
     def set_soc(self,charge_level=0):
         # only update the charge level if it has changed
