@@ -84,8 +84,10 @@ class MessageHandler:
         for field, value in decoded.items():
             # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
             normalized_field = field.lower()
-            if hasattr(self.data, normalized_field):
+            if not hasattr(self.data, normalized_field):
                 setattr(self.data, normalized_field, value)
+
+            setattr(self.data, normalized_field, value)
 
             # Collect fault information if present
             if "fault" in field.lower() and value:
@@ -119,42 +121,42 @@ class MessageHandler:
     # def get_errors(self):
     #     return self.errors
 
-    @property
-    def pack_voltage(self):
-        return self.data.pack_voltage
+    # @property
+    # def pack_voltage(self):
+    #     return getself.data.pack_voltage
 
-    @property
-    def pack_current(self):
-        return self.data.pack_current
+    # @property
+    # def pack_current(self):
+    #     return self.data.pack_current
 
-    @property
-    def charged_energy(self):
-        return self.data.charged_energy
+    # @property
+    # def charged_energy(self):
+    #     return self.data.charged_energy
 
-    @property
-    def charge_state(self):
-        return self.data.charge_state
+    # @property
+    # def charge_state(self):
+    #     return self.data.charge_state
 
-    @property
-    def plug_state(self):
-        return self.data.plug_state
+    # @property
+    # def plug_state(self):
+    #     return self.data.plug_state
 
-    def get_errors(self):
-        return self.errors
+    # def get_errors(self):
+    #     return self.errors
 
 
 if __name__ == "__main__":
     handler = MessageHandler()
 
     # Request MCU Summary (0xFF20D0)
-    handler.request_and_parse(0xFF20)
-
-    print("Charged Energy:", handler.charged_energy)
-    print("Charge State:", handler.charge_state)
-    print("Plug State:", handler.plug_state)
-    print("Errors:", handler.get_errors())
-
-    # Request MCU Pack Summary (0xFF20E0)
     # handler.request_and_parse(0xFF20)
-    # print("Pack Voltage:", handler.pack_voltage)
-    # print("Pack Current:", handler.pack_current)
+
+    # print("Charged Energy:", handler.charged_energy)
+    # print("Charge State:", handler.charge_state)
+    # print("Plug State:", handler.plug_state)
+    # print("Errors:", handler.get_errors())
+
+    # Request MCU_SOC Summary (0xFF24)
+    handler.request_and_parse(0xFF24)
+    print("Pack Voltage:", handler.pack_voltage)
+    print("Pack Current:", handler.pack_current)
