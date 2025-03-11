@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-class MessageHandler:
+class OBD2MessageHandler:
     """Handler"""
 
     def __init__(self):
