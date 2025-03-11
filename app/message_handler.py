@@ -7,34 +7,36 @@ from dataclass import CanData
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-DBC_FILE = "./DBC/MCU_J1939_v1-1-2_BETA.dbc"
+DBC_FILE = "app\DBC\MCU_J1939_v1-1-2_BETA.dbc"
+REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
 class MessageHandler:
     """Handler"""
 
     def __init__(self):
-        self.bus = None
         self.system_errors = []
         self.errors = []
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = CanData()
 
-    def request_and_parse(self, target_pgn, b7=0x00):
-        """Sends a J1939 read request for a specific PGN and decodes the response."""
-        # Send a request message for the PGN (Parameter Group Number)
+    def request_and_parse(
+        self, target_pgn, request_rate=0x0A, repeat_count=0x14, b7=0x00
+    ):
+        """Sends a J1939 read request decodes the response, PGN agnostic."""
+        # Create the CAN request message
         request = can.Message(
-            arbitration_id=0x14EBD0D8,  # J1939 Read Request for MCU
+            arbitration_id=REQUEST_ID,
             data=[
-                (target_pgn & 0xFF),  # PGN (little-endian)
+                (target_pgn & 0xFF),
                 (target_pgn >> 8) & 0xFF,
-                (target_pgn >> 16) & 0xFF,
-                0x00,  # Rate (ignored)
-                0x00,  # Repeat (ignored)
-                0x00,  # B4 (reserved)
-                0x00,  # B5 (reserved)
-                b7,  # B7: Selects message type (MCUSUM, PACKSUM, etc.)
+                (target_pgn >> 16) & 0xFF,  # # PGN (little-endian for data payload)
+                request_rate,  # How often to send (in MCU ticks, 50ms each)
+                repeat_count,  # Number of responses (0xFF for continuous)
+                0x00,
+                0x00,  # Reserved bytes
+                b7,  # Message type selector (0x00 request full data set)
             ],
             is_extended_id=True,
         )
@@ -48,71 +50,111 @@ class MessageHandler:
             logger.error(f"CAN transmission error: {e}")
             self.errors.append(str(e))
             return
+        # Wait and process responses
+        self._wait_for_response(target_pgn)
 
-        timeout = 2  # Wait for up to 2 seconds
-        start_time = time.time()
+        def _wait_for_response(self, target_pgn, timeout=2):
+            start_time = time.time()
 
-        while time.time() - start_time < timeout:
-            message = self.bus.recv(timeout=timeout)
-            if message and (message.arbitration_id & 0x1FFFF00) >> 8 == target_pgn:
-                try:
-                    decoded = self.db.decode_message(
-                        message.arbitration_id, message.data
-                    )
-                    logger.info(f"Decoded message: {decoded}")
-                    self.update_data(decoded)
-                    return decoded
-                except Exception as e:
-                    logger.error(f"Failed to decode: {e}")
-                    self.errors.append(str(e))
-                    return
+            while time.time() - start_time < timeout:
+                message = self.bus.recv(timeout=timeout)
+
+                if message and (message.arbitration_id & 0x1FFFF00) >> 8 == target_pgn:
+                    return message
+            return None
+
+        message = _wait_for_response(self, target_pgn)
+        if message:
+            try:
+                message_data = message.data
+                msg = self.db.get_message_by_frame_id(message.arbitration_id)
+                decoded = msg.decode(message_data)
+                logger.info(f"Decoded message: {decoded}")
+                self.update_data(decoded)
+                return decoded
+            except Exception as e:
+                logger.error(f"Failed to decode: {e}")
+                self.errors.append(str(e))
+                return
 
         logger.error(f"No response for PGN: {hex(target_pgn)}")
         self.errors.append(f"No response for PGN: {hex(target_pgn)}")
 
-    def update_data(self, decoded_message):
-        """Update CanData object with decoded values."""
-        if "Voltage" in decoded_message:
-            self.data.voltage = decoded_message["Voltage"]
-        if "StateOfCharge" in decoded_message:
-            self.data.soc = decoded_message["StateOfCharge"]
-        if "Runtime" in decoded_message:
-            self.data.runtime = decoded_message["Runtime"]
+        """Update CanData with any recognized fields."""
+        for field, value in decoded.items():
+            # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
+            normalized_field = field.lower()
+            if hasattr(self.data, normalized_field):
+                setattr(self.data, normalized_field, value)
 
-    def get_voltage(self):
-        return self.data.voltage
+            # Collect fault information if present
+            if "fault" in field.lower() and value:
+                self.system_errors.append(field)
 
-    def get_soc(self):
-        return self.data.soc
+    # def get_voltage(self):
+    #     return self.data.voltage
 
-    def get_runtime(self):
-        return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+    # def get_soc(self):
+    #     return self.data.soc
 
-    def get_errors(self):
-        return self.errors
+    # def get_runtime(self):
+    #     return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+
+    # def get_errors(self):
+    #     return self.errors
+
+    # @property
+    # def voltage(self):
+    #     return self.data.voltage
+
+    # @property
+    # def soc(self):
+    #     return self.data.soc
+
+    # @property
+    # def runtime(self):
+    #     return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+
+    # @property
+    # def get_errors(self):
+    #     return self.errors
 
     @property
-    def voltage(self):
-        return self.data.voltage
+    def pack_voltage(self):
+        return self.data.pack_voltage
 
     @property
-    def soc(self):
-        return self.data.soc
+    def pack_current(self):
+        return self.data.pack_current
 
     @property
-    def runtime(self):
-        return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
+    def charged_energy(self):
+        return self.data.charged_energy
 
     @property
+    def charge_state(self):
+        return self.data.charge_state
+
+    @property
+    def plug_state(self):
+        return self.data.plug_state
+
     def get_errors(self):
         return self.errors
 
 
 if __name__ == "__main__":
     handler = MessageHandler()
-    handler.request_and_parse(00)
-    # handler.request_and_parse("runtime")
-    print("Voltage:", handler.voltage)
-    print("SOC:", handler.soc)
-    print("Runtime:", handler.runtime)
-    print("Errors:", handler.get_errors)
+
+    # Request MCU Summary (0xFF20D0)
+    handler.request_and_parse(0xFF20D0)
+
+    print("Charged Energy:", handler.charged_energy)
+    print("Charge State:", handler.charge_state)
+    print("Plug State:", handler.plug_state)
+    print("Errors:", handler.get_errors())
+
+    # Request MCU Pack Summary (0xFF20E0)
+    handler.request_and_parse(0xFF20E0)
+    print("Pack Voltage:", handler.pack_voltage)
+    print("Pack Current:", handler.pack_current)
