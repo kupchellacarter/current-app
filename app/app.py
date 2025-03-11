@@ -58,7 +58,6 @@ class App:
         # Start the query_data function in a separate background thread
         query_thread = threading.Thread(
             target=self.query_data,
-            args=(self.gui, self.obd2_handler, self.can_opener),
             daemon=True,
         )
         query_thread.start()
