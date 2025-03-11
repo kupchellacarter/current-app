@@ -3,11 +3,13 @@ import time
 import logging
 import cantools
 from dataclass import CanData
+import os
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-DBC_FILE = "app\DBC\MCU_J1939_v1-1-2_BETA.dbc"
+DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA.dbc")
+# DBC_FILE = "app\DBC\MCU_J1939_v1-1-2_BETA.dbc"
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
