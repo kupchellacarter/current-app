@@ -24,10 +24,10 @@ class App:
             # self.charging_mode = self.can_opener.listen_for_charge_messages()
             if self.charging_mode:
                 self.display_charging_ui(last_display)
-                last_display = "defualt_ui"
+                last_display = "charging_ui"
             else:
                 self.display_default_ui(last_display)
-                last_display = "charging_ui"
+                last_display = "default_ui"
 
     def display_default_ui(self,last_display:str):
         """

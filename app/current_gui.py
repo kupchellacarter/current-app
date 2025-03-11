@@ -129,6 +129,7 @@ class GUI:
         # only update the charge level if it has changed
         if self.charge_level != charge_level:
             logger.warning(f"Updating SOC to {charge_level}")
+            self.soc_canvas.delete("all")
             self.charge_level = charge_level
             num_sections = 100
             section_width = (670 - 30) / num_sections  # Calculate section width
