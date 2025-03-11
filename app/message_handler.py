@@ -56,7 +56,9 @@ class MessageHandler:
         if message:
             try:
                 message_data = message.data
-                msg = self.db.get_message_by_frame_id(message.arbitration_id)
+                msg = self.db.get_message_by_frame_id(
+                    0x14FF20D0
+                )  # I CHANGED THIS TO CALL mcu_SUM, DISCREPANCY IN PRIORITY TO dbc
                 decoded = msg.decode(message_data)
                 logger.info(f"Decoded message: {decoded}")
                 self.update_data(decoded)
