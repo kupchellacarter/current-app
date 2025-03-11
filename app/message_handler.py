@@ -56,9 +56,8 @@ class MessageHandler:
         if message:
             try:
                 message_data = message.data
-                msg = self.db.get_message_by_frame_id(
-                    0x14FF24D0
-                )  # I CHANGED THIS TO CALL mcu_Soc, DISCREPANCY IN PRIORITY TO dbc
+                frame_id = (0x14 << 24) | (target_pgn << 8) | 0xD0
+                msg = self.db.get_message_by_frame_id(frame_id)
                 decoded = msg.decode(message_data)
                 logger.info(f"Decoded message: {decoded}")
                 self.update_data(decoded)
