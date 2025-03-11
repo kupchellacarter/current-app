@@ -32,21 +32,11 @@ class GUI:
         self.root.mainloop()
 
     def display_defualt_ui(self):
-        # Top Frame (soc)
+        # Top Frame
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
 
-        # Battery soc Display (Top)
-        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
-        self.soc_canvas.pack(pady=5)
-        self.soc_text = tk.Label(
-            self.top_frame,
-            text="pack_voltage",
-            font=(self.font, 10),
-            bg="black",
-            fg="white",
-        )
-        self.soc_text.pack(pady=5)
+        
 
         # Bottom Frame
         self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
@@ -60,7 +50,7 @@ class GUI:
         self.runtime_label = tk.Label(
             self.central_frame,
             text="MCU Runtime: ",
-            font=(self.font, 10),
+            font=(self.font, 12),
             bg="black",
             fg="white",
         )
@@ -69,7 +59,7 @@ class GUI:
         self.voltage_label = tk.Label(
             self.central_frame,
             text="Pack Voltage: ",
-            font=(self.font, 15),
+            font=(self.font, 12),
             bg="black",
             fg="white",
         )
@@ -78,7 +68,7 @@ class GUI:
         self.current_label = tk.Label(
             self.central_frame,
             text="Current: ",
-            font=(self.font, 15),
+            font=(self.font, 12),
             bg="black",
             fg="white",
         )
@@ -87,7 +77,7 @@ class GUI:
         self.power_label = tk.Label(
             self.central_frame,
             text="Power: ",
-            font=(self.font, 15),
+            font=(self.font, 12),
             bg="black",
             fg="white",
         )
@@ -125,6 +115,26 @@ class GUI:
         self.system_error_label.grid(row=1, column=0, pady=5)
 
 
+    def _create_soc_frame(self):
+        # Battery soc Display (Top)
+        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
+        self.soc_canvas.pack(pady=5)
+        # Labels for "E" (empty) and "F" (full)
+        self.soc_canvas.create_text(30, 25, text="E", fill="white", font=("Arial", 14, "bold"))
+        self.soc_canvas.create_text(680, 25, text="F", fill="white", font=("Arial", 14, "bold"))
+
+        # Draw battery sections
+        num_sections = 8
+        section_width = (600 - 50) / num_sections  # Width of each section
+        for i in range(num_sections):
+            x1 = 50 + i * section_width
+            x2 = x1 + section_width - 5  # Add spacing between sections
+            
+            # Fill sections based on charge level
+            fill_color = "green" if i < 100 else "black"
+            self.soc_canvas.create_rectangle(x1, 10, x2, 40, outline="white", width=2, fill=fill_color)
+
+    
     def update_runtime(self, runtime_value):
         """
         Method to update the displayed variables dynamically
