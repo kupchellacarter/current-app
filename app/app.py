@@ -26,7 +26,7 @@ class App:
                 self.display_charging_ui(last_display)
                 last_display = "defualt_ui"
             else:
-                self.display_default_ui()
+                self.display_default_ui(last_display)
                 last_display = "charging_ui"
 
     def display_default_ui(self,last_display:str):
@@ -50,7 +50,7 @@ class App:
         self.gui.update_voltage(voltage)
         self.gui.refresh_ui()
 
-    def display_charging_ui(self):
+    def display_charging_ui(self,last_display:str):
         """
         displays charging UI
         """
