@@ -61,8 +61,6 @@ class DBCMessageHandler():
                 msg = self.db.get_message_by_frame_id(frame_id)
                 decoded = msg.decode(message_data)
                 self.update_data(decoded)
-                for name, value in vars(self.data).items():
-                    print(f"{name}: {value}")
                 return self.data
                 
             except Exception as e:
