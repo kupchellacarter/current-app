@@ -1,47 +1,74 @@
 from current_gui import GUI
-from message_handler import MessageHandler
+from obd2_message_handler import OBD2MessageHandler
 from can_opener import CanOpener
 import threading
 
 
-def query_data(gui: GUI, handler: MessageHandler, can_opener: CanOpener):
+class App:
     """
-    queries data and updates GUI
+    The main application class
     """
-    while True:
-        charging_mode = can_opener.listen_for_charge_messages()
-        handler.request_and_parse("runtime")
-        runtime = handler.get_runtime()
-        handler.request_and_parse("voltage")
-        voltage = handler.get_voltage()
-        system_errors = handler.system_errors
-        handler.request_and_parse("soc")
-        soc = handler.get_soc()
-        # errors = handler.get_errors()
+
+    def __init__(self):
+        self.gui = GUI()
+        self.obd2_handler = OBD2MessageHandler()
+        self.can_opener = CanOpener()
+        self.charging_mode = False
+
+    def query_data(self):
+        """
+        queries data and updates GUI
+        """
+        last_display = None
+        while True:
+            # self.charging_mode = self.can_opener.listen_for_charge_messages()
+            if self.charging_mode:
+                self.display_charging_ui(last_display)
+                last_display = "charging_ui"
+            else:
+                self.display_default_ui(last_display)
+                last_display = "default_ui"
+
+    def display_default_ui(self,last_display:str):
+        """
+        displays default UI
+        """
+        if not last_display or last_display != "default_ui":
+            self.gui.display_defualt_ui()
+        self.obd2_handler.request_and_parse("runtime")
+        runtime = self.obd2_handler.get_runtime()
+        self.obd2_handler.request_and_parse("voltage")
+        voltage = self.obd2_handler.get_voltage()
+        system_errors = self.obd2_handler.system_errors
+        self.obd2_handler.request_and_parse("soc")
+        soc = self.obd2_handler.get_soc()
+        self.gui.set_soc(soc)
+        # errors = obd2_handler.get_errors()
         # gui.show_errors(errors)
-        gui.update_error_label(system_errors)
-        gui.update_runtime(runtime)
-        gui.update_soc(soc)
-        gui.update_voltage(voltage)
-        gui.refresh_ui()
+        self.gui.update_error_label(system_errors)
+        self.gui.update_runtime(runtime)
+        self.gui.update_voltage(voltage)
+        self.gui.refresh_ui()
 
+    def display_charging_ui(self,last_display:str):
+        """
+        displays charging UI
+        """
+        pass
 
-def main():
-    """
-    description here
-    """
-    gui = GUI()
-    # Create MessageHandler instance
-    handler = MessageHandler()
-    can_opener = CanOpener()
-
-    # Start the query_data function in a separate background thread
-    query_thread = threading.Thread(
-        target=query_data, args=(gui, handler, can_opener), daemon=True
-    )
-    query_thread.start()
-    gui.run()
+    def main(self):
+        """
+        description here
+        """
+        # Start the query_data function in a separate background thread
+        query_thread = threading.Thread(
+            target=self.query_data,
+            daemon=True,
+        )
+        query_thread.start()
+        self.gui.run()
 
 
 if __name__ == "__main__":
-    main()
+    app = App()
+    app.main()
