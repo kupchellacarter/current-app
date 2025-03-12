@@ -15,7 +15,7 @@ REQUEST_ID = 0x14EBD0D8  # J1939 request format
 class DBCMessageHandler():
     """Handler"""
 
-    def __init__(self, can_data: CanData):
+    def __init__(self, can_data: CanData = CanData()):
         self.system_errors = []
         self.errors = []
         self.bus = can.interface.Bus(channel="can0", interface="socketcan")
