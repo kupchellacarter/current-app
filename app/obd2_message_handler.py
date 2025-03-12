@@ -54,6 +54,8 @@ class OBD2MessageHandler:
                     runtime_low_byte = message.data[3]
                     runtime_high_byte = message.data[4]
                     runtime = (runtime_high_byte << 8) | runtime_low_byte
+                    print(f"Runtime: {runtime}")
+                    print(f"Raw Data: {message.data}")
                     self.data.runtime = time.strftime("%H:%M:%S", time.gmtime(runtime))
                     return self.data
                 else:
