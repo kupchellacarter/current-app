@@ -69,10 +69,9 @@ class App:
             self.dbc_request.mcu_soc_summary
         )
         soc = self.data.mcu_soc
-        soc_labelled = f"{soc} {self.data.mcu_soc_unit}"
-        pack_cur_kwh = self.data.mcu_packcurkwh * self.data.mcu_packcurkwh_factor
+        pack_cur_kwh = self.data.mcu_packcurkwh  # * self.data.mcu_packcurkwh_factor
         pack_cur_kwh_labelled = f"{pack_cur_kwh} {self.data.mcu_packcurkwh_unit}"
-        pack_max_kwh = self.data.mcu_packmaxkwh * self.data.mcu_packmaxkwh_factor
+        pack_max_kwh = self.data.mcu_packmaxkwh  # * self.data.mcu_packmaxkwh_factor
         pack_max_kwh_labelled = f"{pack_max_kwh} {self.data.mcu_packmaxkwh_unit}"
 
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.bms_config1)
