@@ -33,6 +33,12 @@ MCU_SOC             0-100                   %
 MCU_PackCurKwh      number                  kWh
 MCU_PackMaxKwh      number                  kWh
 
+0xFF11 BMS_Config1
+Returns             Value       Factor      maximum     Unit
+BMS_HVC             number      0.1         1           mV
+BMS_LVC             number      0.1         1           mV
+BMS_BVMin           number      0.1         1           mV
+
 ## THIS ONE ONLY FOR MAKING MCU CONFIGURATION CHANGES ##
 0xEFD0 MCU_Write
 Will edit MCU_Profile in B1 8bits long enter 1 for profile 1, 2 for profile 2
