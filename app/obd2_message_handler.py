@@ -10,19 +10,11 @@ logger.setLevel(logging.INFO)
 class OBD2MessageHandler:
     """Handler"""
 
-    def __init__(self, can_data: CanData = CanData()):
-        self.system_errors = {}
-        self.errors = {}
-        self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
+    def __init__(self, can_data: CanData = CanData(),bus = can.interface.Bus(channel="can0", interface="socketcan")):
+        self.system_errors = []
+        self.errors = []
         self.data = can_data
-
-    @property
-    def _voltage_request(self):
-        return can.Message(
-            arbitration_id=0x7DF,
-            data=[0x03, 0x22, 0xDD, 0x83],
-            is_extended_id=False,
-        )
+        self.bus = bus
 
     @property
     def _runtime_request(self):
@@ -30,24 +22,14 @@ class OBD2MessageHandler:
             arbitration_id=0x7DF, data=[0x02, 0x01, 0x1F], is_extended_id=False
         )
 
-    @property
-    def _soc_request(self):
-        return can.Message(
-            arbitration_id=0x7DF, data=[0x03, 0x22, 0xDD, 0x85], is_extended_id=False
-        )
-
     def request_factory(self, metric: str):
         """Returns the appropriate request message for the given metric."""
         if metric == "runtime":
             return self._runtime_request
-        elif metric == "voltage":
-            return self._voltage_request
-        elif metric == "soc":
-            return self._soc_request
         else:
             raise ValueError(f"Invalid metric: {metric}")
 
-    def request_and_parse(self, metric: str) -> int:
+    def obd2_request_and_parse(self, metric: str) -> int:
         """Reads the CAN bus."""
         # Send the request message
         request = self.request_factory(metric)
@@ -66,34 +48,9 @@ class OBD2MessageHandler:
                     runtime_low_byte = message.data[3]
                     runtime_high_byte = message.data[4]
                     runtime = (runtime_high_byte << 8) | runtime_low_byte
-                    self.data.runtime = runtime
-                    return
-                elif metric == "voltage":
-                    pid = (message.data[2] << 8) | message.data[
-                        3
-                    ]  # Combine B2 and B3 for PID (0xDD83)
-                    if pid == 0xDD83:
-                        # Extract the pack voltage from B4 (low byte) and B5 (high byte)
-                        voltage_raw = (message.data[5] << 8) | message.data[4]
-
-                        # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
-                        voltage = voltage_raw / 10.0  # Convert the raw value to voltage
-                        self.data.voltage = voltage
-                        return
-                    else:
-                        pass
-                elif metric == "soc":
-                    pid = (message.data[2] << 8) | message.data[
-                        3
-                    ]  # Combine B2 and B3 for PID (0xDD83)
-                    if pid == 0xDD85:
-                        # Extract the pack soc from B4 (low byte) and B5 (high byte)
-                        soc = (message.data[5] << 8) | message.data[4]
-                        self.data.soc = soc
-                        return
-                    else:
-                        pass
-
+                    self.data.runtime = time.strftime("%H:%M:%S", time.gmtime(runtime))
+                    print(self.data.runtime)
+                    return self.data
                 else:
                     logger.error("Invalid response length.")
                     self.errors.append("Invalid response length.")
@@ -102,30 +59,7 @@ class OBD2MessageHandler:
             logger.error("No response received from MCU within the timeout.")
             self.errors.append("No response received from MCU within the timeout.")
 
-    def get_runtime(self) -> str:
-        """Returns the runtime data formatted as a string in the format HH:MM:SS.
-        return: str
-        """
-        return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
-
-    def get_voltage(self) -> str:
-        """Returns the runtime data formatted as a string in the format HH:MM:SS.
-        return: str
-        """
-        return self.data.voltage
-
-    def get_soc(self) -> str:
-        """Returns the soc formatted as a string in the format xxx.
-        return: str
-        """
-        return self.data.soc
-
-    def get_errors(self) -> list:
-        """Returns a list of errors encountered during operation."""
-        return self.errors
-
 
 if __name__ == "__main__":
     handler = OBD2MessageHandler()
-    handler.request_and_parse("voltage")
-    handler.request_and_parse("runtime")
+    handler.obd2_request_and_parse("runtime")
