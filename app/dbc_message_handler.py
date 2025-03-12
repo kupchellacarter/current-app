@@ -39,7 +39,7 @@ class DBCMessageHandler():
             is_extended_id=True,
         )
 
-    def request_and_parse(self, target_pgn):
+    def request_and_parse(self, target_pgn) -> CanData | None:
         """Sends a J1939 read request decodes the response, PGN agnostic."""
         # Create the CAN request message
         request = self.get_dbc_request(target_pgn)
@@ -61,14 +61,14 @@ class DBCMessageHandler():
                 msg = self.db.get_message_by_frame_id(frame_id)
                 decoded = msg.decode(message_data)
                 self.update_data(decoded)
-                return decoded
+                for name, value in vars(self.data).items():
+                    print(f"{name}: {value}")
+                return self.data
+                
             except Exception as e:
                 logger.error(f"Failed to decode: {e}")
                 self.errors.append(str(e))
                 return
-        
-        for name, value in vars(self.data).items():
-            print(f"{name}: {value}")
 
         logger.error(f"No response for PGN: {hex(target_pgn)}")
         self.errors.append(f"No response for PGN: {hex(target_pgn)}")
