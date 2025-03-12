@@ -1,6 +1,5 @@
 from current_gui import GUI
 from obd2_message_handler import OBD2MessageHandler
-from can_opener import CanOpener
 import threading
 
 
@@ -12,7 +11,6 @@ class App:
     def __init__(self):
         self.gui = GUI()
         self.obd2_handler = OBD2MessageHandler()
-        self.can_opener = CanOpener()
         self.charging_mode = False
 
     def query_data(self):
