@@ -1,0 +1,895 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: MCU
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ NewSignal_0008 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_CellRMean : 0|16@1+ (0.1,0) [0|0] "mOhm" Vector__XXX
+ SG_ MCU_OCVMean : 0|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499748048 J1939_MCU_Summary: 8 MCU
+ SG_ MCU_ChargedEnergy : 16|16@1+ (0.01,0) [0|655] "kWh" Vector__XXX
+ SG_ MCU_ChargeState : 32|8@1+ (1,0) [0|16] "" Vector__XXX
+ SG_ MCU_PlugState : 40|8@1+ (1,0) [0|16] "" Vector__XXX
+ SG_ MCU_Fault_IllegalConfig : 63|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_NotLocked : 55|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_ThermUndertemp : 56|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_ThermOvertemp : 57|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_LVC : 58|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_HVC : 59|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_ThermCensus : 60|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_CellCensus : 61|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Fault_Hardware : 62|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499748816 J1939_MCU_ThermSummary: 8 MCU
+ SG_ MCU_ThermCount : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ MCU_ThLowest : 16|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ MCU_ThHighest : 24|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ MCU_ThMin : 48|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ MCU_ThMax : 56|8@1- (1,0) [-128|127] "C" Vector__XXX
+
+BO_ 2498482392 J1939_MCU_ReadRequest: 8 Vector__XXX
+ SG_ PGN : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RequestRate : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RequestRepeatCount : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ProfileNumber : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499739856 J1939_MCU_Options: 8 MCU
+ SG_ MCU_Enabled_FCharge : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_ZEVCCS : 22|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_SlowStart : 21|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_TopBalance : 20|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_Balance : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_SpeedHutFuel : 48|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_SpeedHutAmps : 49|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_SpeedHutTemp : 50|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_ISensorRev : 55|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_3100R : 51|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Enabled_SpeedHutAmps_Reverse : 57|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Enabled_IVTS_Factory : 56|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499743952 J1939_MCU_Config: 8 MCU
+ SG_ MCU_Version : 16|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Revision : 24|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_BMS_Arch : 32|8@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2499744208 J1939_BMS_Config1: 8 MCU
+ SG_ BMS_HVC : 16|16@1+ (0.1,0) [0|1] "mV" Vector__XXX
+ SG_ BMS_LVC : 32|16@1+ (0.1,0) [0|1] "mV" Vector__XXX
+ SG_ BMS_BVMin : 48|16@1+ (0.1,0) [0|1] "mV" Vector__XXX
+
+BO_ 2499744464 J1939_BMS_Config2: 8 MCU
+ SG_ BMS_HVCC : 16|16@1+ (0.1,0) [0|1] "mV" Vector__XXX
+ SG_ BMS_LVCC : 32|16@1+ (0.1,0) [0|1] "mV" Vector__XXX
+ SG_ BMS_HVCLoopDelay : 48|8@1+ (1,0) [0|1] "seconds" Vector__XXX
+ SG_ BMS_LVCLoopDelay : 56|8@1+ (1,0) [0|1] "seconds" Vector__XXX
+
+BO_ 2499746000 J1939_BMS_GroupMap0: 8 MCU
+ SG_ BMS_GM0 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM1 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM2 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM3 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM4 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM5 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499746256 J1939_BMS_GroupMap1: 8 MCU
+ SG_ BMS_GM11 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM10 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM6 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM7 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM8 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM9 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499746512 J1939_BMS_GroupMap2: 8 MCU
+ SG_ BMS_GM12 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM13 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM14 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BMS_GM15 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499748304 J1939_MCU_PackSummary: 8 MCU
+ SG_ MCU_PackVoltage : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_PackCurrent : 32|16@1- (0.1,0) [0|0] "amps" Vector__XXX
+
+BO_ 2499748560 J1939_MCU_CellSummary: 8 MCU
+ SG_ MCU_CellCount : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LowestCellV : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_MeanCellV : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_HighestCellV : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499749072 J1939_MCU_SOCSummary: 8 MCU
+ SG_ MCU_SOC : 8|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ MCU_PackCurKwh : 16|16@1+ (0.1,0) [0|0] "kWh" Vector__XXX
+ SG_ MCU_PackMaxKwh : 32|16@1+ (0.1,0) [0|0] "kWh" Vector__XXX
+
+BO_ 2499780816 J1939_MCU_LTC1CellVoltages: 8 MCU
+ SG_ MCU_LTC1_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC1_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499781072 J1939_MCU_LTC2CellVoltages: 8 MCU
+ SG_ MCU_LTC2_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC2_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499781328 J1939_MCU_LTC3CellVoltages: 8 MCU
+ SG_ MCU_LTC3_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC3_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499781584 J1939_MCU_LTC4CellVoltages: 8 MCU
+ SG_ MCU_LTC4_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC4_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499781840 J1939_MCU_LTC5CellVoltages: 8 MCU
+ SG_ MCU_LTC5_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC5_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499782096 J1939_MCU_LTC6CellVoltages: 8 MCU
+ SG_ MCU_LTC6_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC6_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499782352 J1939_MCU_LTC7CellVoltages: 8 MCU
+ SG_ MCU_LTC7_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC7_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499782608 J1939_MCU_LTC8CellVoltages: 8 MCU
+ SG_ MCU_LTC8_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC8_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499782864 J1939_MCU_LTC9CellVoltages: 8 MCU
+ SG_ MCU_LTC9_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC9_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499783120 J1939_MCU_LTC10CellVoltages: 8 MCU
+ SG_ MCU_LTC10_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC10_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499783376 J1939_MCU_LTC11CellVoltages: 8 MCU
+ SG_ MCU_LTC11_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC11_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499783632 J1939_MCU_LTC12CellVoltages: 8 MCU
+ SG_ MCU_LTC12_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC12_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499783888 J1939_MCU_LTC13CellVoltages: 8 MCU
+ SG_ MCU_LTC13_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC13_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499784144 J1939_MCU_LTC14CellVoltages: 8 MCU
+ SG_ MCU_LTC14_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC14_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499784400 J1939_MCU_LTC15CellVoltages: 8 MCU
+ SG_ MCU_LTC15_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC15_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499784656 J1939_MCU_LTC16CellVoltages: 8 MCU
+ SG_ MCU_LTC16_CellMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Cell1 m0 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell2 m0 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell3 m0 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell4 m1 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell5 m1 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell6 m1 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell7 m2 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell8 m2 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell9 m2 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell10 m3 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell11 m3 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell12 m3 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell13 m4 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell14 m4 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell15 m4 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell16 m5 : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell17 m5 : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_LTC16_Cell18 m5 : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499789008 J1939_MCU_LTC1Th: 8 MCU
+ SG_ MCU_LTC1_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC1_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499789264 J1939_MCU_LTC2Th: 8 MCU
+ SG_ MCU_LTC2_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC2_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499789520 J1939_MCU_LTC3Th: 8 MCU
+ SG_ MCU_LTC3_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC3_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499789776 J1939_MCU_LTC4Th: 8 MCU
+ SG_ MCU_LTC4_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC4_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499790032 J1939_MCU_LTC5Th: 8 MCU
+ SG_ MCU_LTC5_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC5_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499790288 J1939_MCU_LTC6Th: 8 MCU
+ SG_ MCU_LTC6_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC6_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499790544 J1939_MCU_LTC7Th: 8 MCU
+ SG_ MCU_LTC7_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC7_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499790800 J1939_MCU_LTC8Th: 8 MCU
+ SG_ MCU_LTC8_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC8_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499791056 J1939_MCU_LTC9Th: 8 MCU
+ SG_ MCU_LTC9_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC9_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499791312 J1939_MCU_LTC10Th: 8 MCU
+ SG_ MCU_LTC10_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC10_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499791568 J1939_MCU_LTC11Th: 8 MCU
+ SG_ MCU_LTC11_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC11_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499791824 J1939_MCU_LTC12Th: 8 MCU
+ SG_ MCU_LTC12_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC12_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499792080 J1939_MCU_LTC13Th: 8 MCU
+ SG_ MCU_LTC13_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC13_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499792336 J1939_MCU_LTC14Th: 8 MCU
+ SG_ MCU_LTC14_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC14_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499792592 J1939_MCU_LTC15Th: 8 MCU
+ SG_ MCU_LTC15_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC15_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499792848 J1939_MCU_LTC16Th: 8 MCU
+ SG_ MCU_LTC16_ThMux M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_die m0 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_1 m0 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_2 m0 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_3 m0 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_4 m0 : 48|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_5 m0 : 56|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_6 m1 : 16|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_7 m1 : 24|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_8 m1 : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LTC16_Th_9 m1 : 40|8@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2499740112 J1939_MCU_OBCHG1: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger1Model_P0 m0 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model_P0 m0 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model_P0 m0 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model_P0 m0 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermCP0 m0 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_Charger1Model_P1 m1 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model_P1 m1 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model_P1 m1 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model_P1 m1 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermCP1 m1 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_Charger1Model_P2 m2 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model_P2 m2 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model_P2 m2 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model_P2 m2 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermCP1 m2 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_Charger1Model_P3 m3 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model_P3 m3 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model_P3 m3 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model_P3 m3 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermCP1 m3 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_Charger1Model_P4 m4 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model_P4 m4 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model_P4 m4 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model_P4 m4 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermCP1 m4 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+
+BO_ 2499740368 J1939_MCU_OBCHG2: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_MaxV_P0 m0 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC_P0 m0 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT_P0 m0 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_MaxV_P1 m1 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC_P1 m1 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT_P1 m1 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_MaxV_P2 m2 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC_P2 m2 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT_P2 m2 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_MaxV_P3 m3 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC_P3 m3 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT_P3 m3 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_MaxV_P4 m4 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC_P4 m4 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT_P4 m4 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+
+BO_ 2499740624 J1939_MCU_OBCHG3: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_LineV_P0 m0 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC_P0 m0 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT_P0 m0 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_LineV_P1 m1 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC_P1 m1 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT_P1 m1 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_LineV_P2 m2 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC_P2 m2 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT_P2 m2 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_LineV_P3 m3 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC_P3 m3 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT_P3 m3 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_LineV_P4 m4 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC_P4 m4 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT_P4 m4 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+
+BO_ 2499740880 J1939_MCU_OBCHG4: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger1Phase_P0 m0 : 16|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger2Phase_P0 m0 : 24|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger3Phase_P0 m0 : 32|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger4Phase_P0 m0 : 40|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger1Phase_P1 m1 : 16|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger2Phase_P1 m1 : 24|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger3Phase_P1 m1 : 32|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger4Phase_P1 m1 : 40|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger1Phase_P2 m2 : 16|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger2Phase_P2 m2 : 24|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger3Phase_P2 m2 : 32|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger4Phase_P2 m2 : 40|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger1Phase_P3 m3 : 16|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger2Phase_P3 m3 : 24|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger3Phase_P3 m3 : 32|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger4Phase_P3 m3 : 40|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger1Phase_P4 m4 : 16|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger2Phase_P4 m4 : 24|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger3Phase_P4 m4 : 32|8@1+ (1,0) [0|0] "ph" Vector__XXX
+ SG_ MCU_Charger4Phase_P4 m4 : 40|8@1+ (1,0) [0|0] "ph" Vector__XXX
+
+BO_ 2499741136 J1939_MCU_OBCHG5: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_FinishingMaxV_P0 m0 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC_P0 m0 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT_P0 m0 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FinishingMaxV_P1 m1 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC_P1 m1 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT_P1 m1 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FinishingMaxV_P2 m2 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC_P2 m2 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT_P2 m2 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FinishingMaxV_P3 m3 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC_P3 m3 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT_P3 m3 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FinishingMaxV_P4 m4 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC_P4 m4 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT_P4 m4 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+
+BO_ 2499741392 J1939_MCU_OBCHG6: 8 MCU
+ SG_ Multiplexor M : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_FloatMaxV_P0 m0 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC_P0 m0 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT_P0 m0 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FloatMaxV_P1 m1 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC_P1 m1 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT_P1 m1 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FloatMaxV_P2 m2 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC_P2 m2 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT_P2 m2 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FloatMaxV_P3 m3 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC_P3 m3 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT_P3 m3 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FloatMaxV_P4 m4 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC_P4 m4 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT_P4 m4 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+
+BO_ 2498744536 J1939_MCU_WRITE: 8 Vector__XXX
+ SG_ Multiplexor M : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Profile : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger1Model m1 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Model m1 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Model m1 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Model m1 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_TermC m1 : 48|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_MaxV m2 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_MaxC m2 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_TermT m2 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_LineV m3 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_LineC m3 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_EVSEWaitT m3 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_Charger1Phase m4 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger2Phase m4 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger3Phase m4 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Charger4Phase m4 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_FinishingMaxV m5 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FinishingMaxC m5 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FinishingTermT m5 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ MCU_FloatMaxV m6 : 16|16@1+ (0.1,0) [0|0] "volts" Vector__XXX
+ SG_ MCU_FloatMaxC m6 : 32|16@1+ (0.1,0) [0|0] "amps" Vector__XXX
+ SG_ MCU_FloatTermT m6 : 48|16@1+ (1,0) [0|0] "minutes" Vector__XXX
+ SG_ BMS_HVC m17 : 16|16@1+ (0.1,0) [0|0] "mv" Vector__XXX
+ SG_ BMS_LVC m17 : 32|16@1+ (0.1,0) [0|0] "mv" Vector__XXX
+ SG_ BMS_BVMIN m17 : 48|16@1+ (0.1,0) [0|0] "mv" Vector__XXX
+ SG_ BMS_HVCC m18 : 16|16@1+ (0.1,0) [0|0] "mv" Vector__XXX
+ SG_ BMS_LVCC m18 : 32|16@1+ (0.1,0) [0|0] "mv" Vector__XXX
+ SG_ BMS_HVCLoopDelay m18 : 48|8@1+ (1,0) [0|0] "seconds" Vector__XXX
+ SG_ BMS_LVCLoopDelay m18 : 56|8@1+ (1,0) [0|0] "seconds" Vector__XXX
+
+BO_ 2499749328 J1939_MCU_CLSummary: 8 MCU
+ SG_ MCU_DCLMin : 0|16@1+ (1,0) [0|0] "A" Vector__XXX
+ SG_ MCU_CCLMin : 16|16@1+ (1,0) [0|0] "A" Vector__XXX
+ SG_ MCU_DCLMax : 32|16@1+ (1,0) [0|0] "A" Vector__XXX
+ SG_ MCU_CCLMax : 48|16@1+ (1,0) [0|0] "A" Vector__XXX
+
+BO_ 2499749584 J1939_MCU_OCVSummary: 8 MCU
+ SG_ MCU_OCVLow : 16|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_OCVMean : 32|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+ SG_ MCU_OCVHigh : 48|16@1+ (0.1,0) [0|0] "mV" Vector__XXX
+
+BO_ 2499749840 J1939_MCU_CellRSummary: 8 MCU
+ SG_ MCU_CellRLow : 16|16@1+ (0.1,0) [0|0] "mOhm" Vector__XXX
+ SG_ MCU_CellRMean : 32|16@1+ (0.1,0) [0|0] "mOhm" Vector__XXX
+ SG_ MCU_CellRHigh : 48|16@1+ (0.1,0) [0|0] "mOhm" Vector__XXX
+
+
+
+BA_DEF_ BO_  "matchingcriteria" INT 0 0;
+BA_DEF_ BO_  "labelfilters" INT 0 0;
+BA_DEF_DEF_  "matchingcriteria" 1;
+BA_DEF_DEF_  "labelfilters" 1;
+VAL_ 2499748048 MCU_ChargeState 0 "eChargeStandby" 1 "eChargeStartup" 2 "eChargeWarmdown" 10 "eChargeBulk" 11 "eChargeFinish" 12 "eChargeFloat" 13 "eChargeTopBalance" ;
+VAL_ 2499748048 MCU_PlugState 0 "eChargePlugUnknown" 1 "eChargePlugDisconnected" 2 "eChargePlugConnected" 3 "eChargePlugLocked" 4 "eChargePlugWaitingfordisc" 5 "eChargePlugActive" ;
+VAL_ 2499739856 MCU_Enabled_FCharge 0 "Disabled" 1 "Enabled" ;
+VAL_ 2499739856 MCU_Enabled_ZEVCCS 0 "Disabled" 1 "Enabled" ;
+VAL_ 2499739856 MCU_Enabled_SlowStart 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_TopBalance 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_Balance 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_SpeedHutFuel 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_SpeedHutAmps 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_SpeedHutTemp 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_ISensorRev 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_3100R 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_SpeedHutAmps_Reverse 1 "Enabled" 0 "Disabled" ;
+VAL_ 2499739856 MCU_Enabled_IVTS_Factory 0 "Disabled" 1 "Enabled" ;
+VAL_ 2499743952 MCU_BMS_Arch 1 "LTC12" 2 "A123" 0 "LTC18" ;
+VAL_ 2499740112 MCU_Charger1Model_P0 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger2Model_P0 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger3Model_P0 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger4Model_P0 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger1Model_P1 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger2Model_P1 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger3Model_P1 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger4Model_P1 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger1Model_P2 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger2Model_P2 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger3Model_P2 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger4Model_P2 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger1Model_P3 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger2Model_P3 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger3Model_P3 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger4Model_P3 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger1Model_P4 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger2Model_P4 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger3Model_P4 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2499740112 MCU_Charger4Model_P4 0 "None" 1 "CH4100" 2 "CH4100_41" 3 "CH4100_42" 4 "CH4100_43" 5 "ELCON_E5" 6 "ELCON_E7" 7 "ELCON_E8" 8 "ELCON_E9" 9 "LEAR" 10 "NLG5" 11 "VOLT" 12 "STEALTH" 13 "BASIC" 14 "FCHARGE" ;
+VAL_ 2498744536 MCU_Profile 0 "FCharge" 1 "Profile 1" 2 "Profile 2" 3 "Profile 3" 4 "Profile 4" ;
+
