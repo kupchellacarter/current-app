@@ -51,8 +51,8 @@ class OBD2MessageHandler:
             message = self.bus.recv(timeout=timeout)
             if message and message.arbitration_id == 0x7E8:
                 if metric == "runtime" and len(message.data) >= 5:
-                    runtime_low_byte = message.data[3]
-                    runtime_high_byte = message.data[4]
+                    runtime_low_byte = message.data[4]
+                    runtime_high_byte = message.data[3]  ##swapped big little
                     runtime = (runtime_high_byte << 8) | runtime_low_byte
                     print(f"Runtime: {runtime}")
                     print(f"Raw Data: {message.data}")
