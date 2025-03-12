@@ -108,8 +108,8 @@ if __name__ == "__main__":
     # print("Errors:", handler.get_errors())
 
     # Request MCU_SOC Summary (0xFF24)
-    handler.request_and_parse(0xFF24)  # MCU_SOC
-    handler.request_and_parse(0xFF10)  # Pack_sumary
+    # handler.request_and_parse(0xFF24)  # MCU_SOC
+    # handler.request_and_parse(0xFF10)  # Pack_sumary
     # print("SOC:", handler.MCU_SOC)
 
     # print("Pack Current:", handler.pack_current)
