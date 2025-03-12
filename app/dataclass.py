@@ -7,7 +7,7 @@ class CanData:
     mcu_bms_arch: cantools.database.namedsignalvalue.NamedSignalValue = None
     mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue = None
     mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue = None
-    runtime: int = 0
+    runtime: str = "00:00:00"
     mcu_chargedenergy: float = 0.0
     mcu_fault_notlocked: int = 0
     mcu_fault_thermundertemp: int = 0
@@ -29,3 +29,5 @@ class DBCRequest:
     request_rate: hex =0x0A
     repeat_count:hex =0x14
     b7: hex =0x00
+    mcu_soc_summary: hex = 0xFF24
+

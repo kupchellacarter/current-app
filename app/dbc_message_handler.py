@@ -15,10 +15,10 @@ REQUEST_ID = 0x14EBD0D8  # J1939 request format
 class DBCMessageHandler():
     """Handler"""
 
-    def __init__(self, can_data: CanData = CanData(), bus = can.interface.Bus(channel="can0", interface="socketcan")):
+    def __init__(self, can_data: CanData = CanData()):
         self.system_errors = []
         self.errors = []
-        self.bus = bus
+        self.bus = can.interface.Bus(channel="can0", interface="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = can_data
         self.dbc_request = DBCRequest()
@@ -39,7 +39,7 @@ class DBCMessageHandler():
             is_extended_id=True,
         )
 
-    def request_and_parse(self, target_pgn) -> CanData | None:
+    def dbc_request_and_parse(self, target_pgn) -> CanData | None:
         """Sends a J1939 read request decodes the response, PGN agnostic."""
         # Create the CAN request message
         request = self.get_dbc_request(target_pgn)
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     handler = DBCMessageHandler()
 
     # Request MCU Summary (0xFF20D0)
-    handler.request_and_parse(0xFF20)  # MCU_Summary
+    handler.dbc_request_and_parse(0xFF20)  # MCU_Summary
 
     # print("Charged Energy:", handler.charged_energy)
     # print("Charge State:", handler.charge_state)
@@ -106,8 +106,8 @@ if __name__ == "__main__":
     # print("Errors:", handler.get_errors())
 
     # Request MCU_SOC Summary (0xFF24)
-    handler.request_and_parse(0xFF24)  # MCU_SOC
-    handler.request_and_parse(0xFF10)  # Pack_sumary
+    handler.dbc_request_and_parse(0xFF24)  # MCU_SOC
+    handler.dbc_request_and_parse(0xFF10)  # Pack_sumary
     # print("SOC:", handler.MCU_SOC)
 
     # print("Pack Current:", handler.pack_current)
