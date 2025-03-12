@@ -149,7 +149,7 @@ if __name__ == "__main__":
     handler = MessageHandler()
 
     # Request MCU Summary (0xFF20D0)
-    handler.request_and_parse(0xFF20)
+    handler.request_and_parse(0xFF20)  # MCU_Summary
 
     # print("Charged Energy:", handler.charged_energy)
     # print("Charge State:", handler.charge_state)
@@ -157,7 +157,8 @@ if __name__ == "__main__":
     # print("Errors:", handler.get_errors())
 
     # Request MCU_SOC Summary (0xFF24)
-    handler.request_and_parse(0xFF24)
+    handler.request_and_parse(0xFF24)  # MCU_SOC
+    handler.request_and_parse(0xFF10)  # Pack_sumary
     # print("SOC:", handler.MCU_SOC)
 
     # print("Pack Current:", handler.pack_current)
