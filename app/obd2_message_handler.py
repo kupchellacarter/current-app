@@ -49,7 +49,6 @@ class OBD2MessageHandler:
                     runtime_high_byte = message.data[4]
                     runtime = (runtime_high_byte << 8) | runtime_low_byte
                     self.data.runtime = time.strftime("%H:%M:%S", time.gmtime(runtime))
-                    print(self.data.runtime)
                     return self.data
                 else:
                     logger.error("Invalid response length.")
