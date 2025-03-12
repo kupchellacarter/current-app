@@ -6,8 +6,6 @@ import cantools
 class CanData:
     runtime: int = 0
     mcu_chargedenergy: float = 0.0
-    mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue
-    mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue
     mcu_fault_notlocked: int = 0
     mcu_fault_thermundertemp: int = 0
     mcu_fault_thermovertemp: int = 0
@@ -23,6 +21,8 @@ class CanData:
     mcu_version: int = 0
     mcu_revision: int = 0
     mcu_bms_arch: cantools.database.namedsignalvalue.NamedSignalValue
+    mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue
+    mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue
 
 @dataclass
 class DBCRequest:
