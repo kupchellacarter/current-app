@@ -180,6 +180,12 @@ class GUI:
     def set_pack_voltage(self, voltage_value):
         self.voltage_label.config(text=f"{voltage_value}")
 
+    def set_pack_current(self, current_value):
+        self.current_label.config(text=f"{current_value}")
+
+    def set_power(self, power_value):
+        self.power_label.config(text=f"{power_value}")
+
     # def update_metrics(self, voltage, current, power):
     #     """Update the voltage, current, and power labels"""
     #     self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")

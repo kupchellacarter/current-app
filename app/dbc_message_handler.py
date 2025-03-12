@@ -12,7 +12,7 @@ DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
-class DBCMessageHandler():
+class DBCMessageHandler:
     """Handler"""
 
     def __init__(self, can_data: CanData = CanData()):
@@ -28,7 +28,6 @@ class DBCMessageHandler():
             logger.error(f"Failed to connect to CAN bus: {e}")
             self.errors.append(str(e))
             raise Exception("Failed to connect to CAN bus")
-
 
     def get_dbc_request(self, target_pgn):
         return can.Message(
@@ -68,7 +67,7 @@ class DBCMessageHandler():
                 decoded = msg.decode(message_data)
                 self.update_data(decoded)
                 return self.data
-                
+
             except Exception as e:
                 logger.error(f"Failed to decode: {e}")
                 self.errors.append(str(e))
