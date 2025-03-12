@@ -85,7 +85,9 @@ class DBCMessageHandler:
         for field, value in decoded.items():
             # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
             normalized_field = field.lower()
-            print("Normalized Field:", normalized_field)
+            print(normalized_field)
+            print(value)
+            print(type(value))
             if not hasattr(self.data, normalized_field):
                 setattr(self.data, normalized_field, value)
 
@@ -108,8 +110,8 @@ if __name__ == "__main__":
     # print("Errors:", handler.get_errors())
 
     # Request MCU_SOC Summary (0xFF24)
-    # handler.request_and_parse(0xFF24)  # MCU_SOC
-    # handler.request_and_parse(0xFF10)  # Pack_sumary
+    handler.request_and_parse(0xFF24)  # MCU_SOC
+    handler.request_and_parse(0xFF10)  # Pack_sumary
     # print("SOC:", handler.MCU_SOC)
 
     # print("Pack Current:", handler.pack_current)

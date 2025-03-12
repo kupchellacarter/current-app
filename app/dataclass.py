@@ -4,10 +4,17 @@ from dataclasses import dataclass
 @dataclass
 class CanData:
     runtime: int = 0
-    voltage: float = 0.0
-    battery_current: float = 0.0
-    speed: float = 0.0
-    soc: int = 0
+    # mcu_chargedenergy
+    # mcu_chargestate
+    # mcu_plugstate
+    # mcu_fault_notlocked
+    # mcu_fault_thermovertemp
+    # mcu_fault_lvc
+    # mcu_fault_hvc
+    # mcu_fault_thermcensus
+    # mcu_fault_cellcensus
+    # mcu_fault_hardware
+    # mcu_fault_illegalconfig
 
 @dataclass
 class DBCRequest:
