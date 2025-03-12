@@ -4,7 +4,7 @@ import cantools
 
 @dataclass
 class CanData:
-    mcu_bms_arch: cantools.database.namedsignalvalue.NamedSignalValue = None
+
     mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue = None
     mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue = None
     runtime: str = "00:00:00"
@@ -21,13 +21,11 @@ class CanData:
     mcu_soc: int = 0
     mcu_packcurkwh: float = 0.0
     mcu_packmaxkwh: float = 0.0
-    mcu_version: int = 0
-    mcu_revision: int = 0
+
 
 @dataclass
 class DBCRequest:
-    request_rate: hex =0x0A
-    repeat_count:hex =0x14
-    b7: hex =0x00
+    request_rate: hex = 0x0A
+    repeat_count: hex = 0x14
+    b7: hex = 0x00
     mcu_soc_summary: hex = 0xFF24
-
