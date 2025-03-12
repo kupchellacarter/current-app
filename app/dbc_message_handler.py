@@ -13,7 +13,7 @@ DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
-class MessageHandler:
+class DBCMessageHandler:
     """Handler"""
 
     def __init__(self):
