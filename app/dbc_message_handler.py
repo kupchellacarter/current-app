@@ -2,7 +2,7 @@ import can
 import time
 import logging
 import cantools
-from dataclass import CanData
+from dataclass import CanData, DBCRequest
 import os
 
 logger = logging.getLogger(__name__)
@@ -21,30 +21,32 @@ class DBCMessageHandler:
         self.bus = can.interface.Bus(channel="can0", interface="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = CanData()
+        self.dbc_request = DBCRequest()
 
-    def request_and_parse(
-        self, target_pgn, request_rate=0x0A, repeat_count=0x14, b7=0x00
-    ):
-        """Sends a J1939 read request decodes the response, PGN agnostic."""
-        # Create the CAN request message
-        request = can.Message(
+
+    def get_dbc_request(self, target_pgn):
+        return can.Message(
             arbitration_id=REQUEST_ID,
             data=[
                 (target_pgn & 0xFF),  # Byte 0 PGN LSB
                 (target_pgn >> 8) & 0xFF,  # Byte 1 PGN MSB
-                request_rate,  # How often to send (in MCU ticks, 50ms each)
-                repeat_count,  # Number of responses (0xFF for continuous)
+                self.dbc_request.request_rate,  # How often to send (in MCU ticks, 50ms each)
+                self.dbc_request.repeat_count,  # Number of responses (0xFF for continuous)
                 0x00,
                 0x00,  # Reserved bytes
-                b7,  # Message type selector (0x00 request full data set)
+                self.dbc_request.b7,  # Message type selector (0x00 request full data set)
             ],
             is_extended_id=True,
         )
 
+    def request_and_parse(self, target_pgn):
+        """Sends a J1939 read request decodes the response, PGN agnostic."""
+        # Create the CAN request message
+        request = self.get_dbc_request(target_pgn)
         try:
             self.bus.send(request)
             logger.info(
-                f"Read request sent for PGN: {hex(target_pgn)} with B7: {hex(b7)}"
+                f"Read request sent for PGN: {hex(target_pgn)} with B7: {hex(self.dbc_request.b7)}"
             )
         except can.CanError as e:
             logger.error(f"CAN transmission error: {e}")
@@ -83,6 +85,7 @@ class DBCMessageHandler:
         for field, value in decoded.items():
             # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
             normalized_field = field.lower()
+            print("Normalized Field:", normalized_field)
             if not hasattr(self.data, normalized_field):
                 setattr(self.data, normalized_field, value)
 
@@ -91,57 +94,6 @@ class DBCMessageHandler:
             # Collect fault information if present
             if "fault" in field.lower() and value:
                 self.system_errors.append(field)
-
-    # def get_voltage(self):
-    #     return self.data.voltage
-
-    # def get_soc(self):
-    #     return self.data.soc
-
-    # def get_runtime(self):
-    #     return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
-
-    # def get_errors(self):
-    #     return self.errors
-
-    # @property
-    # def voltage(self):
-    #     return self.data.voltage
-
-    # @property
-    # def soc(self):
-    #     return self.data.soc
-
-    # @property
-    # def runtime(self):
-    #     return time.strftime("%H:%M:%S", time.gmtime(self.data.runtime))
-
-    # @property
-    # def get_errors(self):
-    #     return self.errors
-
-    # @property
-    # def pack_voltage(self):
-    #     return getself.data.pack_voltage
-
-    # @property
-    # def pack_current(self):
-    #     return self.data.pack_current
-
-    # @property
-    # def charged_energy(self):
-    #     return self.data.charged_energy
-
-    # @property
-    # def charge_state(self):
-    #     return self.data.charge_state
-
-    # @property
-    # def plug_state(self):
-    #     return self.data.plug_state
-
-    # def get_errors(self):
-    #     return self.errors
 
 
 if __name__ == "__main__":
