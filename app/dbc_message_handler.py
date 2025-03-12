@@ -15,10 +15,10 @@ REQUEST_ID = 0x14EBD0D8  # J1939 request format
 class DBCMessageHandler():
     """Handler"""
 
-    def __init__(self, can_data: CanData = CanData()):
+    def __init__(self, can_data: CanData = CanData(), bus = can.interface.Bus(channel="can0", interface="socketcan")):
         self.system_errors = []
         self.errors = []
-        self.bus = can.interface.Bus(channel="can0", interface="socketcan")
+        self.bus = bus
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = can_data
         self.dbc_request = DBCRequest()
@@ -53,7 +53,7 @@ class DBCMessageHandler():
             self.errors.append(str(e))
             return
 
-        message = self._wait_for_response(target_pgn)
+        message = self.wait_for_response(target_pgn)
         if message:
             try:
                 message_data = message.data
@@ -71,7 +71,7 @@ class DBCMessageHandler():
         logger.error(f"No response for PGN: {hex(target_pgn)}")
         self.errors.append(f"No response for PGN: {hex(target_pgn)}")
 
-    def _wait_for_response(self, target_pgn, timeout=2):
+    def wait_for_response(self, target_pgn, timeout=2):
         start_time = time.time()
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
