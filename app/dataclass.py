@@ -74,4 +74,8 @@ class DBCRequest:
     request_rate: hex = 0x0A
     repeat_count: hex = 0x14
     b7: hex = 0x00
+    mcu_summary: hex = 0xFF20
+    mcu_pack_summary: hex = 0xFF21
+    mcu_cell_summary: hex = 0xFF22
     mcu_soc_summary: hex = 0xFF24
+    bms_config1: hex = 0xFF11

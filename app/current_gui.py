@@ -17,7 +17,7 @@ class GUI:
         self.font = "Georgia"
         self.root.title("Electric Boat Dashboard")
         self.metric_font_size = 24
-        self.charge_level=0
+        self.charge_level = 0
         self.root.attributes("-fullscreen", False)
         # self.root.config(cursor="none")
         # self.root.overrideredirect(True)
@@ -28,7 +28,6 @@ class GUI:
         self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=360)
         self.outer_frame.pack(padx=40, pady=40)
 
-
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
@@ -37,7 +36,7 @@ class GUI:
         # Top Frame
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=700, height=100)
         self.top_frame.pack(side="top", fill="x")
-        self._create_soc_frame()  
+        self._create_soc_frame()
         self.set_soc()
 
         # Bottom Frame
@@ -116,13 +115,22 @@ class GUI:
         )
         self.system_error_label.grid(row=1, column=0, pady=5)
 
-
     def _create_soc_frame(self):
         # Battery soc Display (Top)
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
-    
-    def set_soc(self,charge_level=0):
+
+    def set_pack_kwh(self, current_kwh, max_kwh):
+        # Battery percentage text below
+        self.soc_canvas.create_text(
+            550,
+            40,
+            text=f"{current_kwh}/{max_kwh}",
+            fill="white",
+            font=(self.font, 12),
+        )
+
+    def set_soc(self, charge_level=0):
         # only update the charge level if it has changed
         if self.charge_level != charge_level:
             logger.warning(f"Updating SOC to {charge_level}")
@@ -132,27 +140,36 @@ class GUI:
             section_width = (670 - 30) / num_sections  # Calculate section width
             for i in range(num_sections):
                 x1 = 30 + i * section_width
-                space = 3 if (i+1)%10 == 0 else 0
+                space = 3 if (i + 1) % 10 == 0 else 0
                 x2 = x1 + section_width - space  # Add small gap for spacing
 
                 # Green for filled sections, black for empty, with blue outline for empty ones
-                if i < (self.charge_level/100) * num_sections:
+                if i < (self.charge_level / 100) * num_sections:
                     fill_color = "green"
                     outline_color = "green"
                 else:
                     fill_color = "#36454F"
                     outline_color = "#36454F"
 
-                self.soc_canvas.create_rectangle(x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color)
+                self.soc_canvas.create_rectangle(
+                    x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color
+                )
 
-            # Battery percentage text below
-            self.soc_canvas.create_text(550, 40, text=f"{self.charge_level * 2.5:.1f}/20.0 kWh", fill="white", font=(self.font, 12))
             # Labels "E" and "F" inside the battery
-            self.soc_canvas.create_text(25, 25, text="E", fill="white", font=(self.font, 30, "bold"))
-            self.soc_canvas.create_text(675, 25, text="F", fill="white", font=(self.font, 30, "bold"))
-            self.soc_canvas.create_text(350, 25, text=f"{charge_level}%", fill="white", font=(self.font, 30, "bold"))
+            self.soc_canvas.create_text(
+                25, 25, text="E", fill="white", font=(self.font, 30, "bold")
+            )
+            self.soc_canvas.create_text(
+                675, 25, text="F", fill="white", font=(self.font, 30, "bold")
+            )
+            self.soc_canvas.create_text(
+                350,
+                25,
+                text=f"{charge_level}%",
+                fill="white",
+                font=(self.font, 30, "bold"),
+            )
 
-    
     def update_runtime(self, runtime_value):
         """
         Method to update the displayed variables dynamically
@@ -160,8 +177,8 @@ class GUI:
         # Update the labels with new values
         self.runtime_label.config(text=f"Runtime: {runtime_value}")
 
-    def update_voltage(self, voltage_value):
-        self.voltage_label.config(text=f"Voltage: {voltage_value} V")
+    def set_pack_voltage(self, voltage_value):
+        self.voltage_label.config(text=f"{voltage_value}")
 
     # def update_metrics(self, voltage, current, power):
     #     """Update the voltage, current, and power labels"""
@@ -206,7 +223,7 @@ class GUI:
         self.root.update_idletasks()
         self.root.update()
 
-    def display_error_ui(self, error_message:str):
+    def display_error_ui(self, error_message: str):
 
         # Central Frame
         self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
@@ -221,7 +238,6 @@ class GUI:
             fg="white",
         )
         self.error_label.grid(row=0, column=0, pady=4)
-
 
 
 if __name__ == "__main__":
