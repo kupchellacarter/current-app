@@ -13,13 +13,13 @@ DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
-class OBD2MessageHandler:
+class MessageHandler:
     """Handler"""
 
     def __init__(self):
-        self.system_errors = {}
-        self.errors = {}
-        self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
+        self.system_errors = []
+        self.errors = []
+        self.bus = can.interface.Bus(channel="can0", interface="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = CanData()
 
@@ -75,38 +75,17 @@ class OBD2MessageHandler:
         start_time = time.time()
         while time.time() - start_time < timeout:
             message = self.bus.recv(timeout=timeout)
-            if message and message.arbitration_id == 0x7E8:
-                if metric == "runtime" and len(message.data) >= 5:
-                    runtime_low_byte = message.data[3]
-                    runtime_high_byte = message.data[4]
-                    runtime = (runtime_high_byte << 8) | runtime_low_byte
-                    self.data.runtime = runtime
-                    return
-                elif metric == "voltage":
-                    pid = (message.data[2] << 8) | message.data[
-                        3
-                    ]  # Combine B2 and B3 for PID (0xDD83)
-                    if pid == 0xDD83:
-                        # Extract the pack voltage from B4 (low byte) and B5 (high byte)
-                        voltage_raw = (message.data[5] << 8) | message.data[4]
+            if message and (message.arbitration_id & 0x1FFFF00) >> 8 == target_pgn:
+                return message
+        return None
 
-                        # Calculate the voltage (assuming it's in the format voltage = voltage_raw / 10)
-                        voltage = voltage_raw / 10.0  # Convert the raw value to voltage
-                        self.data.voltage = voltage
-                        return
-                    else:
-                        pass
-                elif metric == "soc":
-                    pid = (message.data[2] << 8) | message.data[
-                        3
-                    ]  # Combine B2 and B3 for PID (0xDD83)
-                    if pid == 0xDD85:
-                        # Extract the pack soc from B4 (low byte) and B5 (high byte)
-                        soc = (message.data[5] << 8) | message.data[4]
-                        self.data.soc = soc
-                        return
-                    else:
-                        pass
+    def update_data(self, decoded):
+        """Update CanData with any recognized fields."""
+        for field, value in decoded.items():
+            # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
+            normalized_field = field.lower()
+            if not hasattr(self.data, normalized_field):
+                setattr(self.data, normalized_field, value)
 
             setattr(self.data, normalized_field, value)
 
@@ -167,6 +146,19 @@ class OBD2MessageHandler:
 
 
 if __name__ == "__main__":
-    handler = OBD2MessageHandler()
-    handler.request_and_parse("voltage")
-    handler.request_and_parse("runtime")
+    handler = MessageHandler()
+
+    # Request MCU Summary (0xFF20D0)
+    handler.request_and_parse(0xFF20)  # MCU_Summary
+
+    # print("Charged Energy:", handler.charged_energy)
+    # print("Charge State:", handler.charge_state)
+    # print("Plug State:", handler.plug_state)
+    # print("Errors:", handler.get_errors())
+
+    # Request MCU_SOC Summary (0xFF24)
+    handler.request_and_parse(0xFF24)  # MCU_SOC
+    handler.request_and_parse(0xFF10)  # Pack_sumary
+    # print("SOC:", handler.MCU_SOC)
+
+    # print("Pack Current:", handler.pack_current)
