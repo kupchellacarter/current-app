@@ -12,15 +12,15 @@ DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
-class DBCMessageHandler:
+class DBCMessageHandler():
     """Handler"""
 
-    def __init__(self):
+    def __init__(self, can_data: CanData):
         self.system_errors = []
         self.errors = []
         self.bus = can.interface.Bus(channel="can0", interface="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
-        self.data = CanData()
+        self.data = can_data
         self.dbc_request = DBCRequest()
 
 
@@ -60,14 +60,15 @@ class DBCMessageHandler:
                 frame_id = (0x14 << 24) | (target_pgn << 8) | 0xD0
                 msg = self.db.get_message_by_frame_id(frame_id)
                 decoded = msg.decode(message_data)
-                logger.info(f"Decoded message: {decoded}")
                 self.update_data(decoded)
-                print("Decoded Message:", decoded)
                 return decoded
             except Exception as e:
                 logger.error(f"Failed to decode: {e}")
                 self.errors.append(str(e))
                 return
+        
+        for name, value in vars(self.data).items():
+            print(f"{name}: {value}")
 
         logger.error(f"No response for PGN: {hex(target_pgn)}")
         self.errors.append(f"No response for PGN: {hex(target_pgn)}")
@@ -85,9 +86,6 @@ class DBCMessageHandler:
         for field, value in decoded.items():
             # Normalize field names to match CanData attributes (e.g., MCU_PackVoltage -> pack_voltage)
             normalized_field = field.lower()
-            print(normalized_field)
-            print(value)
-            print(type(value))
             if not hasattr(self.data, normalized_field):
                 setattr(self.data, normalized_field, value)
 
