@@ -206,6 +206,24 @@ class GUI:
         self.root.update_idletasks()
         self.root.update()
 
+    def display_error_ui(self, error_message:str):
+
+        # Central Frame
+        self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
+        self.central_frame.pack(side="left", fill="y")
+
+        # Central Metrics
+        self.error_label = tk.Label(
+            self.central_frame,
+            text=f"ERROR: {error_message}",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.error_label.grid(row=0, column=0, pady=4)
+
+
+
 if __name__ == "__main__":
     gui = GUI()
     gui.display_defualt_ui()

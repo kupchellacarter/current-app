@@ -14,8 +14,8 @@ class App:
         self.gui = GUI()
         self.data = CanData()
         self.dbc_request = DBCRequest()
-        self.obd2_handler = OBD2MessageHandler(can_data=self.data)
-        self.dbc_handler = DBCMessageHandler(can_data=self.data)
+        self.obd2_handler = None
+        self.dbc_handler = None
         self.charging_mode = False
 
     def query_data(self):
@@ -58,6 +58,13 @@ class App:
         """
         description here
         """
+        try:
+            app.obd2_handler = OBD2MessageHandler(can_data=self.data)
+            app.dbc_handler = DBCMessageHandler(can_data=self.data)
+        except Exception as e:
+            app.gui.display_error_ui(e)
+            self.gui.run()
+            return
         # Start the query_data function in a separate background thread
         query_thread = threading.Thread(
             target=self.query_data,

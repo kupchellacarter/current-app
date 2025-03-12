@@ -18,10 +18,16 @@ class DBCMessageHandler():
     def __init__(self, can_data: CanData = CanData()):
         self.system_errors = []
         self.errors = []
-        self.bus = can.interface.Bus(channel="can0", interface="socketcan")
         self.db = cantools.database.load_file(DBC_FILE)
         self.data = can_data
         self.dbc_request = DBCRequest()
+        self.bus = None
+        try:
+            self.bus = can.interface.Bus(channel="can0", interface="socketcan")
+        except Exception as e:
+            logger.error(f"Failed to connect to CAN bus: {e}")
+            self.errors.append(str(e))
+            raise Exception("Failed to connect to CAN bus")
 
 
     def get_dbc_request(self, target_pgn):

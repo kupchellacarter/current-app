@@ -14,7 +14,13 @@ class OBD2MessageHandler:
         self.system_errors = []
         self.errors = []
         self.data = can_data
-        self.bus = can.interface.Bus(channel="can0", interface="socketcan")
+        self.bus = None
+        try:
+            self.bus = can.interface.Bus(channel="can0", interface="socketcan")
+        except Exception as e:
+            logger.error(f"Failed to connect to CAN bus: {e}")
+            self.errors.append(str(e))
+            raise Exception("Failed to connect to CAN bus")
 
     @property
     def _runtime_request(self):
