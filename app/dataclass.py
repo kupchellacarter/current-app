@@ -4,9 +4,9 @@ import cantools
 
 @dataclass
 class CanData:
-    mcu_bms_arch: cantools.database.namedsignalvalue.NamedSignalValue
-    mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue
-    mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue
+    mcu_bms_arch: cantools.database.namedsignalvalue.NamedSignalValue = None
+    mcu_chargestate: cantools.database.namedsignalvalue.NamedSignalValue = None
+    mcu_plugstate: cantools.database.namedsignalvalue.NamedSignalValue = None
     runtime: int = 0
     mcu_chargedenergy: float = 0.0
     mcu_fault_notlocked: int = 0
