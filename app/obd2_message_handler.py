@@ -10,11 +10,11 @@ logger.setLevel(logging.INFO)
 class OBD2MessageHandler:
     """Handler"""
 
-    def __init__(self):
+    def __init__(self, can_data: CanData = CanData()):
         self.system_errors = {}
         self.errors = {}
         self.bus = can.interface.Bus(channel="can0", bustype="socketcan")
-        self.data = CanData()
+        self.data = can_data
 
     @property
     def _voltage_request(self):
