@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 DBC_FILE = os.path.join(os.path.dirname(__file__), "DBC", "MCU_J1939_v1-1-2_BETA.dbc")
-# DBC_FILE = "app\DBC\MCU_J1939_v1-1-2_BETA.dbc"
 REQUEST_ID = 0x14EBD0D8  # J1939 request format
 
 
@@ -146,7 +145,7 @@ class DBCMessageHandler:
 
 
 if __name__ == "__main__":
-    handler = MessageHandler()
+    handler = DBCMessageHandler()
 
     # Request MCU Summary (0xFF20D0)
     handler.request_and_parse(0xFF20)  # MCU_Summary
