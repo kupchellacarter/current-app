@@ -114,7 +114,7 @@ class App:
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_therm_summary
         )
-        high_therm = self.data.mcu_ThHighest
+        highest_therm = self.data.mcu_thhighest
 
         # PGN 0xFF24 MCU_SOCSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -137,7 +137,7 @@ class App:
         self.gui.set_power(pack_kw_labelled)
         self.gui.set_cell_voltage(mean_cell_v_labelled)
 
-        self.gui.set_temp(high_therm)
+        self.gui.set_temp(highest_therm)
 
         self.gui.update_runtime(runtime)
         self.gui.refresh_ui()

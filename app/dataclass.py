@@ -48,6 +48,19 @@ class CanData:
     mcu_highestcellv_unit: str = "mV"
 
     # PGN 0xFF23 MCU_ThermSummary
+    mcu_thermcount: int = 0
+    mcu_thlowest: float = 0.0
+    mcu_thlowest_factor: float = 1
+    mcu_thlowest_unit: str = "°C"
+    mcu_thhighest: float = 0.0
+    mcu_thhighest_factor: float = 1
+    mcu_thhighest_unit: str = "°C"
+    mcu_thmin: float = 0.0
+    mcu_thmin_factor: float = 1
+    mcu_thmin_unit: str = "°C"
+    mcu_thmax: float = 0.0
+    mcu_thmax_factor: float = 1
+    mcu_thmax_unit: str = "°C"
 
     # PGN 0xFF24 MCU_SOCSummary
     mcu_soc: int = 0

@@ -1,6 +1,7 @@
 import tkinter as tk
 import logging
-import threading
+
+# import threading
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -303,8 +304,8 @@ if __name__ == "__main__":
     gui.set_cell_voltage(3.20)
     gui.set_temp(25)
     gui.set_soc(55)
-    voltage_value = 57.2
-    current_value = 10.5
-    power_value = 1.5
-    mean_cell_v = 3.20
-    temp_value = 25
+    # voltage_value = 57.2
+    # current_value = 10.5
+    # power_value = 1.5
+    # mean_cell_v = 3.20
+    # temp_value = 25
