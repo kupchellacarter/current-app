@@ -42,7 +42,7 @@ class GUI:
 
         # Runtime Frame
         self.runtime_frame = tk.Frame(self.root, bg="blue", height=20)
-        self.runtime_frame.pack(anchor="sw", side="bottom", padx=10, pady=5)
+        self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
         self.runtime_label = tk.Label(
             self.runtime_frame,
             text="Runtime:",
@@ -50,6 +50,7 @@ class GUI:
             bg="black",
             fg="white",
         )
+        self.runtime_label.pack(anchor="sw", padx=10, pady=10)
 
         # self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
         self.cell_count_frame = tk.Frame(
