@@ -51,10 +51,10 @@ class App:
         )
         if self.data.mcu_chargestate:
             mcu_chargestate = self.data.mcu_chargestate.value
-            print(mcu_chargestate)
+            print(f"chargestate: {mcu_chargestate}")
         if self.data.mcu_plugstate:
             mcu_plugstate = self.data.mcu_plugstate.value
-            print(mcu_plugstate)
+            print(f"plugstate {mcu_plugstate}")
         system_errors = []
         # if self.data.mcu_fault_notlocked:
         #    system_errors.append("MCU Fault: Not Locked")
