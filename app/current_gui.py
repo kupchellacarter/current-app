@@ -57,7 +57,7 @@ class GUI:
         #     self.runtime_frame, bg="black", width=100, height=20
         # )
         self.cell_count_label = tk.Label(
-            self.cell_count_frame,
+            self.runtime_frame,
             text=" Cells Connected",
             font=(self.font, 14),
             bg="black",
