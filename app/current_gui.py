@@ -256,9 +256,7 @@ class GUI:
         self.temp_label.config(text=f"Temperature: {temp}")
 
     def set_cell_voltage(self, mean_cell_v):
-        """Update the cell voltage label"""
-        pass
-        # self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
+        self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
         # self.low_cell_v_label.config(text=f"Lowest: {lowest_cell_v}")
         # self.high_cell_v_label.config(text=f"Highest: {high_cell_v}")
 
@@ -298,12 +296,12 @@ if __name__ == "__main__":
     gui = GUI()
     gui.display_defualt_ui()
     gui.run()
-    gui.set_pack_voltage(57.2)
-    gui.set_pack_current(10.5)
-    gui.set_power(1.5)
-    gui.set_cell_voltage(3.20)
-    gui.set_temp(25)
-    gui.set_soc(55)
+    # gui.set_pack_voltage(57.2)
+    # gui.set_pack_current(10.5)
+    # gui.set_power(1.5)
+    # gui.set_cell_voltage(3.20)
+    # gui.set_temp(25)
+    # gui.set_soc(55)
     # voltage_value = 57.2
     # current_value = 10.5
     # power_value = 1.5
