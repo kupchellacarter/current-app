@@ -41,8 +41,8 @@ class GUI:
         self.set_soc(55)
 
         # Runtime Frame
-        self.runtime_frame = tk.Frame(self.root, bg="white", width=50, height=20)
-        self.runtime_frame.pack(anchor="sw", side="bottom", padx=10, pady=5)
+        self.runtime_frame = tk.Frame(self.root, bg="white", height=20)
+        self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
         self.runtime_label = tk.Label(
             self.runtime_frame,
             text="Runtime:",
@@ -51,10 +51,10 @@ class GUI:
             fg="white",
         )
 
-        self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
-        self.cell_count_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
+        # self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
+        self.runtime_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
         self.cell_count_label = tk.Label(
-            self.cell_count_frame,
+            self.runtime_frame,
             text=" Cells Connected",
             font=(self.font, 14),
             bg="black",
