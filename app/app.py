@@ -130,7 +130,7 @@ class App:
 
         self.gui.update_error_label(system_errors)
         self.gui.set_soc(soc)
-        self.gui.set_pack_kwh(pack_cur_kwh_labelled, pack_max_kwh_labelled)
+        self.gui.set_pack_kwh(pack_cur_kwh, pack_max_kwh_labelled)
 
         self.gui.set_pack_voltage(pack_voltage_labelled)
         self.gui.set_pack_current(pack_current_labelled)
