@@ -49,12 +49,10 @@ class App:
         mcu_chargedenergy_labelled = (
             f"{mcu_chargedenergy} {self.data.mcu_chargedenergy_unit}"
         )
-        if self.data.mcu_chargestate:
-            mcu_chargestate = self.data.mcu_chargestate.value
-            print(f"chargestate: {mcu_chargestate}")
-        if self.data.mcu_plugstate:
-            mcu_plugstate = self.data.mcu_plugstate.value
-            print(f"plugstate {mcu_plugstate}")
+        mcu_chargestate = self.data.mcu_chargestate
+        print(f"chargestate: {mcu_chargestate}")
+        mcu_plugstate = self.data.mcu_plugstate
+        print(f"plugstate {mcu_plugstate}")
         system_errors = []
         # if self.data.mcu_fault_notlocked:
         #    system_errors.append("MCU Fault: Not Locked")
