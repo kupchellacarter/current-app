@@ -229,7 +229,8 @@ class GUI:
 
     def set_cell_voltage(self, mean_cell_v):
         """Update the cell voltage label"""
-        self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
+        pass
+        # self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
         # self.low_cell_v_label.config(text=f"Lowest: {lowest_cell_v}")
         # self.high_cell_v_label.config(text=f"Highest: {high_cell_v}")
 
