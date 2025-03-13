@@ -26,7 +26,7 @@ class CanData:
 
     # PGN 0xFF21 MCU_PackSummary
     mcu_packvoltage: float = 0.0
-    mcu_packvoltage_factor: float = 0.1
+    mcu_packvoltage_factor: float = 1
     mcu_packvoltage_unit: str = "V"
     mcu_packcurrent: float = 0.0
     mcu_packcurrent_factor: float = 0.1
@@ -41,8 +41,8 @@ class CanData:
     mcu_lowestcellv_factor: float = 0.1
     mcu_lowestcellv_unit: str = "mV"
     mcu_meancellv: float = 0.0
-    mcu_meancellv_factor: float = 0.1
-    mcu_meancellv_unit: str = "mV"
+    mcu_meancellv_factor: float = 0.001
+    mcu_meancellv_unit: str = "V"
     mcu_highestcellv: float = 0.0
     mcu_highestcellv_factor: float = 0.1
     mcu_highestcellv_unit: str = "mV"

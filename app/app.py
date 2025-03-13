@@ -45,7 +45,9 @@ class App:
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_pack_summary
         )
-        pack_voltage = self.data.mcu_packvoltage * self.data.mcu_packvoltage_factor
+        pack_voltage = round(
+            self.data.mcu_packvoltage * self.data.mcu_packvoltage_factor, 2
+        )
         pack_voltage_labelled = f"{pack_voltage} {self.data.mcu_packvoltage_unit}"
         pack_current = self.data.mcu_packcurrent * self.data.mcu_packcurrent_factor
         pack_current_labelled = f"{pack_current} {self.data.mcu_packcurrent_unit}"
@@ -56,10 +58,10 @@ class App:
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_cell_summary
         )
-        cell_count = self.data.mcu_cellcount
+        # cell_count = self.data.mcu_cellcount
         lowest_cell_v = self.data.mcu_lowestcellv * self.data.mcu_lowestcellv_factor
-        lowest_cell_v_labelled = f"{lowest_cell_v} {self.data.mcu_lowestcellv_unit}"
-        mean_cell_v = self.data.mcu_meancellv * self.data.mcu_meancellv_factor
+        # lowest_cell_v_labelled = f"{lowest_cell_v} {self.data.mcu_lowestcellv_unit}"
+        mean_cell_v = round(self.data.mcu_meancellv * self.data.mcu_meancellv_factor, 3)
         mean_cell_v_labelled = f"{mean_cell_v} {self.data.mcu_meancellv_unit}"
         highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
         highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
