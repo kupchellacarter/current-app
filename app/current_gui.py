@@ -266,7 +266,12 @@ class GUI:
         self.temp_label.config(text=f"Temperature: {temp}")
 
     def set_cell_count(self, cell_count):
-        self.cell_count_label.config(text=f"{cell_count} Cells")
+        if cell_count == 16:
+            self.cell_count_label.config(text=f"{cell_count} Cells OK!")
+        else:
+            self.cell_count_label.config(
+                text=f"Check Cells! {cell_count} Cells Connected"
+            )
 
     def set_cell_voltage(self, mean_cell_v):
         self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
