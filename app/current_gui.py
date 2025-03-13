@@ -38,7 +38,7 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="red", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
-        self.set_soc(55)
+        self.set_soc()
 
         # Runtime Frame
         self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
@@ -58,7 +58,7 @@ class GUI:
         # )
         self.cell_count_label = tk.Label(
             self.runtime_frame,
-            text=" Cells Connected",
+            text="No Cells Connected",
             font=(self.font, 14),
             bg="black",
             fg="white",
