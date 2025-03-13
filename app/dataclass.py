@@ -51,10 +51,10 @@ class CanData:
     mcu_soc: int = 0
     mcu_soc_unit: str = "%"
     mcu_packcurkwh: float = 0.0
-    mcu_packcurkwh_factor: float = 0.1
+    mcu_packcurkwh_factor: float = 1
     mcu_packcurkwh_unit: str = "kWh"
     mcu_packmaxkwh: float = 0.0
-    mcu_packmaxkwh_factor: float = 0.1
+    mcu_packmaxkwh_factor: float = 1
     mcu_packmaxkwh_unit: str = "kWh"
 
     # PGN 0xFF11 BMS_Config1

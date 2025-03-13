@@ -39,7 +39,39 @@ class App:
             self.gui.display_defualt_ui()
         self.data = self.obd2_handler.obd2_request_and_parse("runtime")
         runtime = self.data.runtime
+
+        # PGN 0xFF20 MCU_Summary
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.mcu_summary)
+
+        mcu_chargedenergy = (
+            self.data.mcu_chargedenergy * self.data.mcu_chargedenergy_factor
+        )
+        mcu_chargedenergy_labelled = (
+            f"{mcu_chargedenergy} {self.data.mcu_chargedenergy_unit}"
+        )
+        if self.data.mcu_chargestate:
+            mcu_chargestate = self.data.mcu_chargestate.value
+        if self.data.mcu_plugstate:
+            mcu_plugstate = self.data.mcu_plugstate.value
+        system_errors = []
+        # if self.data.mcu_fault_notlocked:
+        #    system_errors.append("MCU Fault: Not Locked")
+        if self.data.mcu_fault_thermundertemp:
+            system_errors.append("Low Temp!")
+        if self.data.mcu_fault_thermovertemp:
+            system_errors.append("High Temp!")
+        if self.data.mcu_fault_lvc:
+            system_errors.append("Low Voltage!")
+        if self.data.mcu_fault_hvc:
+            system_errors.append(f"High Voltage!")
+        # if self.data.mcu_fault_thermcensus:
+        # system_errors.append("MCU Fault: Therm Census")
+        # if self.data.mcu_fault_cellcensus:
+        # system_errors.append("MCU Fault: Cell Census")
+        if self.data.mcu_fault_hardware:
+            system_errors.append("Hardware Fault!")
+        # if self.data.mcu_fault_illegalconfig:
+        #    system_errors.append("MCU Fault: Illegal Configuration")
 
         #  PGN 0xFF21 MCU_PackSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -63,24 +95,22 @@ class App:
         # lowest_cell_v_labelled = f"{lowest_cell_v} {self.data.mcu_lowestcellv_unit}"
         mean_cell_v = round(self.data.mcu_meancellv * self.data.mcu_meancellv_factor, 2)
         mean_cell_v_labelled = f"{mean_cell_v} {self.data.mcu_meancellv_unit}"
-        # highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
-        # highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
+        highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
+        highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
 
         # PGN 0xFF24 MCU_SOCSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_soc_summary
         )
         soc = self.data.mcu_soc
-        pack_cur_kwh = self.data.mcu_packcurkwh  # * self.data.mcu_packcurkwh_factor
+        pack_cur_kwh = self.data.mcu_packcurkwh * self.data.mcu_packcurkwh_factor
         pack_cur_kwh_labelled = f"{pack_cur_kwh} {self.data.mcu_packcurkwh_unit}"
-        pack_max_kwh = self.data.mcu_packmaxkwh  # * self.data.mcu_packmaxkwh_factor
+        pack_max_kwh = self.data.mcu_packmaxkwh * self.data.mcu_packmaxkwh_factor
         pack_max_kwh_labelled = f"{pack_max_kwh} {self.data.mcu_packmaxkwh_unit}"
 
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.bms_config1)
 
-        # errors = obd2_handler.get_errors()
-        # gui.show_errors(errors)
-        # self.gui.update_error_label(system_errors)
+        self.gui.update_error_label(system_errors)
         self.gui.set_soc(soc)
         self.gui.set_pack_kwh(pack_cur_kwh_labelled, pack_max_kwh_labelled)
 
