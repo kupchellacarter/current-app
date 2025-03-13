@@ -19,9 +19,9 @@ class GUI:
         self.metric_font_size = 24
         self.charge_level = 0
         self.mean_voltage = 0
-        self.root.attributes("-fullscreen", False)
-        # self.root.config(cursor="none")
-        # self.root.overrideredirect(True)
+        self.root.attributes("-fullscreen", True)
+        self.root.config(cursor="none")
+        self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
@@ -59,14 +59,12 @@ class GUI:
 
         # Central Left Frame
         self.central_frame = tk.Frame(
-            self.outer_frame, bg="blue", height=200, width=560
+            self.outer_frame, bg="black", height=200, width=560
         )
         self.central_frame.pack(side="left", fill="y", expand=True)
 
         # Central Right Frame
-        self.right_frame = tk.Frame(
-            self.outer_frame, bg="yellow", height=200, width=200
-        )
+        self.right_frame = tk.Frame(self.outer_frame, bg="black", height=200, width=200)
         self.right_frame.pack(side="right", fill="y")
 
         # Central Metrics
