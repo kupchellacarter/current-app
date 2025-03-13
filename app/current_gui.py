@@ -51,22 +51,17 @@ class GUI:
         )
         self.runtime_label.pack(side="bottom")
 
-        # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="green", width=760, height=80)
-        self.bottom_frame.pack(anchor="s", side="bottom", fill="x")
-
-        # Voltage Frame
-        self.voltage_frame = tk.Frame(
-            self.outer_frame, bg="white", width=760, height=80
+        # Bottom (error message) Frame
+        self.bottom_frame = tk.Frame(
+            self.outer_frame, bg="green", width=760, height=100
         )
-        self.voltage_frame.pack(side="bottom", fill="x")
-        self._create_cell_voltage_frame()
+        self.bottom_frame.pack(anchor="s", side="bottom", fill="x")
 
         # Central Frame
         self.central_frame = tk.Frame(
             self.outer_frame, bg="blue", height=200, width=560
         )
-        self.central_frame.pack(side="left", fill="y")
+        self.central_frame.pack(side="left", fill="both", expand=True)
 
         # Central Metrics
         self.voltage_label = tk.Label(
@@ -96,6 +91,20 @@ class GUI:
         )
         self.power_label.grid(row=3, column=0, pady=5)
 
+        self.cell_voltage_label = tk.Label(
+            self.central_frame,
+            text="Cell Mean V: ",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.cell_voltage_label.grid(row=1, column=1, pady=5)
+
+        self.cell_voltage_canvas = tk.Canvas(
+            self.central_frame, bg="white", width=360, height=80
+        )
+        self.central_frame.grid(row=2, column=1, pady=5)
+
         # Error Display
         self.system_error_label = tk.Label(
             self.bottom_frame,
@@ -111,12 +120,11 @@ class GUI:
         self.soc_canvas = tk.Canvas(self.top_frame, width=760, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
 
-    def _create_cell_voltage_frame(self):
-        # Battery soc Display (Top)
-        self.cell_voltage_canvas = tk.Canvas(
-            self.voltage_frame, width=700, height=50, bg="black"
-        )
-        self.cell_voltage_canvas.pack(side="top", fill="x")
+    # def _create_cell_voltage_canvas(self):
+    #     self.cell_voltage_canvas = tk.Canvas(
+    #         self.central_frame, width=350, height=50, bg="black"
+    #     )
+    #     self.cell_voltage_canvas.pack(side="top", fill="x")
 
     def set_pack_kwh(self, current_kwh, max_kwh):
         # Battery percentage text below
@@ -132,6 +140,7 @@ class GUI:
         # only update the charge level if it has changed
         if self.mean_voltage != mean_voltage:
             logger.warning(f"Updating Cell Voltage to {mean_voltage}")
+            self.cell_voltage_label.config(text=f"Cell Voltage: {mean_voltage}")
             self.cell_voltage_canvas.delete("all")
             self.mean_voltage = mean_voltage
             num_sections = 100
