@@ -105,6 +105,15 @@ class GUI:
         )
         self.temp_label.pack(anchor="n", padx=10, pady=10)
 
+        self.cell_count_label = tk.Label(
+            self.right_frame,
+            text=" Cells",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.cell_count_label.pack(anchor="n", padx=10, pady=10)
+
         self.cell_voltage_label = tk.Label(
             self.right_frame,
             text="Cell Mean V: ",
@@ -254,6 +263,9 @@ class GUI:
 
     def set_temp(self, temp):
         self.temp_label.config(text=f"Temperature: {temp}")
+
+    def set_cell_count(self, cell_count):
+        self.cell_count_label.config(text=f"{cell_count} Cells")
 
     def set_cell_voltage(self, mean_cell_v):
         self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")

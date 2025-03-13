@@ -102,13 +102,13 @@ class App:
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_cell_summary
         )
-        # cell_count = self.data.mcu_cellcount
+        cell_count = self.data.mcu_cellcount
         # lowest_cell_v = self.data.mcu_lowestcellv * self.data.mcu_lowestcellv_factor
         # lowest_cell_v_labelled = f"{lowest_cell_v} {self.data.mcu_lowestcellv_unit}"
         mean_cell_v = round(self.data.mcu_meancellv * self.data.mcu_meancellv_factor, 2)
         mean_cell_v_labelled = f"{mean_cell_v} {self.data.mcu_meancellv_unit}"
-        highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
-        highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
+        # highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
+        # highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
 
         # PGN 0xFF23 MCU_ThermSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -135,6 +135,8 @@ class App:
         self.gui.set_pack_voltage(pack_voltage_labelled)
         self.gui.set_pack_current(pack_current_labelled)
         self.gui.set_power(pack_kw_labelled)
+
+        self.gui.set_cell_count(cell_count)
         self.gui.set_cell_voltage(mean_cell_v_labelled)
 
         self.gui.set_temp(highest_therm)
