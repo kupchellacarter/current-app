@@ -51,9 +51,7 @@ class App:
         mcu_chargedenergy_labelled = (
             f"{mcu_chargedenergy} {self.data.mcu_chargedenergy_unit}"
         )
-        if self.data.mcu_chargestate.value == 0:
-            mcu_chargestate = "Standby"
-        elif self.data.mcu_chargestate.value == 1:
+        if self.data.mcu_chargestate.value == 1:
             mcu_chargestate = "Charging"
         elif self.data.mcu_chargestate.value == 2:
             mcu_chargestate = "Warmdown"

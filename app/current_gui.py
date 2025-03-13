@@ -26,106 +26,95 @@ class GUI:
         self.root.config(bg="black")
 
         # Frame Nest
-        self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=360)
-        self.outer_frame.pack(padx=40, pady=40)
+        self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=460)
+        self.outer_frame.pack(padx=20, pady=20)
 
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
 
     def display_defualt_ui(self):
-        # Top Frame
-        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=700, height=100)
+        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
-        self._create_cell_voltage_frame()
-        self.set_soc(100)
+        self.set_soc(15)
 
-        # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
-        self.bottom_frame.pack(side="bottom", fill="x")
-
-        # Central Frame
-        self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
-        self.central_frame.pack(side="left", fill="y")
-
-        # Central Metrics
+        # Runtime Frame
+        self.runtime_frame = tk.Frame(self.root, bg="white", width=50, height=20)
+        self.runtime_frame.pack(anchor="sw", side="bottom", padx=10, pady=5)
         self.runtime_label = tk.Label(
-            self.central_frame,
-            text="MCU Runtime: ",
-            font=(self.font, self.metric_font_size),
+            self.runtime_frame,
+            text="Runtime:",
+            font=(self.font, 14),
             bg="black",
             fg="white",
         )
-        self.runtime_label.grid(row=0, column=0, pady=4)
+        self.runtime_label.pack(side="bottom")
 
-        self.voltage_label = tk.Label(
-            self.central_frame,
-            text="Pack Voltage: ",
-            font=(self.font, self.metric_font_size),
-            bg="black",
-            fg="white",
-        )
-        self.voltage_label.grid(row=1, column=0, pady=5)
+        # # Bottom Frame
+        # self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
+        # self.bottom_frame.pack(side="bottom", fill="x")
 
-        self.current_label = tk.Label(
-            self.central_frame,
-            text="Current: ",
-            font=(self.font, self.metric_font_size),
-            bg="black",
-            fg="white",
-        )
-        self.current_label.grid(row=2, column=0, pady=5)
+        # # Voltage Frame
+        # self.voltage_frame = tk.Frame(
+        #     self.outer_frame, bg="black", width=760, height=80
+        # )
+        # self.voltage_frame.pack(side="bottom", fill="x")
+        # self._create_cell_voltage_frame()
 
-        self.power_label = tk.Label(
-            self.central_frame,
-            text="Power: ",
-            font=(self.font, self.metric_font_size),
-            bg="black",
-            fg="white",
-        )
-        self.power_label.grid(row=3, column=0, pady=5)
+        # # Central Frame
+        # self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
+        # self.central_frame.pack(side="left", fill="y")
 
-        # Right Frame
-        self.right_frame = tk.Frame(self.root, bg="black", width=100, height=160)
-        self.right_frame.pack(side="right", fill="y")
+        # # Central Metrics
+        # self.voltage_label = tk.Label(
+        #     self.central_frame,
+        #     text="Pack Voltage: ",
+        #     font=(self.font, self.metric_font_size),
+        #     bg="black",
+        #     fg="white",
+        # )
+        # self.voltage_label.grid(row=1, column=0, pady=5)
 
-        # Power and Temperature Bars (Right)
-        self.kw_canvas = tk.Canvas(self.right_frame, width=10, height=100, bg="blue")
-        self.kw_canvas.grid(row=0, column=0, pady=5)
+        # self.current_label = tk.Label(
+        #     self.central_frame,
+        #     text="Current: ",
+        #     font=(self.font, self.metric_font_size),
+        #     bg="black",
+        #     fg="white",
+        # )
+        # self.current_label.grid(row=2, column=0, pady=5)
 
-        self.temp_canvas = tk.Canvas(self.right_frame, width=10, height=100, bg="blue")
-        self.temp_canvas.grid(row=0, column=1, pady=5)
+        # self.power_label = tk.Label(
+        #     self.central_frame,
+        #     text="Power: ",
+        #     font=(self.font, self.metric_font_size),
+        #     bg="black",
+        #     fg="white",
+        # )
+        # self.power_label.grid(row=3, column=0, pady=5)
 
-        # Cell Voltage Display
-        self.cell_voltage_label = tk.Label(
-            self.bottom_frame,
-            text="Cell Voltage: 0.000V",
-            font=(self.font, 24),
-            bg="black",
-            fg="white",
-        )
-        self.cell_voltage_label.grid(row=0, column=0, pady=5)
-
-        # Error Display
-        self.system_error_label = tk.Label(
-            self.bottom_frame,
-            text="System Errors:",
-            font=(self.font, 32),
-            bg="black",
-            fg="white",
-        )
-        self.system_error_label.grid(row=1, column=0, pady=5)
+        # # Error Display
+        # self.system_error_label = tk.Label(
+        #     self.bottom_frame,
+        #     text="System Errors:",
+        #     font=(self.font, 32),
+        #     bg="black",
+        #     fg="white",
+        # )
+        # self.system_error_label.grid(row=1, column=0, pady=5)
 
     def _create_soc_frame(self):
         # Battery soc Display (Top)
-        self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
+        self.soc_canvas = tk.Canvas(self.top_frame, width=760, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
 
     def _create_cell_voltage_frame(self):
         # Battery soc Display (Top)
-        self.cell_voltage_canvas = tk.Canvas(self.bottom_frame, width=700, height=50, bg="black")
-        self.cell_voltage_canvas(side="top", fill="x")
+        self.cell_voltage_canvas = tk.Canvas(
+            self.voltage_frame, width=700, height=50, bg="black"
+        )
+        self.cell_voltage_canvas.pack(side="top", fill="x")
 
     def set_pack_kwh(self, current_kwh, max_kwh):
         # Battery percentage text below
@@ -144,7 +133,7 @@ class GUI:
             self.cell_voltage_canvas.delete("all")
             self.mean_voltage = mean_voltage
             num_sections = 100
-            section_width = (670 - 30) / num_sections  # Calculate section width
+            section_width = (690 - 30) / num_sections  # Calculate section width
             for i in range(num_sections):
                 x1 = 30 + i * section_width
                 space = 3 if (i + 1) % 10 == 0 else 0
@@ -184,16 +173,21 @@ class GUI:
             self.soc_canvas.delete("all")
             self.charge_level = charge_level
             num_sections = 100
-            section_width = (670 - 30) / num_sections  # Calculate section width
+            section_width = (680 - 45) / num_sections  # Calculate section width
             for i in range(num_sections):
-                x1 = 30 + i * section_width
+                x1 = 45 + i * section_width
                 space = 3 if (i + 1) % 10 == 0 else 0
                 x2 = x1 + section_width - space  # Add small gap for spacing
 
                 # Green for filled sections, black for empty, with blue outline for empty ones
                 if i < (self.charge_level / 100) * num_sections:
-                    fill_color = "green"
-                    outline_color = "green"
+                    if self.charge_level < 20:
+                        fill_color = "red"
+                    elif self.charge_level < 40:
+                        fill_color = "yellow"
+                    else:
+                        fill_color = "green"
+                    outline_color = fill_color
                 else:
                     fill_color = "#36454F"
                     outline_color = "#36454F"
@@ -207,11 +201,11 @@ class GUI:
                 25, 25, text="E", fill="white", font=(self.font, 30, "bold")
             )
             self.soc_canvas.create_text(
-                675, 25, text="F", fill="white", font=(self.font, 30, "bold")
+                700, 25, text="F", fill="white", font=(self.font, 30, "bold")
             )
             self.soc_canvas.create_text(
                 350,
-                25,
+                20,
                 text=f"{charge_level}%",
                 fill="white",
                 font=(self.font, 30, "bold"),
