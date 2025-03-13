@@ -47,6 +47,8 @@ class CanData:
     mcu_highestcellv_factor: float = 0.1
     mcu_highestcellv_unit: str = "mV"
 
+    # PGN 0xFF23 MCU_ThermSummary
+
     # PGN 0xFF24 MCU_SOCSummary
     mcu_soc: int = 0
     mcu_soc_unit: str = "%"
@@ -77,5 +79,6 @@ class DBCRequest:
     mcu_summary: hex = 0xFF20
     mcu_pack_summary: hex = 0xFF21
     mcu_cell_summary: hex = 0xFF22
+    mcu_therm_summary: hex = 0xFF23
     mcu_soc_summary: hex = 0xFF24
     bms_config1: hex = 0xFF11

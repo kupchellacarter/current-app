@@ -110,6 +110,12 @@ class App:
         highest_cell_v = self.data.mcu_highestcellv * self.data.mcu_highestcellv_factor
         highest_cell_v_labelled = f"{highest_cell_v} {self.data.mcu_highestcellv_unit}"
 
+        # PGN 0xFF23 MCU_ThermSummary
+        self.data = self.dbc_handler.dbc_request_and_parse(
+            self.dbc_request.mcu_therm_summary
+        )
+        high_therm = self.data.mcu_ThHighest
+
         # PGN 0xFF24 MCU_SOCSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
             self.dbc_request.mcu_soc_summary
@@ -130,6 +136,8 @@ class App:
         self.gui.set_pack_current(pack_current_labelled)
         self.gui.set_power(pack_kw_labelled)
         self.gui.set_cell_voltage(mean_cell_v_labelled)
+
+        self.gui.set_temp(high_therm)
 
         self.gui.update_runtime(runtime)
         self.gui.refresh_ui()

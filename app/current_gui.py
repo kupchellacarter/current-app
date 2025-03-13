@@ -19,9 +19,9 @@ class GUI:
         self.metric_font_size = 24
         self.charge_level = 0
         self.mean_voltage = 0
-        self.root.attributes("-fullscreen", True)
-        self.root.config(cursor="none")
-        self.root.overrideredirect(True)
+        self.root.attributes("-fullscreen", False)
+        # self.root.config(cursor="none")
+        # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
@@ -57,11 +57,17 @@ class GUI:
         )
         self.bottom_frame.pack(anchor="s", side="bottom", fill="x")
 
-        # Central Frame
+        # Central Left Frame
         self.central_frame = tk.Frame(
             self.outer_frame, bg="blue", height=200, width=560
         )
-        self.central_frame.pack(side="left", fill="both", expand=True)
+        self.central_frame.pack(side="left", fill="y", expand=True)
+
+        # Central Right Frame
+        self.right_frame = tk.Frame(
+            self.outer_frame, bg="yellow", height=200, width=200
+        )
+        self.right_frame.pack(side="right", fill="y")
 
         # Central Metrics
         self.voltage_label = tk.Label(
@@ -71,7 +77,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.voltage_label.pack(side="left", anchor="nw", padx=10, pady=10)
+        self.voltage_label.pack(anchor="nw", padx=5, pady=5)
 
         self.current_label = tk.Label(
             self.central_frame,
@@ -80,7 +86,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.current_label.pack(side="left", anchor="w", padx=10, pady=10)
+        self.current_label.pack(anchor="w", padx=10, pady=10)
 
         self.power_label = tk.Label(
             self.central_frame,
@@ -89,21 +95,30 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.power_label.pack(side="left", anchor="sw", padx=10, pady=10)
+        self.power_label.pack(anchor="sw", padx=10, pady=10)
+
+        self.temp_label = tk.Label(
+            self.right_frame,
+            text="Temperature: ",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.temp_label.pack(anchor="n", padx=10, pady=10)
 
         self.cell_voltage_label = tk.Label(
-            self.central_frame,
+            self.right_frame,
             text="Cell Mean V: ",
             font=(self.font, self.metric_font_size),
             bg="black",
             fg="white",
         )
-        self.cell_voltage_label.pack(side="right", anchor="ne", padx=10, pady=10)
+        self.cell_voltage_label.pack(anchor="n", padx=10, pady=10)
 
         self.cell_voltage_canvas = tk.Canvas(
-            self.central_frame, bg="white", width=360, height=80
+            self.right_frame, bg="white", width=360, height=20
         )
-        self.cell_voltage_canvas.pack(side="right", anchor="e", padx=10, pady=10)
+        self.cell_voltage_canvas.pack(anchor="e", padx=10, pady=10)
 
         # Error Display
         self.system_error_label = tk.Label(
@@ -238,6 +253,9 @@ class GUI:
     def set_power(self, power_value):
         self.power_label.config(text=f"{power_value}")
 
+    def set_temp(self, temp):
+        self.temp_label.config(text=f"Temperature: {temp}")
+
     def set_cell_voltage(self, mean_cell_v):
         """Update the cell voltage label"""
         pass
@@ -281,3 +299,14 @@ if __name__ == "__main__":
     gui = GUI()
     gui.display_defualt_ui()
     gui.run()
+    gui.set_pack_voltage(57.2)
+    gui.set_pack_current(10.5)
+    gui.set_power(1.5)
+    gui.set_cell_voltage(3.20)
+    gui.set_temp(25)
+    gui.set_soc(55)
+    voltage_value = 57.2
+    current_value = 10.5
+    power_value = 1.5
+    mean_cell_v = 3.20
+    temp_value = 25
