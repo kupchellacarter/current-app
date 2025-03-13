@@ -70,6 +70,8 @@ class GUI:
             padx=10,
         )
 
+        self.runtime_frame.grid_columnconfigure(0, weight=1)
+
         # Bottom (error message) Frame
         self.bottom_frame = tk.Frame(
             self.outer_frame, bg="black", width=760, height=100
