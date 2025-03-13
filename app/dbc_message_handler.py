@@ -98,6 +98,13 @@ class DBCMessageHandler:
             if "fault" in field.lower() and value:
                 self.system_errors.append(field)
 
+    def charge_mode(self):
+        """Charge mode"""
+        self.dbc_request_and_parse(self.dbc_request.mcu_summary)
+        if self.data.mcu_plugstate.value == 2:
+            return True
+        return False
+
 
 if __name__ == "__main__":
     handler = DBCMessageHandler()
