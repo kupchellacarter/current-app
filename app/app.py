@@ -51,8 +51,10 @@ class App:
         )
         if self.data.mcu_chargestate:
             mcu_chargestate = self.data.mcu_chargestate.value
+            print(mcu_chargestate)
         if self.data.mcu_plugstate:
             mcu_plugstate = self.data.mcu_plugstate.value
+            print(mcu_plugstate)
         system_errors = []
         # if self.data.mcu_fault_notlocked:
         #    system_errors.append("MCU Fault: Not Locked")
@@ -63,13 +65,13 @@ class App:
         if self.data.mcu_fault_lvc:
             system_errors.append("Low Voltage!")
         if self.data.mcu_fault_hvc:
-            system_errors.append(f"High Voltage!")
+            system_errors.append("High Voltage!")
         # if self.data.mcu_fault_thermcensus:
         # system_errors.append("MCU Fault: Therm Census")
         # if self.data.mcu_fault_cellcensus:
         # system_errors.append("MCU Fault: Cell Census")
         if self.data.mcu_fault_hardware:
-            system_errors.append("Hardware Fault!")
+            system_errors.append("Hardware Fault")
         # if self.data.mcu_fault_illegalconfig:
         #    system_errors.append("MCU Fault: Illegal Configuration")
 
