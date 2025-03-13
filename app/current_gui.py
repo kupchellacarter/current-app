@@ -82,11 +82,11 @@ class GUI:
         self.central_frame = tk.Frame(
             self.outer_frame, bg="black", height=200, width=560
         )
-        self.central_frame.pack(side="left", fill="y", expand=True)
+        self.central_frame.pack(side="left", fill="y", expand=True, pady=(40, 0))
 
         # Central Right Frame
         self.right_frame = tk.Frame(self.outer_frame, bg="black", height=200, width=200)
-        self.right_frame.pack(side="right", fill="y")
+        self.right_frame.pack(side="right", fill="y", pady=(40, 0))
 
         # Central Metrics
         self.voltage_label = tk.Label(
