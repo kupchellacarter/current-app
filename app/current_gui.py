@@ -52,9 +52,12 @@ class GUI:
         )
 
         # self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
-        self.runtime_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
+        self.cell_count_frame = tk.Frame(
+            self.runtime_frame, bg="black", width=100, height=20
+        )
+        self.cell_count_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
         self.cell_count_label = tk.Label(
-            self.runtime_frame,
+            self.cell_count_frame,
             text=" Cells Connected",
             font=(self.font, 14),
             bg="black",
