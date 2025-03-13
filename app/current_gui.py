@@ -50,7 +50,17 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.runtime_label.pack(side="bottom")
+
+        self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
+        self.cell_count_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
+        self.cell_count_label = tk.Label(
+            self.cell_count_frame,
+            text=" Cells Connected",
+            font=(self.font, 14),
+            bg="black",
+            fg="white",
+        )
+        self.cell_count_label.pack(anchor="se", padx=10, pady=10)
 
         # Bottom (error message) Frame
         self.bottom_frame = tk.Frame(
@@ -104,15 +114,6 @@ class GUI:
             fg="white",
         )
         self.temp_label.pack(anchor="n", padx=10, pady=10)
-
-        self.cell_count_label = tk.Label(
-            self.right_frame,
-            text=" Cells",
-            font=(self.font, self.metric_font_size),
-            bg="black",
-            fg="white",
-        )
-        self.cell_count_label.pack(anchor="n", padx=10, pady=10)
 
         self.cell_voltage_label = tk.Label(
             self.right_frame,
