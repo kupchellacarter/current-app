@@ -71,7 +71,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.voltage_label.pack(side="left", padx=10, pady=10)
+        self.voltage_label.pack(side="left", anchor="nw", padx=10, pady=10)
 
         self.current_label = tk.Label(
             self.central_frame,
@@ -80,7 +80,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.current_label.pack(side="left", padx=10, pady=10)
+        self.current_label.pack(side="left", anchor="w", padx=10, pady=10)
 
         self.power_label = tk.Label(
             self.central_frame,
@@ -89,7 +89,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.power_label.pack(side="left", padx=10, pady=10)
+        self.power_label.pack(side="left", anchor="sw", padx=10, pady=10)
 
         self.cell_voltage_label = tk.Label(
             self.central_frame,
@@ -103,7 +103,7 @@ class GUI:
         self.cell_voltage_canvas = tk.Canvas(
             self.central_frame, bg="white", width=360, height=80
         )
-        self.central_frame.pack(side="right", anchor="e", padx=10, pady=10)
+        self.cell_voltage_canvas.pack(side="right", anchor="e", padx=10, pady=10)
 
         # Error Display
         self.system_error_label = tk.Label(
