@@ -304,7 +304,8 @@ class GUI:
         self.root.update()
 
     def display_error_ui(self, error_message: str):
-
+        self.outer_frame = tk.Frame(self.root, bg="black", width=780, height=460)
+        self.outer_frame.pack(fill="both", expand=True, padx=20, pady=20)
         # Central Frame
         self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
         self.central_frame.pack(side="left", fill="y")
