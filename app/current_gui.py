@@ -50,13 +50,12 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.runtime_label.pack(anchor="sw", padx=10, pady=10)
+        self.runtime_label.grid(row=0, column=0, stick="w", padx=10)
 
         # self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
-        self.cell_count_frame = tk.Frame(
-            self.runtime_frame, bg="black", width=100, height=20
-        )
-        self.cell_count_frame.pack(anchor="se", side="bottom", padx=10, pady=5)
+        # self.cell_count_frame = tk.Frame(
+        #     self.runtime_frame, bg="black", width=100, height=20
+        # )
         self.cell_count_label = tk.Label(
             self.cell_count_frame,
             text=" Cells Connected",
@@ -64,7 +63,12 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.cell_count_label.pack(anchor="se", padx=10, pady=10)
+        self.cell_count_label.grid(
+            row=0,
+            column=1,
+            sticky="e",
+            padx=10,
+        )
 
         # Bottom (error message) Frame
         self.bottom_frame = tk.Frame(
