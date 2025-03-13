@@ -38,7 +38,7 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="red", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
-        self.set_soc()
+        self.set_soc(5)
 
         # Runtime Frame
         self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
@@ -142,10 +142,10 @@ class GUI:
         # Error Display
         self.system_error_label = tk.Label(
             self.bottom_frame,
-            text="All OK",
+            text="No Data",
             font=(self.font, 32),
-            bg="blue",
-            fg="white",
+            bg="black",
+            fg="blue",
         )
         self.system_error_label.pack(anchor="s", side="bottom")
 
