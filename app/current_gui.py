@@ -41,7 +41,7 @@ class GUI:
         self.set_soc(55)
 
         # Runtime Frame
-        self.runtime_frame = tk.Frame(self.root, bg="blue", height=20)
+        self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
         self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
         self.runtime_label = tk.Label(
             self.runtime_frame,
@@ -277,10 +277,10 @@ class GUI:
 
     def set_cell_count(self, cell_count):
         if cell_count == 16:
-            self.cell_count_label.config(text=f"{cell_count} Cells OK!")
+            self.cell_count_label.config(text=f"{cell_count} Cells OK!", fg="green")
         else:
             self.cell_count_label.config(
-                text=f"Check Cells! {cell_count} Cells Connected"
+                text=f"Check Cells! {cell_count} Cells Connected", fg="red"
             )
 
     def set_cell_voltage(self, mean_cell_v):
