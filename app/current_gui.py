@@ -26,15 +26,15 @@ class GUI:
         self.root.config(bg="black")
 
         # Frame Nest
-        self.outer_frame = tk.Frame(self.root, bg="black", width=760, height=460)
-        self.outer_frame.pack(padx=20, pady=20)
+        self.outer_frame = tk.Frame(self.root, bg="white", width=780, height=460)
+        self.outer_frame.pack(fill="y", padx=20, pady=20)
 
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
 
     def display_defualt_ui(self):
-        self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
+        self.top_frame = tk.Frame(self.outer_frame, bg="red", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
         self.set_soc(55)
@@ -52,18 +52,20 @@ class GUI:
         self.runtime_label.pack(side="bottom")
 
         # Bottom Frame
-        self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
-        self.bottom_frame.pack(side="bottom", fill="x")
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="green", width=760, height=80)
+        self.bottom_frame.pack(anchor="s", side="bottom", fill="x")
 
         # Voltage Frame
         self.voltage_frame = tk.Frame(
-            self.outer_frame, bg="black", width=760, height=80
+            self.outer_frame, bg="white", width=760, height=80
         )
         self.voltage_frame.pack(side="bottom", fill="x")
-        # self._create_cell_voltage_frame()
+        self._create_cell_voltage_frame()
 
         # Central Frame
-        self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
+        self.central_frame = tk.Frame(
+            self.outer_frame, bg="blue", height=200, width=560
+        )
         self.central_frame.pack(side="left", fill="y")
 
         # Central Metrics
@@ -97,12 +99,12 @@ class GUI:
         # Error Display
         self.system_error_label = tk.Label(
             self.bottom_frame,
-            text="System Errors:",
+            text="All OK",
             font=(self.font, 32),
-            bg="black",
-            fg="white",
+            bg="white",
+            fg="blue",
         )
-        self.system_error_label.grid(row=1, column=0, pady=5)
+        self.system_error_label.pack(anchor="s", side="bottom")
 
     def _create_soc_frame(self):
         # Battery soc Display (Top)
