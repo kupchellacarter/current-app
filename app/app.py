@@ -85,9 +85,7 @@ class App:
         self.gui.set_pack_voltage(pack_voltage_labelled)
         self.gui.set_pack_current(pack_current_labelled)
         self.gui.set_power(pack_kw_labelled)
-        self.gui.set_cell_voltage(lowest_cell_v_labelled)
         self.gui.set_cell_voltage(mean_cell_v_labelled)
-        self.gui.set_cell_voltage(highest_cell_v_labelled)
 
         self.gui.update_runtime(runtime)
         self.gui.refresh_ui()

@@ -203,9 +203,11 @@ class GUI:
     #     self.kw_canvas.create_rectangle(0, 100 - kw_fill, 30, 100, fill="red")
     #     self.temp_canvas.create_rectangle(0, 100 - temp_fill, 30, 100, fill="orange")
 
-    # def update_cell_voltage(self, cell_voltage):
-    #     """Update the cell voltage label"""
-    #     self.cell_voltage_label.config(text=f"Cell Voltage: {cell_voltage:.3f}V")
+    def set_cell_voltage(self, mean_cell_v):
+        """Update the cell voltage label"""
+        self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
+        # self.low_cell_v_label.config(text=f"Lowest: {lowest_cell_v}")
+        # self.high_cell_v_label.config(text=f"Highest: {high_cell_v}")
 
     def update_error_label(self, system_errors: set[str]):
         if len(system_errors) > 0:
