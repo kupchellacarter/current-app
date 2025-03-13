@@ -37,7 +37,7 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
-        self.set_soc()
+        self.set_soc(55)
 
         # Runtime Frame
         self.runtime_frame = tk.Frame(self.root, bg="white", width=50, height=20)
@@ -205,7 +205,7 @@ class GUI:
             )
             self.soc_canvas.create_text(
                 350,
-                20,
+                25,
                 text=f"{charge_level}%",
                 fill="white",
                 font=(self.font, 30, "bold"),
