@@ -22,18 +22,17 @@ class GUI:
         self.root.attributes("-fullscreen", True)
         self.root.config(cursor="none")
         self.root.overrideredirect(True)
-        self.root.geometry("800x580")  # Set to your screen size
+        self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
-
-        # Frame Nest
-        self.outer_frame = tk.Frame(self.root, bg="white", width=780, height=460)
-        self.outer_frame.pack(fill="y", padx=20, pady=20)
 
     def run(self):
         # Start the Tkinter event loop
         self.root.mainloop()
 
     def display_defualt_ui(self):
+        # Frame Nest
+        self.outer_frame = tk.Frame(self.root, bg="white", width=780, height=460)
+        self.outer_frame.pack(fill="y", padx=20, pady=20)
         self.top_frame = tk.Frame(self.outer_frame, bg="red", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
