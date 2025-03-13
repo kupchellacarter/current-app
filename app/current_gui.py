@@ -51,58 +51,58 @@ class GUI:
         )
         self.runtime_label.pack(side="bottom")
 
-        # # Bottom Frame
-        # self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
-        # self.bottom_frame.pack(side="bottom", fill="x")
+        # Bottom Frame
+        self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
+        self.bottom_frame.pack(side="bottom", fill="x")
 
-        # # Voltage Frame
-        # self.voltage_frame = tk.Frame(
-        #     self.outer_frame, bg="black", width=760, height=80
-        # )
-        # self.voltage_frame.pack(side="bottom", fill="x")
+        # Voltage Frame
+        self.voltage_frame = tk.Frame(
+            self.outer_frame, bg="black", width=760, height=80
+        )
+        self.voltage_frame.pack(side="bottom", fill="x")
         # self._create_cell_voltage_frame()
 
-        # # Central Frame
-        # self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
-        # self.central_frame.pack(side="left", fill="y")
+        # Central Frame
+        self.central_frame = tk.Frame(self.outer_frame, bg="black", width=560)
+        self.central_frame.pack(side="left", fill="y")
 
-        # # Central Metrics
-        # self.voltage_label = tk.Label(
-        #     self.central_frame,
-        #     text="Pack Voltage: ",
-        #     font=(self.font, self.metric_font_size),
-        #     bg="black",
-        #     fg="white",
-        # )
-        # self.voltage_label.grid(row=1, column=0, pady=5)
+        # Central Metrics
+        self.voltage_label = tk.Label(
+            self.central_frame,
+            text="Pack Voltage: ",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.voltage_label.grid(row=1, column=0, pady=5)
 
-        # self.current_label = tk.Label(
-        #     self.central_frame,
-        #     text="Current: ",
-        #     font=(self.font, self.metric_font_size),
-        #     bg="black",
-        #     fg="white",
-        # )
-        # self.current_label.grid(row=2, column=0, pady=5)
+        self.current_label = tk.Label(
+            self.central_frame,
+            text="Current: ",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.current_label.grid(row=2, column=0, pady=5)
 
-        # self.power_label = tk.Label(
-        #     self.central_frame,
-        #     text="Power: ",
-        #     font=(self.font, self.metric_font_size),
-        #     bg="black",
-        #     fg="white",
-        # )
-        # self.power_label.grid(row=3, column=0, pady=5)
+        self.power_label = tk.Label(
+            self.central_frame,
+            text="Power: ",
+            font=(self.font, self.metric_font_size),
+            bg="black",
+            fg="white",
+        )
+        self.power_label.grid(row=3, column=0, pady=5)
 
-        # # Error Display
-        # self.system_error_label = tk.Label(
-        #     self.bottom_frame,
-        #     text="System Errors:",
-        #     font=(self.font, 32),
-        #     bg="black",
-        #     fg="white",
-        # )
-        # self.system_error_label.grid(row=1, column=0, pady=5)
+        # Error Display
+        self.system_error_label = tk.Label(
+            self.bottom_frame,
+            text="System Errors:",
+            font=(self.font, 32),
+            bg="black",
+            fg="white",
+        )
+        self.system_error_label.grid(row=1, column=0, pady=5)
 
     def _create_soc_frame(self):
         # Battery soc Display (Top)
