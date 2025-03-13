@@ -31,10 +31,10 @@ class GUI:
 
     def display_defualt_ui(self):
         # Frame Nest
-        # self.outer_frame = tk.Frame(self.root, bg="white", width=780, height=460)
-        # self.outer_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        self.outer_frame = tk.Frame(self.root, bg="white", width=780, height=460)
+        self.outer_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-        self.top_frame = tk.Frame(self.root, bg="red", width=760, height=100)
+        self.top_frame = tk.Frame(self.outer_frame, bg="red", width=760, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
         self.set_soc(55)
@@ -52,11 +52,15 @@ class GUI:
         self.runtime_label.pack(side="bottom")
 
         # Bottom (error message) Frame
-        self.bottom_frame = tk.Frame(self.root, bg="green", width=760, height=100)
+        self.bottom_frame = tk.Frame(
+            self.outer_frame, bg="green", width=760, height=100
+        )
         self.bottom_frame.pack(anchor="s", side="bottom", fill="x")
 
         # Central Frame
-        self.central_frame = tk.Frame(self.root, bg="blue", height=200, width=560)
+        self.central_frame = tk.Frame(
+            self.outer_frame, bg="blue", height=200, width=560
+        )
         self.central_frame.pack(side="left", fill="both", expand=True)
 
         # Central Metrics
@@ -67,7 +71,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.voltage_label.grid(row=1, column=0, pady=5)
+        self.voltage_label.pack(side="left", padx=10, pady=10)
 
         self.current_label = tk.Label(
             self.central_frame,
@@ -76,7 +80,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.current_label.grid(row=2, column=0, pady=5)
+        self.current_label.pack(side="left", padx=10, pady=10)
 
         self.power_label = tk.Label(
             self.central_frame,
@@ -85,7 +89,7 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.power_label.grid(row=3, column=0, pady=5)
+        self.power_label.pack(side="left", padx=10, pady=10)
 
         self.cell_voltage_label = tk.Label(
             self.central_frame,
@@ -94,12 +98,12 @@ class GUI:
             bg="black",
             fg="white",
         )
-        self.cell_voltage_label.grid(row=1, column=1, pady=5)
+        self.cell_voltage_label.pack(side="right", anchor="ne", padx=10, pady=10)
 
         self.cell_voltage_canvas = tk.Canvas(
             self.central_frame, bg="white", width=360, height=80
         )
-        self.central_frame.grid(row=2, column=1, pady=5)
+        self.central_frame.pack(side="right", anchor="e", padx=10, pady=10)
 
         # Error Display
         self.system_error_label = tk.Label(
