@@ -18,6 +18,7 @@ class GUI:
         self.root.title("Electric Boat Dashboard")
         self.metric_font_size = 24
         self.charge_level = 0
+        self.mean_voltage = 0
         self.root.attributes("-fullscreen", False)
         # self.root.config(cursor="none")
         # self.root.overrideredirect(True)
@@ -37,7 +38,8 @@ class GUI:
         self.top_frame = tk.Frame(self.outer_frame, bg="black", width=700, height=100)
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
-        self.set_soc()
+        self._create_cell_voltage_frame()
+        self.set_soc(100)
 
         # Bottom Frame
         self.bottom_frame = tk.Frame(self.outer_frame, bg="black", width=760, height=80)
@@ -120,6 +122,11 @@ class GUI:
         self.soc_canvas = tk.Canvas(self.top_frame, width=700, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
 
+    def _create_cell_voltage_frame(self):
+        # Battery soc Display (Top)
+        self.cell_voltage_canvas = tk.Canvas(self.bottom_frame, width=700, height=50, bg="black")
+        self.cell_voltage_canvas(side="top", fill="x")
+
     def set_pack_kwh(self, current_kwh, max_kwh):
         # Battery percentage text below
         self.soc_canvas.create_text(
@@ -129,6 +136,46 @@ class GUI:
             fill="white",
             font=(self.font, 12),
         )
+
+    def set_cell_voltage(self, mean_voltage=80):
+        # only update the charge level if it has changed
+        if self.mean_voltage != mean_voltage:
+            logger.warning(f"Updating Cell Voltage to {mean_voltage}")
+            self.cell_voltage_canvas.delete("all")
+            self.mean_voltage = mean_voltage
+            num_sections = 100
+            section_width = (670 - 30) / num_sections  # Calculate section width
+            for i in range(num_sections):
+                x1 = 30 + i * section_width
+                space = 3 if (i + 1) % 10 == 0 else 0
+                x2 = x1 + section_width - space  # Add small gap for spacing
+
+                # Green for filled sections, black for empty, with blue outline for empty ones
+                if i < (self.charge_level / 100) * num_sections:
+                    fill_color = "green"
+                    outline_color = "green"
+                else:
+                    fill_color = "#36454F"
+                    outline_color = "#36454F"
+
+                self.soc_canvas.create_rectangle(
+                    x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color
+                )
+
+            # Labels "E" and "F" inside the battery
+            self.soc_canvas.create_text(
+                25, 25, text="E", fill="white", font=(self.font, 30, "bold")
+            )
+            self.soc_canvas.create_text(
+                675, 25, text="F", fill="white", font=(self.font, 30, "bold")
+            )
+            self.soc_canvas.create_text(
+                350,
+                25,
+                text=f"{mean_voltage}%",
+                fill="white",
+                font=(self.font, 30, "bold"),
+            )
 
     def set_soc(self, charge_level=0):
         # only update the charge level if it has changed
@@ -186,23 +233,6 @@ class GUI:
     def set_power(self, power_value):
         self.power_label.config(text=f"{power_value}")
 
-    # def update_metrics(self, voltage, current, power):
-    #     """Update the voltage, current, and power labels"""
-    #     self.voltage_label.config(text=f"Voltage: {voltage:.2f}V")
-    #     self.current_label.config(text=f"Current: {current:.1f}A")
-    #     self.power_label.config(text=f"Power: {power:.1f}kW")
-
-    # def update_bars(self, kw, temp):
-    #     """Update the power (kW) and temperature bars"""
-    #     self.kw_canvas.delete("all")
-    #     self.temp_canvas.delete("all")
-
-    #     kw_fill = int(100 * (kw / 5))  # Assuming max 5kW
-    #     temp_fill = int(200 * (temp / 100))  # Assuming max 100°C
-
-    #     self.kw_canvas.create_rectangle(0, 100 - kw_fill, 30, 100, fill="red")
-    #     self.temp_canvas.create_rectangle(0, 100 - temp_fill, 30, 100, fill="orange")
-
     def set_cell_voltage(self, mean_cell_v):
         """Update the cell voltage label"""
         self.cell_voltage_label.config(text=f"Cell Voltage: {mean_cell_v}")
@@ -218,13 +248,6 @@ class GUI:
             )
         else:
             self.system_error_label.config(text="All OK", bg="black", fg="blue")
-
-    # def show_errors(self, errors):
-    #     """Display errors if any"""
-    #     if errors:
-    #         self.errors.config(text=f"ERRORS: {', '.join(errors)}")
-    #     else:
-    #         self.error_label.config(text="")
 
     def refresh_ui(self):
         """Refresh the UI periodically"""
