@@ -19,9 +19,9 @@ class GUI:
         self.metric_font_size = 24
         self.charge_level = 0
         self.mean_voltage = 0
-        self.root.attributes("-fullscreen", False)
-        # self.root.config(cursor="none")
-        # self.root.overrideredirect(True)
+        self.root.attributes("-fullscreen", True)
+        self.root.config(cursor="none")
+        self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
