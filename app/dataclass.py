@@ -5,7 +5,7 @@ import cantools
 @dataclass
 class CanData:
 
-    # OBDii Handled
+    # OBDii Handler
     runtime: str = "00:00:00"
 
     # From PGN 0xFF20 MCU_Summary

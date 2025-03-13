@@ -23,7 +23,9 @@ class App:
         queries data and updates GUI
         """
         last_display = None
+
         while True:
+            self.charging_mode = self.dbc_handler.charge_mode()
             if self.charging_mode:
                 self.display_charging_ui(last_display)
                 last_display = "charging_ui"
