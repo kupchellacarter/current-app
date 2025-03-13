@@ -22,7 +22,7 @@ class GUI:
         self.root.attributes("-fullscreen", True)
         self.root.config(cursor="none")
         self.root.overrideredirect(True)
-        self.root.geometry("800x480")  # Set to your screen size
+        self.root.geometry("800x580")  # Set to your screen size
         self.root.config(bg="black")
 
         # Frame Nest
