@@ -128,6 +128,7 @@ class App:
 
         self.gui.update_error_label(system_errors)
         self.gui.set_soc(soc)
+        print(hvc,lvc)
         self.gui.set_cell_voltage_slider(mean_cell_v,lvc,hvc)
         self.gui.set_pack_kwh(pack_cur_kwh, pack_max_kwh_labelled)
 
