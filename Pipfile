@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 python-can = "*"
 cantools = "*"
+matplotlib = "*"
+numpy = "*"
 
 [dev-packages]
 

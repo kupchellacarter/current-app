@@ -1,5 +1,7 @@
 import tkinter as tk
 import logging
+import matplotlib.colors as mcolors
+import numpy as np
 
 # import threading
 
@@ -20,9 +22,9 @@ class GUI:
         self.metric_font_size = 24
         self.charge_level = 0
         self.mean_voltage = 0
-        self.root.attributes("-fullscreen", True)
-        self.root.config(cursor="none")
-        self.root.overrideredirect(True)
+        self.root.attributes("-fullscreen", False)
+        # self.root.config(cursor="none")
+        # self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
@@ -39,38 +41,8 @@ class GUI:
         self.top_frame.pack(side="top", fill="x")
         self._create_soc_frame()
         self.set_soc(5)
-
-        # Runtime Frame
-        self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
-        self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
-        self.runtime_label = tk.Label(
-            self.runtime_frame,
-            text="Runtime:",
-            font=(self.font, 14),
-            bg="black",
-            fg="white",
-        )
-        self.runtime_label.grid(row=0, column=0, stick="w", padx=10)
-
-        # self.cell_count_frame = tk.Frame(self.root, bg="black", width=50, height=20)
-        # self.cell_count_frame = tk.Frame(
-        #     self.runtime_frame, bg="black", width=100, height=20
-        # )
-        self.cell_count_label = tk.Label(
-            self.runtime_frame,
-            text="No Cells Connected",
-            font=(self.font, 14),
-            bg="black",
-            fg="white",
-        )
-        self.cell_count_label.grid(
-            row=0,
-            column=1,
-            sticky="e",
-            padx=10,
-        )
-
-        self.runtime_frame.grid_columnconfigure(0, weight=1)
+        self._create_runtime_frame()
+       
 
         # Bottom (error message) Frame
         self.bottom_frame = tk.Frame(
@@ -134,10 +106,7 @@ class GUI:
         )
         self.cell_voltage_label.pack(anchor="n", padx=10, pady=10)
 
-        self.cell_voltage_canvas = tk.Canvas(
-            self.right_frame, bg="white", width=360, height=20
-        )
-        self.cell_voltage_canvas.pack(anchor="e", padx=10, pady=10)
+        self._create_cell_voltage_slider()
 
         # Error Display
         self.system_error_label = tk.Label(
@@ -154,11 +123,34 @@ class GUI:
         self.soc_canvas = tk.Canvas(self.top_frame, width=760, height=50, bg="black")
         self.soc_canvas.pack(side="top", fill="x")
 
-    # def _create_cell_voltage_canvas(self):
-    #     self.cell_voltage_canvas = tk.Canvas(
-    #         self.central_frame, width=350, height=50, bg="black"
-    #     )
-    #     self.cell_voltage_canvas.pack(side="top", fill="x")
+    def _create_runtime_frame(self):
+         # Runtime Frame
+        self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
+        self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
+        self.runtime_label = tk.Label(
+            self.runtime_frame,
+            text="Runtime:",
+            font=(self.font, 14),
+            bg="black",
+            fg="white",
+        )
+        self.runtime_label.grid(row=0, column=0, stick="w", padx=10)
+
+        self.runtime_frame.grid_columnconfigure(0, weight=1)
+
+        self.cell_count_label = tk.Label(
+            self.runtime_frame,
+            text="No Cells Connected",
+            font=(self.font, 14),
+            bg="black",
+            fg="white",
+        )
+        self.cell_count_label.grid(
+            row=0,
+            column=1,
+            sticky="e",
+            padx=10,
+        )
 
     def set_pack_kwh(self, current_kwh, max_kwh):
         # Battery percentage text below
@@ -170,45 +162,28 @@ class GUI:
             font=(self.font, 12),
         )
 
-    def set_cell_voltage(self, mean_voltage=80):
-        # only update the charge level if it has changed
-        if self.mean_voltage != mean_voltage:
-            logger.warning(f"Updating Cell Voltage to {mean_voltage}")
-            self.cell_voltage_label.config(text=f"Cell Voltage: {mean_voltage}")
-            self.cell_voltage_canvas.delete("all")
-            self.mean_voltage = mean_voltage
-            num_sections = 100
-            section_width = (690 - 30) / num_sections  # Calculate section width
-            for i in range(num_sections):
-                x1 = 30 + i * section_width
-                space = 3 if (i + 1) % 10 == 0 else 0
-                x2 = x1 + section_width - space  # Add small gap for spacing
+    def _create_cell_voltage_slider(self):
+        self.cell_voltage_canvas = tk.Canvas(
+            self.right_frame, bg="black", width=360, height=20
+        )
+        self.cell_voltage_canvas.pack(anchor="e", padx=0, pady=0)
 
-                # Green for filled sections, black for empty, with blue outline for empty ones
-                if i < (self.charge_level / 100) * num_sections:
-                    fill_color = "green"
-                    outline_color = "green"
-                else:
-                    fill_color = "#36454F"
-                    outline_color = "#36454F"
+        num_sections = 20
+        section_width = 360 / num_sections  # Calculate section width
 
-                self.soc_canvas.create_rectangle(
-                    x1, 5, x2, 45, outline=outline_color, width=1, fill=fill_color
-                )
+        # Generate colors using a rainbow colormap
+        colormap = mcolors.LinearSegmentedColormap.from_list("rainbow", 
+                    ["red", "orange", "yellow", "green", "cyan", "aqua", "white"])
+        colors = [mcolors.rgb2hex(colormap(i / (num_sections - 1))) for i in range(num_sections)]
 
-            # Labels "E" and "F" inside the battery
-            self.soc_canvas.create_text(
-                25, 25, text="E", fill="white", font=(self.font, 30, "bold")
-            )
-            self.soc_canvas.create_text(
-                675, 25, text="F", fill="white", font=(self.font, 30, "bold")
-            )
-            self.soc_canvas.create_text(
-                350,
-                25,
-                text=f"{mean_voltage}%",
-                fill="white",
-                font=(self.font, 30, "bold"),
+        for i in range(num_sections):
+            x1 = i * section_width
+            x2 = x1 + section_width
+            fill_color = colors[i]
+            outline_color = fill_color  # Keep outline same as fill for smooth effect
+
+            self.cell_voltage_canvas.create_rectangle(
+                x1, 0, x2, 20, outline=outline_color, width=1, fill=fill_color
             )
 
     def set_soc(self, charge_level=0):
