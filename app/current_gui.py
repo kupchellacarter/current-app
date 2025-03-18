@@ -188,8 +188,8 @@ class GUI:
             self.cell_voltage_canvas.create_rectangle(
                 x1, 10, x2, 30, outline=outline_color, width=1, fill=fill_color
             )
-        self.low_voltage_label = self.cell_voltage_canvas.create_text(5, 20, text="0.0", fill="white", anchor="w", font=(self.font, 20, "bold"))
-        self.high_voltage_label = self.cell_voltage_canvas.create_text(400, 20, text="0.0", fill="white", anchor="e", font=(self.font, 20, "bold"))
+        self.low_voltage_label = self.cell_voltage_canvas.create_text(5, 20, text="0.0", fill="white", anchor="w", font=(self.font, 15, "bold"))
+        self.high_voltage_label = self.cell_voltage_canvas.create_text(400, 20, text="0.0", fill="white", anchor="e", font=(self.font, 15, "bold"))
     
     def set_cell_voltage_slider(self, mean_voltage:float, low_voltage:float, high_voltage:float):
         if self.low_voltage != low_voltage:
