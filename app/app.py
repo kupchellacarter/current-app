@@ -105,8 +105,6 @@ class App:
         cell_count = self.data.mcu_cellcount
         mean_cell_v = round(self.data.mcu_meancellv * self.data.mcu_meancellv_factor, 2)
         mean_cell_v_labelled = f"{mean_cell_v} {self.data.mcu_meancellv_unit}"
-        hvc = round(self.data.bms_hvc * self.data.bms_hvc_factor, 2)
-        lvc = round(self.data.bms_lvc * self.data.bms_lvc_factor, 2)
 
         # PGN 0xFF23 MCU_ThermSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -125,10 +123,11 @@ class App:
         pack_max_kwh_labelled = f"{pack_max_kwh} {self.data.mcu_packmaxkwh_unit}"
 
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.bms_config1)
+        hvc = round(self.data.bms_hvc * self.data.bms_hvc_factor, 2)
+        lvc = round(self.data.bms_lvc * self.data.bms_lvc_factor, 2)
 
         self.gui.update_error_label(system_errors)
         self.gui.set_soc(soc)
-        print(hvc,lvc)
         self.gui.set_cell_voltage_slider(mean_cell_v,lvc,hvc)
         self.gui.set_pack_kwh(pack_cur_kwh, pack_max_kwh_labelled)
 
