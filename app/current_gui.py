@@ -199,7 +199,7 @@ class GUI:
             self.cell_voltage_canvas.itemconfig(self.high_voltage_label, text=str(high_voltage))
             self.high_voltage = high_voltage
         if self.mean_voltage != mean_voltage:
-            x1 = 45 + (mean_voltage - 2.5) * 360 / 2.5
+            x1 = 45 + (mean_voltage - low_voltage) * 306 / (high_voltage - low_voltage)
             x2 = x1 + 30
             self.cell_voltage_canvas.create_rectangle(
                 x1, 0, x2, 50, outline="white", width=1, fill="white"
@@ -318,7 +318,7 @@ class GUI:
 if __name__ == "__main__":
     gui = GUI()
     gui.display_defualt_ui()
-    gui.set_cell_voltage_slider(3.2, 2.5, 4.0)
+    gui.set_cell_voltage_slider(3.9, 2.5, 4.0)
     gui.run()
     # gui.set_pack_voltage(57.2)
     # gui.set_pack_current(10.5)
