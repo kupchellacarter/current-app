@@ -74,11 +74,11 @@ class CanData:
 
     # PGN 0xFF11 BMS_Config1
     bms_hvc: float = 0.0
-    bms_hvc_factor: float = 0.1
-    bms_hvc_unit: str = "mV"
+    bms_hvc_factor: float = 0.001
+    bms_hvc_unit: str = "V"
     bms_lvc: float = 0.0
-    bms_lvc_factor: float = 0.1
-    bms_lvc_unit: str = "mV"
+    bms_lvc_factor: float = 0.001
+    bms_lvc_unit: str = "V"
     bms_bvmin: float = 0.0
     bms_bvmin_factor: float = 0.1
     bms_bvmin_unit: str = "mV"
