@@ -101,7 +101,7 @@ class DBCMessageHandler:
     def charge_mode(self):
         """Charge mode"""
         self.dbc_request_and_parse(self.dbc_request.mcu_summary)
-        if self.data.mcu_plugstate.value == 2:
+        if self.data.mcu_plugstate == 2:
             return True
         return False
 
