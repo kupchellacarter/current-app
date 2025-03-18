@@ -199,7 +199,7 @@ class GUI:
             self.cell_voltage_canvas.itemconfig(self.high_voltage_label, text=str(high_voltage))
             self.high_voltage = high_voltage
         if self.mean_voltage != mean_voltage:
-            x1 =50 + (mean_voltage - low_voltage) * 306 / (high_voltage - low_voltage)
+            x1 = 45 + (mean_voltage - low_voltage) * 306 / (high_voltage - low_voltage)
             x2 = x1 + 30
             self.cell_voltage_canvas.create_rectangle(
                 x1, 0, x2, 50, outline="white", width=1, fill="white"
