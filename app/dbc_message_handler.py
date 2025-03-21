@@ -117,3 +117,4 @@ if __name__ == "__main__":
     handler.dbc_request_and_parse(dbc_request.mcu_soc_summary)  # SOC_summary
     handler.dbc_request_and_parse(dbc_request.bms_config1)  # BMS_Config1
     handler.dbc_request_and_parse(dbc_request.mcu_therm_summary)  # MCU_ThermSummary
+    print(handler.data)
