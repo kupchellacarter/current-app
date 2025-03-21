@@ -97,7 +97,7 @@ class App:
             self.data.mcu_packcurrent * self.data.mcu_packcurrent_factor, 2
         )
         pack_current_labelled = f"{pack_current} {self.data.mcu_packcurrent_unit}"
-        pack_kw = round(pack_voltage * pack_current, 3)
+        pack_kw = round(pack_voltage * pack_current / 1000, 3)
         pack_kw_labelled = f"{pack_kw} {self.data.mcu_packkw_unit}"
 
         # PGN 0xFF22 MCU_CellSummary
