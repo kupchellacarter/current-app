@@ -29,11 +29,11 @@ class CanData:
     mcu_packvoltage_factor: float = 1
     mcu_packvoltage_unit: str = "V"
     mcu_packcurrent: float = 0.0
-    mcu_packcurrent_factor: float = 0.1
+    mcu_packcurrent_factor: float = 1
     mcu_packcurrent_unit: str = "A"
     mcu_packkw: float = 0.0
-    mcu_packkw_factor: float = 0.001
-    mcu_packkw_unit: str = "kW"
+    mcu_packkw_factor: float = 0.01
+    mcu_packkw_unit: str = "W"
 
     # PGN 0xFF22 MCU_CellSummary
     mcu_cellcount: int = 0

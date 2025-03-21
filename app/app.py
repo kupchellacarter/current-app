@@ -12,7 +12,7 @@ class App:
 
     def __init__(self):
         self.gui = GUI()
-        self.data:CanData = CanData()
+        self.data: CanData = CanData()
         self.dbc_request = DBCRequest()
         self.obd2_handler: OBD2MessageHandler = None
         self.dbc_handler: DBCMessageHandler = None
@@ -93,9 +93,11 @@ class App:
             self.data.mcu_packvoltage * self.data.mcu_packvoltage_factor, 2
         )
         pack_voltage_labelled = f"{pack_voltage} {self.data.mcu_packvoltage_unit}"
-        pack_current = self.data.mcu_packcurrent * self.data.mcu_packcurrent_factor
+        pack_current = round(
+            self.data.mcu_packcurrent * self.data.mcu_packcurrent_factor, 2
+        )
         pack_current_labelled = f"{pack_current} {self.data.mcu_packcurrent_unit}"
-        pack_kw = pack_voltage * pack_current
+        pack_kw = round(pack_voltage * pack_current, 3)
         pack_kw_labelled = f"{pack_kw} {self.data.mcu_packkw_unit}"
 
         # PGN 0xFF22 MCU_CellSummary
@@ -128,7 +130,7 @@ class App:
 
         self.gui.update_error_label(system_errors)
         self.gui.set_soc(soc)
-        self.gui.set_cell_voltage_slider(mean_cell_v,lvc,hvc)
+        self.gui.set_cell_voltage_slider(mean_cell_v, lvc, hvc)
         self.gui.set_pack_kwh(pack_cur_kwh, pack_max_kwh_labelled)
 
         self.gui.set_pack_voltage(pack_voltage_labelled)
