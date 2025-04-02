@@ -25,8 +25,8 @@ class GUI:
         self.low_voltage = 0
         self.high_voltage = 0
         self.root.attributes("-fullscreen", False)
-        # self.root.config(cursor="none")
-        # self.root.overrideredirect(True)
+        self.root.config(cursor="none")
+        self.root.overrideredirect(True)
         self.root.geometry("800x480")  # Set to your screen size
         self.root.config(bg="black")
 
@@ -44,8 +44,6 @@ class GUI:
         self._create_soc_frame()
         self.set_soc(5)
         self._create_runtime_frame()
-
-       
 
         # Bottom (error message) Frame
         self.bottom_frame = tk.Frame(
@@ -127,7 +125,7 @@ class GUI:
         self.soc_canvas.pack(side="top", fill="x")
 
     def _create_runtime_frame(self):
-         # Runtime Frame
+        # Runtime Frame
         self.runtime_frame = tk.Frame(self.root, bg="black", height=20)
         self.runtime_frame.pack(anchor="sw", side="bottom", fill="x", padx=10, pady=5)
         self.runtime_label = tk.Label(
@@ -175,11 +173,15 @@ class GUI:
         section_width = 360 / num_sections  # Calculate section width
 
         # Generate colors using a rainbow colormap
-        colormap = mcolors.LinearSegmentedColormap.from_list("rainbow", 
-                    ["red", "orange", "yellow", "green", "cyan", "aqua", "white"])
-        colors = [mcolors.rgb2hex(colormap(i / (num_sections - 4))) for i in range(num_sections)]
+        colormap = mcolors.LinearSegmentedColormap.from_list(
+            "rainbow", ["red", "orange", "yellow", "green", "cyan", "aqua", "white"]
+        )
+        colors = [
+            mcolors.rgb2hex(colormap(i / (num_sections - 4)))
+            for i in range(num_sections)
+        ]
 
-        for i in range(num_sections-3):
+        for i in range(num_sections - 3):
             x1 = i * section_width + 50
             x2 = x1 + section_width
             fill_color = colors[i]
@@ -188,15 +190,25 @@ class GUI:
             self.cell_voltage_canvas.create_rectangle(
                 x1, 10, x2, 30, outline=outline_color, width=1, fill=fill_color
             )
-        self.low_voltage_label = self.cell_voltage_canvas.create_text(5, 20, text="0.0", fill="white", anchor="w", font=(self.font, 15, "bold"))
-        self.high_voltage_label = self.cell_voltage_canvas.create_text(400, 20, text="0.0", fill="white", anchor="e", font=(self.font, 15, "bold"))
-    
-    def set_cell_voltage_slider(self, mean_voltage:float, low_voltage:float, high_voltage:float):
+        self.low_voltage_label = self.cell_voltage_canvas.create_text(
+            5, 20, text="0.0", fill="white", anchor="w", font=(self.font, 15, "bold")
+        )
+        self.high_voltage_label = self.cell_voltage_canvas.create_text(
+            400, 20, text="0.0", fill="white", anchor="e", font=(self.font, 15, "bold")
+        )
+
+    def set_cell_voltage_slider(
+        self, mean_voltage: float, low_voltage: float, high_voltage: float
+    ):
         if self.low_voltage != low_voltage:
-            self.cell_voltage_canvas.itemconfig(self.low_voltage_label, text=str(low_voltage))
+            self.cell_voltage_canvas.itemconfig(
+                self.low_voltage_label, text=str(low_voltage)
+            )
             self.low_voltage = low_voltage
         if self.high_voltage != high_voltage:
-            self.cell_voltage_canvas.itemconfig(self.high_voltage_label, text=str(high_voltage))
+            self.cell_voltage_canvas.itemconfig(
+                self.high_voltage_label, text=str(high_voltage)
+            )
             self.high_voltage = high_voltage
         if self.mean_voltage != mean_voltage:
             x1 = 45 + (mean_voltage - low_voltage) * 306 / (high_voltage - low_voltage)
