@@ -294,7 +294,7 @@ class GUI:
         # self.low_cell_v_label.config(text=f"Lowest: {lowest_cell_v}")
         # self.high_cell_v_label.config(text=f"Highest: {high_cell_v}")
 
-    def update_error_label(self, system_errors: List[str]):
+    def update_error_label(self, system_errors: list[str]):
         if len(system_errors) > 0:
             formatted_message = "\n".join(system_errors)
             self.system_error_label.config(
