@@ -1,0 +1,15 @@
+[Unit]
+Description=Boat GUI Display
+After=canup.service
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/your_project_folder/app.py
+WorkingDirectory=/home/current/github/current-app/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=current
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
