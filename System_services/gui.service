@@ -3,15 +3,15 @@ Description=Boat GUI Display
 After=canup.service
 
 [Service]
+user=current
+WorkingDirectory=/home/current/github/current-app/app
 Environment=Display=:0
 Environment=XAUTHORITY=/home/current/.Xauthority
-ExecStart=/usr/bin/python3 /home/current/github/current-app.py/app.py
-WorkingDirectory=/home/current/github/current-app/
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/current/github/current-app/app/.venv/bin/python /home/current/github/current-app.py/app/app.py
+Restart=always
 StandardOutput=inherit
 StandardError=inherit
-Restart=always
-User=current
-Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
