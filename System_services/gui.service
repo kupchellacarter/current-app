@@ -4,11 +4,11 @@ After=canup.service
 
 [Service]
 user=current
-WorkingDirectory=/home/current/github/current-app/app
+WorkingDirectory=/home/current/github/current-app
 Environment=Display=:0
 Environment=XAUTHORITY=/home/current/.Xauthority
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/current/github/current-app/app/.venv/bin/python /home/current/github/current-app.py/app/app.py
+ExecStart=/usr/local/bin/pipenv run python app/app.py
 Restart=always
 StandardOutput=inherit
 StandardError=inherit
