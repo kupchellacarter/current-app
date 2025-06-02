@@ -3,6 +3,7 @@ Description=Boat GUI Display
 After=canup.service
 
 [Service]
+Environment=Display=:0
 ExecStart=/usr/bin/python3 /home/pi/your_project_folder/app.py
 WorkingDirectory=/home/current/github/current-app/
 StandardOutput=inherit
