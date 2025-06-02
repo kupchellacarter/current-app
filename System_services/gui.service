@@ -4,7 +4,8 @@ After=canup.service
 
 [Service]
 Environment=Display=:0
-ExecStart=/usr/bin/python3 /home/pi/your_project_folder/app.py
+Environment=XAUTHORITY=/home/current/.Xauthority
+ExecStart=/usr/bin/python3 /home/current/github/current-app.py/app.py
 WorkingDirectory=/home/current/github/current-app/
 StandardOutput=inherit
 StandardError=inherit
