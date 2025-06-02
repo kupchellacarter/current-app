@@ -1,6 +1,6 @@
 [Unit]
 Description=Boat GUI Display
-After=canup.service
+After=network.target
 
 [Service]
 user=current
