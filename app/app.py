@@ -87,6 +87,8 @@ class App:
             system_errors.append("Hardware Fault")
         # if self.data.mcu_fault_illegalconfig:
         #    system_errors.append("MCU Fault: Illegal Configuration")
+        if not self.data:
+            system_errors.append("No Data")
 
         #  PGN 0xFF21 MCU_PackSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
