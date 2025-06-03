@@ -40,9 +40,11 @@ class App:
         if not last_display or last_display != "default_ui":
             self.gui.display_defualt_ui()
         self.data = self.obd2_handler.obd2_request_and_parse("runtime")
-        import pdb 
-        pdb.set_trace()
-        runtime = self.data.runtime
+        if self.data:
+            runtime = self.data.runtime
+        else:
+            runtime = "00:00:00"
+            self.gui.display_error_ui("Failed to retrieve runtime data.")
 
         # PGN 0xFF20 MCU_Summary
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.mcu_summary)
