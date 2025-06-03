@@ -42,8 +42,7 @@ class App:
         self.data = self.obd2_handler.obd2_request_and_parse("runtime")
         if self.data:
             runtime = self.data.runtime
-        else:
-            runtime = "00:00:00"
+            self.gui.update_runtime(runtime)
 
         # PGN 0xFF20 MCU_Summary
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.mcu_summary)
@@ -104,6 +103,9 @@ class App:
             pack_current_labelled = f"{pack_current} {self.data.mcu_packcurrent_unit}"
             pack_kw = round(pack_voltage * pack_current / 1000, 2)
             pack_kw_labelled = f"{pack_kw} {self.data.mcu_packkw_unit}"
+            self.gui.set_power(pack_kw_labelled)
+            self.gui.set_pack_voltage(pack_voltage_labelled)
+            self.gui.set_pack_current(pack_current_labelled)
 
         # PGN 0xFF22 MCU_CellSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -113,6 +115,8 @@ class App:
             cell_count = self.data.mcu_cellcount
             mean_cell_v = round(self.data.mcu_meancellv * self.data.mcu_meancellv_factor, 2)
             mean_cell_v_labelled = f"{mean_cell_v} {self.data.mcu_meancellv_unit}"
+            self.gui.set_cell_voltage(mean_cell_v_labelled)
+            self.gui.set_cell_count(cell_count)
 
         # PGN 0xFF23 MCU_ThermSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -120,6 +124,7 @@ class App:
         )
         if self.data:
             highest_therm = self.data.mcu_thhighest
+            self.gui.set_temp(highest_therm)
 
         # PGN 0xFF24 MCU_SOCSummary
         self.data = self.dbc_handler.dbc_request_and_parse(
@@ -131,27 +136,17 @@ class App:
             pack_cur_kwh_labelled = f"{pack_cur_kwh} {self.data.mcu_packcurkwh_unit}"
             pack_max_kwh = self.data.mcu_packmaxkwh * self.data.mcu_packmaxkwh_factor
             pack_max_kwh_labelled = f"{pack_max_kwh} {self.data.mcu_packmaxkwh_unit}"
+            self.gui.set_soc(soc)
+            self.gui.set_pack_kwh(pack_cur_kwh, pack_max_kwh_labelled)
 
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.bms_config1)
         if self.data:
             hvc = round(self.data.bms_hvc * self.data.bms_hvc_factor, 2)
             lvc = round(self.data.bms_lvc * self.data.bms_lvc_factor, 2)
+            if mean_cell_v:
+                self.gui.set_cell_voltage_slider(mean_cell_v, lvc, hvc)
 
         self.gui.update_error_label(system_errors)
-        self.gui.set_soc(soc or "")
-        self.gui.set_cell_voltage_slider(mean_cell_v or 0, lvc or 0, hvc or 0)
-        self.gui.set_pack_kwh(pack_cur_kwh or "", pack_max_kwh_labelled or "")
-
-        self.gui.set_pack_voltage(pack_voltage_labelled or "")
-        self.gui.set_pack_current(pack_current_labelled or "")
-        self.gui.set_power(pack_kw_labelled or "")
-
-        self.gui.set_cell_count(cell_count or "")
-        self.gui.set_cell_voltage(mean_cell_v_labelled or "")
-
-        self.gui.set_temp(highest_therm or "")
-
-        self.gui.update_runtime(runtime)
         self.gui.refresh_ui()
 
     def display_charging_ui(self, last_display: str):
