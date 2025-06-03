@@ -44,7 +44,6 @@ class App:
             runtime = self.data.runtime
         else:
             runtime = "00:00:00"
-            self.gui.display_error_ui("Failed to retrieve runtime data.")
 
         # PGN 0xFF20 MCU_Summary
         self.data = self.dbc_handler.dbc_request_and_parse(self.dbc_request.mcu_summary)

@@ -279,7 +279,7 @@ class GUI:
         self.power_label.config(text=f"{power_value}")
 
     def set_temp(self, temp):
-        self.temp_label.config(text=f"Temperature: {temp}")
+        self.temp_label.config(text=f"Temperature: {temp} °C")
 
     def set_cell_count(self, cell_count):
         if cell_count == 16:
